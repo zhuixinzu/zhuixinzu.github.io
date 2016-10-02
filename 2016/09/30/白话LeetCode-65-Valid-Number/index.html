@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>白话LeetCode | 65. Valid Number | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题描述(原题链接：LeetCode | 65. Valid Number)
+判断给定的字符串是否为数字类型。如下所示：
+&amp;quot;0&amp;quot; =&amp;gt; true
+&amp;quot; 0.1 &amp;quot; =&amp;gt; true
+&amp;quot;abc&amp;quot; =&amp;gt; false
+&amp;quot;1 a&amp;quot; =&amp;gt; false
+&amp;quot;2e10&amp;quot; =&amp;gt; tru">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白话LeetCode | 65. Valid Number">
+<meta property="og:url" content="zhuixinzu.win/2016/09/30/白话LeetCode-65-Valid-Number/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="问题描述(原题链接：LeetCode | 65. Valid Number)
+判断给定的字符串是否为数字类型。如下所示：
+&amp;quot;0&amp;quot; =&amp;gt; true
+&amp;quot; 0.1 &amp;quot; =&amp;gt; true
+&amp;quot;abc&amp;quot; =&amp;gt; false
+&amp;quot;1 a&amp;quot; =&amp;gt; false
+&amp;quot;2e10&amp;quot; =&amp;gt; tru">
+<meta property="og:updated_time" content="2016-10-02T13:36:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="白话LeetCode | 65. Valid Number">
+<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 65. Valid Number)
+判断给定的字符串是否为数字类型。如下所示：
+&amp;quot;0&amp;quot; =&amp;gt; true
+&amp;quot; 0.1 &amp;quot; =&amp;gt; true
+&amp;quot;abc&amp;quot; =&amp;gt; false
+&amp;quot;1 a&amp;quot; =&amp;gt; false
+&amp;quot;2e10&amp;quot; =&amp;gt; tru">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="zhuixinzu.win"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-白话LeetCode-65-Valid-Number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/30/白话LeetCode-65-Valid-Number/" class="article-date">
+  <time datetime="2016-09-30T10:37:49.000Z" itemprop="datePublished">2016-09-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/白话LeetCode/">白话LeetCode</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      白话LeetCode | 65. Valid Number
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/valid-number/" target="_blank" rel="external">LeetCode | 65. Valid Number</a>)</p>
+<p>判断给定的字符串是否为数字类型。如下所示：</p>
+<p><code>&quot;0&quot;</code> =&gt; <code>true</code></p>
+<p><code>&quot; 0.1 &quot;</code> =&gt; <code>true</code></p>
+<p><code>&quot;abc&quot;</code> =&gt; <code>false</code></p>
+<p><code>&quot;1 a&quot;</code> =&gt; <code>false</code></p>
+<p><code>&quot;2e10&quot;</code> =&gt; <code>true</code></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道字符串类型的模拟题，旨在考察应聘者是否能全面的思考问题。应聘者需要在面试的过程中形成如下条理清晰的思路：</p>
+<ol>
+<li>数字类型除了可以表示成我们最常见的形式，还可以表示成科学计数法形式(‘e’后一定为整数)，例如<code>&quot;1.2e12&quot;</code>；</li>
+<li>字符串的前缀和后缀中是否包含空白符，如果包含空白符的话需要对其删除，例如<code>&quot; 0.1 &quot;</code>=&gt;<code>&quot;0.1&quot;</code>；</li>
+<li>字符串前缀是否包含’+’或’-‘，如果包含正负号需要对齐删除，例如<code>&quot;+0.1&quot;</code>=&gt;<code>&quot;0.1&quot;</code>；</li>
+<li>从左向右扫描字符串，包含以下几种情况：<ol>
+<li>如果为数字，则该字符串可能为数字类型，继续扫描；</li>
+<li>如果为’.’，则该字符串可能为小数形式或者科学计数法形式，’.’后必须尾随数字，例如<code>&quot;1.2&quot;</code>、<code>&quot;1.2e12&quot;</code>；</li>
+<li>如果为’e’，则该字符串为科学计数法形式，’e’后必须尾随数字；</li>
+<li>如果为’+’或’-‘，则该字符串为科学计数法形式，且正负号一定尾随在’e’后，例如<code>&quot;1.2e+12&quot;</code></li>
+<li>如果为其他字符，则该字符串不可能为数字类型。</li>
+</ol>
+</li>
+</ol>
+<p>需要注意以下两点：</p>
+<ol>
+<li>‘e’最多出现一次；</li>
+<li>‘.’最多出现一次，例如<code>&quot;1.2&quot;</code>，在科学计数法中必须出现在’e’之前，例如<code>&quot;1.2e12&quot;</code>。</li>
+</ol>
+<p>有了如上的分析，不难写出完整的代码。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isNumber</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = s.length() - <span class="number">1</span>;</div><div class="line">        <span class="comment">// 删除前缀中的空白符</span></div><div class="line">        <span class="keyword">while</span> (l &lt;= r &amp;&amp; <span class="string">' '</span> == s[l]) ++l;</div><div class="line">        <span class="comment">// 删除后缀中的空白符</span></div><div class="line">        <span class="keyword">while</span> (l &lt;= r &amp;&amp; <span class="string">' '</span> == s[r]) --r;</div><div class="line">        <span class="comment">// 删除前缀中的正负号</span></div><div class="line">        <span class="keyword">if</span> (<span class="string">'-'</span> == s[l] || <span class="string">'+'</span> == s[l]) ++l;</div><div class="line">        <span class="keyword">bool</span> ans = <span class="literal">false</span>, dot = <span class="literal">false</span>, <span class="built_in">exp</span> = <span class="literal">false</span>;</div><div class="line">        <span class="comment">// 从左向右遍历扫描</span></div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            <span class="comment">// 如果为数字字符，则可能正确</span></div><div class="line">            <span class="keyword">if</span> (<span class="string">'0'</span> &lt;= s[l] &amp;&amp; <span class="string">'9'</span> &gt;= s[l]) &#123;</div><div class="line">                ans = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// '.'最多出现一次，且不能出现在'e'的右侧</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'.'</span> == s[l] &amp;&amp; !dot &amp;&amp; !<span class="built_in">exp</span>) &#123;</div><div class="line">                dot = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 'e'最多出现一次，且之前部分的字符串可以组成数字类型</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'e'</span> == s[l] &amp;&amp; !<span class="built_in">exp</span> &amp;&amp; ans) &#123;</div><div class="line">                <span class="built_in">exp</span> = <span class="literal">true</span>;</div><div class="line">                ans = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// '+'或'-'必须出现在'e'之后</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'-'</span> == s[l] || <span class="string">'+'</span> == s[l]) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="string">'e'</span> != s[l - <span class="number">1</span>]) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">            ++l;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="zhuixinzu.win/2016/09/30/白话LeetCode-65-Valid-Number/" data-id="citso8d8g0004hmc6yojrn40o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          白话LeetCode | 8. String to Integer (atoi)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/白话LeetCode/">白话LeetCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/String/" style="font-size: 20px;">String</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/">白话LeetCode | 151. Reverse Words in a String</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/">白话LeetCode | 149. Max Points on a Line</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/">白话LeetCode | 8. String to Integer (atoi)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/30/白话LeetCode-65-Valid-Number/">白话LeetCode | 65. Valid Number</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
