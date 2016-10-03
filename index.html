@@ -71,325 +71,96 @@
     <div id="container">
       <div id="main">
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" title="白话LeetCode | 151. Reverse Words in a String" itemprop="url">白话LeetCode | 151. Reverse Words in a String</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
-		
-  <p class="article-time">
-    <time datetime="2016-10-02T12:05:21.000Z" itemprop="datePublished"> Published 2016-10-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-
-
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="external">LeetCode | 151. Reverse Words in a String</a>)</p>
-<p>给定一个字符串，对其中包含的单词的顺序进行反转，例如：</p>
-<p>输入：<code>&quot;the sky is blue&quot;</code></p>
-<p>输出：<code>&quot;blue is sky the&quot;</code></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>反转单词序列是一个经典的问题，方法如下：</p>
-<ol>
-<li>将其中的每个单词进行反转，即<code>&quot;the sky is blue&quot;</code>=&gt;<code>&quot;eht yks si eulb&quot;</code>；</li>
-<li>将第(1)步中得到的字符串整体进行反转，即<code>&quot;eht yks si eulb&quot;</code>=&gt;<code>&quot;blue is sky the&quot;</code>。</li>
-</ol>
-<p>虽然你知道了正确的方法，但还需要与面试官确认如下注意事项，来进一步提高你在面试官心中的印象分：</p>
-<ol>
-<li>该字符串的前缀和后缀中，是否包含多余的空格，这些空格是否需要进行删除；</li>
-<li>单词与单词之间的空格是否只有一个，如果有多个空格是否需要用一个空格来代替。</li>
-</ol>
-<p>至此，问题得解，<code>时间复杂度为O(n)</code>。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseWords</span><span class="params">(<span class="built_in">string</span> &amp;s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>;</div><div class="line">        <span class="built_in">string</span> tmp;</div><div class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">            <span class="comment">// 找到每一个单词，并分别对其进行反转</span></div><div class="line">            <span class="keyword">while</span> (<span class="string">' '</span> != s[r] &amp;&amp; r &lt; s.length()) ++r;</div><div class="line">            <span class="built_in">string</span> word = s.substr(l, r - l);</div><div class="line">            reverse(word.begin(), word.end());</div><div class="line">            <span class="keyword">if</span> (<span class="number">0</span> != word.length()) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="number">0</span> != tmp.length()) &#123;</div><div class="line">                    tmp.append(<span class="string">" "</span>);</div><div class="line">                &#125;</div><div class="line">                tmp.append(word);</div><div class="line">            &#125;</div><div class="line">            l = r = r + <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span> (r &gt;= s.length()) <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        s = tmp;</div><div class="line">        <span class="comment">// 反转每个单词后，再反转整个字符串</span></div><div class="line">        reverse(s.begin(), s.end());</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/白话LeetCode/">白话LeetCode</a>
-</div>
-
-
-  <div class="article-tags">
   
-  <span></span> <a href="/tags/String/">String</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line" itemprop="url">白话LeetCode | 149. Max Points on a Line</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
-		
-  <p class="article-time">
-    <time datetime="2016-10-02T09:12:04.000Z" itemprop="datePublished"> Published 2016-10-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-
-
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">LeetCode | 149. Max Points on a Line</a>)</p>
-<p>给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。</p>
-<p>因此，我们可以按照如下步骤进行：</p>
-<ol>
-<li>枚举题目中给出的点坐标作为点p；</li>
-<li>计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的点的数目；</li>
-<li>从第(2)步中选取最大值即为所求。</li>
-</ol>
-<p>到这里，我们可以发现这道题目其实很简单，但是需要注意以下情况：</p>
-<ol>
-<li>可能存在与点p重合的点而导致无法计算斜率，因此需要使用一个变量来统计与点p重合的点的个数；</li>
-<li>可能存在通过点p且与X轴垂直的直线，因此需要使用另一个变量来统计通过点p且与X轴垂直的点的个数。</li>
-</ol>
-<p>OK，问题得解，<code>时间复杂度为O(n^2)</code>。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;Point&gt;&amp; points)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.size(); ++i) &#123;</div><div class="line">            <span class="comment">// 记录通过点i的不同斜率的直线上的点的个数</span></div><div class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">double</span>, <span class="keyword">int</span>&gt; mp;</div><div class="line">            <span class="comment">// 记录通过点i且垂直于X轴的直线上的点的个数</span></div><div class="line">            <span class="keyword">int</span> vertical = <span class="number">0</span>;</div><div class="line">            <span class="comment">// 记录与点i重合的点的个数</span></div><div class="line">            <span class="keyword">int</span> duplicate = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; points.size(); ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (points[i].x == points[j].x) &#123;</div><div class="line">                    <span class="keyword">if</span> (points[i].y == points[j].y) &#123;</div><div class="line">                        <span class="comment">// 点i与点j完全重合</span></div><div class="line">                        ++duplicate;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 点i与点j组成的直线垂直于X轴</span></div><div class="line">                        ++vertical;</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="comment">// k表示点i与点j组成的直线的斜率，且不与X轴垂直</span></div><div class="line">                    <span class="keyword">double</span> k = <span class="number">1.0</span> * (points[j].y - points[i].y) / (points[j].x - points[i].x);</div><div class="line">                    ++mp[k];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> kv : mp) &#123;</div><div class="line">                ans = max(ans, kv.second + duplicate);</div><div class="line">            &#125;</div><div class="line">            ans = max(ans, vertical + duplicate);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/白话LeetCode/">白话LeetCode</a>
-</div>
-
-
-  <div class="article-tags">
+<section class="post" itemscope itemprop="blogitem">
   
-  <span></span> <a href="/tags/HashTable/">HashTable</a><a href="/tags/Math/">Math</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" title="白话LeetCode | 8. String to Integer (atoi)" itemprop="url">白话LeetCode | 8. String to Integer (atoi)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
-		
-  <p class="article-time">
-    <time datetime="2016-10-02T07:28:36.000Z" itemprop="datePublished"> Published 2016-10-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-
-
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/string-to-integer-atoi/" target="_blank" rel="external">LeetCode | 8. String to Integer (atoi)</a>)</p>
-<p>请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：</p>
-<ol>
-<li>当字符串为空时，函数的返回值是多少；</li>
-<li>当字符串中遇到非法字符时，函数的返回值是多少；</li>
-<li>当字符串表示的数值超过int类型的范围时，函数的返回值是多少。</li>
-</ol>
-<p>对于以上的三点问题，我们可以做出以下假设：</p>
-<ul>
-<li>对于第(1)点问题，可以假定返回值为0；</li>
-<li>对于第(2)点问题，可以返回遇到非法字符之前的那部分字符串对应的数字；</li>
-<li>对于第(3)点问题，可以假设当超过int可以容纳的最大值时返回INT_MAX，当超过int可以容纳的最小值时返回INT_MIN。</li>
-</ul>
-<p>在编写代码的时候，还有两点问题需要注意：</p>
-<ol>
-<li>如果字符串的前缀或者后缀中包含空白符，需要对齐进行删除；</li>
-<li>字符串对应的int数值可能包含正负号，需要进行判断处理，例如<code>&quot;+12&quot;</code>、<code>&quot;-1&quot;</code>。</li>
-</ol>
-<p>当以上情况都考虑清楚之后，相信你可以很快的写出正确的解题代码。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(<span class="built_in">string</span> str)</span> </span>&#123;</div><div class="line">        <span class="comment">// 当字符串为空时，返回0</span></div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == str.length()) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="comment">// 删除前缀和后缀中包含的空白符</span></div><div class="line">        str.erase(<span class="number">0</span>, str.find_first_not_of(<span class="string">' '</span>));</div><div class="line">        str.erase(str.find_last_not_of(<span class="string">' '</span>) + <span class="number">1</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sign = <span class="number">1</span>, index = <span class="number">0</span>;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="comment">// 处理字符串中的正负号</span></div><div class="line">        <span class="keyword">if</span> (<span class="string">'+'</span> == str[index]) &#123;</div><div class="line">            ++index;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'-'</span> == str[index]) &#123;</div><div class="line">            sign = <span class="number">-1</span>;</div><div class="line">            ++index;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &lt; str.length(); ++i) &#123;</div><div class="line">            <span class="comment">// 当遇到非法字符时，返回之前那部分字符串对应的数值</span></div><div class="line">            <span class="keyword">if</span> (<span class="string">'0'</span> &gt; str[i] || <span class="string">'9'</span> &lt; str[i]) <span class="keyword">break</span>;</div><div class="line">            ans = ans * <span class="number">10</span> + str[i] - <span class="string">'0'</span>;</div><div class="line">            <span class="comment">// 当超过int范围时，返回'INT_MAX'或'INT_MIN'</span></div><div class="line">            <span class="keyword">if</span> (INT_MAX &lt; ans) <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 添加正负号</span></div><div class="line">        ans *= sign;</div><div class="line">        <span class="comment">// 当超过int可以容纳的最大值时可以返回INT_MAX</span></div><div class="line">        <span class="keyword">if</span> (INT_MAX &lt; ans) <span class="keyword">return</span> INT_MAX;</div><div class="line">        <span class="comment">// 当超过int可以容纳的最小值时可以返回INT_MIN</span></div><div class="line">        <span class="keyword">if</span> (INT_MIN &gt; ans) <span class="keyword">return</span> INT_MIN;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/白话LeetCode/">白话LeetCode</a>
-</div>
-
-
-  <div class="article-tags">
+    <a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" title="白话LeetCode | 151. Reverse Words in a String" itemprop="url">
   
-  <span></span> <a href="/tags/String/">String</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
+    <h1 itemprop="name">白话LeetCode | 151. Reverse Words in a String</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+           <p itemprop="description" >问题描述(原题链接：LeetCode | 151. Reverse Words in a String)
+给定一个字符串，对其中包含的单词的顺序进行反转，例如：
+输入：&amp;quot;the sky is blue&amp;quot;
+输出：&amp;quot;blue is sky the&amp;quo</p>
+        
     
-      <a href="/2016/09/30/白话LeetCode-65-Valid-Number/" title="白话LeetCode | 65. Valid Number" itemprop="url">白话LeetCode | 65. Valid Number</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-30T10:37:49.000Z" itemprop="datePublished"> Published 2016-09-30</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <time datetime="2016-10-02T12:05:21.000Z" itemprop="datePublished">2016-10-02</time>
+  </a>
+</section>
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/valid-number/" target="_blank" rel="external">LeetCode | 65. Valid Number</a>)</p>
-<p>判断给定的字符串是否为数字类型。如下所示：</p>
-<p><code>&quot;0&quot;</code> =&gt; <code>true</code></p>
-<p><code>&quot; 0.1 &quot;</code> =&gt; <code>true</code></p>
-<p><code>&quot;abc&quot;</code> =&gt; <code>false</code></p>
-<p><code>&quot;1 a&quot;</code> =&gt; <code>false</code></p>
-<p><code>&quot;2e10&quot;</code> =&gt; <code>true</code></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道字符串类型的模拟题，旨在考察应聘者是否能全面的思考问题。应聘者需要在面试的过程中形成如下条理清晰的思路：</p>
-<ol>
-<li>数字类型除了可以表示成我们最常见的形式，还可以表示成科学计数法形式(‘e’后一定为整数)，例如<code>&quot;1.2e12&quot;</code>；</li>
-<li>字符串的前缀和后缀中是否包含空白符，如果包含空白符的话需要对其删除，例如<code>&quot; 0.1 &quot;</code>=&gt;<code>&quot;0.1&quot;</code>；</li>
-<li>字符串前缀是否包含’+’或’-‘，如果包含正负号需要对齐删除，例如<code>&quot;+0.1&quot;</code>=&gt;<code>&quot;0.1&quot;</code>；</li>
-<li>从左向右扫描字符串，包含以下几种情况：<ol>
-<li>如果为数字，则该字符串可能为数字类型，继续扫描；</li>
-<li>如果为’.’，则该字符串可能为小数形式或者科学计数法形式，’.’后必须尾随数字，例如<code>&quot;1.2&quot;</code>、<code>&quot;1.2e12&quot;</code>；</li>
-<li>如果为’e’，则该字符串为科学计数法形式，’e’后必须尾随数字；</li>
-<li>如果为’+’或’-‘，则该字符串为科学计数法形式，且正负号一定尾随在’e’后，例如<code>&quot;1.2e+12&quot;</code></li>
-<li>如果为其他字符，则该字符串不可能为数字类型。</li>
-</ol>
-</li>
-</ol>
-<p>需要注意以下两点：</p>
-<ol>
-<li>‘e’最多出现一次；</li>
-<li>‘.’最多出现一次，例如<code>&quot;1.2&quot;</code>，在科学计数法中必须出现在’e’之前，例如<code>&quot;1.2e12&quot;</code>。</li>
-</ol>
-<p>有了如上的分析，不难写出完整的代码。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isNumber</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = s.length() - <span class="number">1</span>;</div><div class="line">        <span class="comment">// 删除前缀中的空白符</span></div><div class="line">        <span class="keyword">while</span> (l &lt;= r &amp;&amp; <span class="string">' '</span> == s[l]) ++l;</div><div class="line">        <span class="comment">// 删除后缀中的空白符</span></div><div class="line">        <span class="keyword">while</span> (l &lt;= r &amp;&amp; <span class="string">' '</span> == s[r]) --r;</div><div class="line">        <span class="comment">// 删除前缀中的正负号</span></div><div class="line">        <span class="keyword">if</span> (<span class="string">'-'</span> == s[l] || <span class="string">'+'</span> == s[l]) ++l;</div><div class="line">        <span class="keyword">bool</span> ans = <span class="literal">false</span>, dot = <span class="literal">false</span>, <span class="built_in">exp</span> = <span class="literal">false</span>;</div><div class="line">        <span class="comment">// 从左向右遍历扫描</span></div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            <span class="comment">// 如果为数字字符，则可能正确</span></div><div class="line">            <span class="keyword">if</span> (<span class="string">'0'</span> &lt;= s[l] &amp;&amp; <span class="string">'9'</span> &gt;= s[l]) &#123;</div><div class="line">                ans = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// '.'最多出现一次，且不能出现在'e'的右侧</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'.'</span> == s[l] &amp;&amp; !dot &amp;&amp; !<span class="built_in">exp</span>) &#123;</div><div class="line">                dot = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 'e'最多出现一次，且之前部分的字符串可以组成数字类型</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'e'</span> == s[l] &amp;&amp; !<span class="built_in">exp</span> &amp;&amp; ans) &#123;</div><div class="line">                <span class="built_in">exp</span> = <span class="literal">true</span>;</div><div class="line">                ans = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// '+'或'-'必须出现在'e'之后</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'-'</span> == s[l] || <span class="string">'+'</span> == s[l]) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="string">'e'</span> != s[l - <span class="number">1</span>]) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">            ++l;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/白话LeetCode/">白话LeetCode</a>
-</div>
 
 
-  <div class="article-tags">
+
+
   
-  <span></span> <a href="/tags/String/">String</a>
-  </div>
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line" itemprop="url">
+  
+    <h1 itemprop="name">白话LeetCode | 149. Max Points on a Line</h1>
+    
+     
+           <p itemprop="description" >问题描述(原题链接：LeetCode | 149. Max Points on a Line)
+给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
+解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
+因此，我们可以按照如下步骤进行：
 
-</div>
+枚举题目中</p>
+        
+    
+    <time datetime="2016-10-02T09:12:04.000Z" itemprop="datePublished">2016-10-02</time>
+  </a>
+</section>
 
 
 
 
-<div class="comments-count">
-	
-</div>
-
-</footer>
 
 
-    </article>
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" title="白话LeetCode | 8. String to Integer (atoi)" itemprop="url">
+  
+    <h1 itemprop="name">白话LeetCode | 8. String to Integer (atoi)</h1>
+    
+     
+           <p itemprop="description" >问题描述(原题链接：LeetCode | 8. String to Integer (atoi))
+请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。
+解题思路这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：
+
+当字符串为空时</p>
+        
+    
+    <time datetime="2016-10-02T07:28:36.000Z" itemprop="datePublished">2016-10-02</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/09/30/白话LeetCode-65-Valid-Number/" title="白话LeetCode | 65. Valid Number" itemprop="url">
+  
+    <h1 itemprop="name">白话LeetCode | 65. Valid Number</h1>
+    
+     
+           <p itemprop="description" >问题描述(原题链接：LeetCode | 65. Valid Number)
+判断给定的字符串是否为数字类型。如下所示：
+&amp;quot;0&amp;quot; =&amp;gt; true
+&amp;quot; 0.1 &amp;quot; =&amp;gt; true
+&amp;quot;abc&amp;quot; =&amp;gt; fal</p>
+        
+    
+    <time datetime="2016-09-30T10:37:49.000Z" itemprop="datePublished">2016-09-30</time>
+  </a>
+</section>
 
 
 
@@ -485,8 +256,8 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
+		<p> 追薪族，帮你站在巨人的肩膀上！ <br/>
+			最新校招信息 &amp; 最牛前辈经验 &amp; 最全试题剖析</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
@@ -626,6 +397,35 @@ var _hmt = _hmt || [];
 
 <!-- MathJax Begin -->
 <!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 <!-- MathJax End -->
