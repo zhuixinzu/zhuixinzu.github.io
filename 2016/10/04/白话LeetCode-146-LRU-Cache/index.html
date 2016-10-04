@@ -4,41 +4,37 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 149. Max Points on a Line | 追薪族</title>
+    <title>白话LeetCode | 146. LRU Cache | 追薪族</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪族">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
+    <meta name="description" content="问题描述(原题链接：LeetCode | 146. LRU Cache)
+请设计并实现最近最少使用(Least Recently Used, LRU)缓存替换算法所需要的数据结构，它需要支持以下两个操作：
 
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
+get(key) - 返回缓存中key对应的value，如果不存在key的话，返回-1；
+set(key, value) - 如果缓存中不存在该键值对的话，将其插入缓存中，如果内存超过最">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 149. Max Points on a Line">
-<meta property="og:url" content="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/index.html">
+<meta property="og:title" content="白话LeetCode | 146. LRU Cache">
+<meta property="og:url" content="http://zhuixinzu.win/2016/10/04/白话LeetCode-146-LRU-Cache/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
+<meta property="og:description" content="问题描述(原题链接：LeetCode | 146. LRU Cache)
+请设计并实现最近最少使用(Least Recently Used, LRU)缓存替换算法所需要的数据结构，它需要支持以下两个操作：
 
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
-<meta property="og:updated_time" content="2016-10-02T12:04:34.000Z">
+get(key) - 返回缓存中key对应的value，如果不存在key的话，返回-1；
+set(key, value) - 如果缓存中不存在该键值对的话，将其插入缓存中，如果内存超过最">
+<meta property="og:image" content="http://zhuixinzu.win/img/白话LeetCode/146/data-structure.png">
+<meta property="og:updated_time" content="2016-10-04T08:44:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 149. Max Points on a Line">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
+<meta name="twitter:title" content="白话LeetCode | 146. LRU Cache">
+<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 146. LRU Cache)
+请设计并实现最近最少使用(Least Recently Used, LRU)缓存替换算法所需要的数据结构，它需要支持以下两个操作：
 
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
+get(key) - 返回缓存中key对应的value，如果不存在key的话，返回-1；
+set(key, value) - 如果缓存中不存在该键值对的话，将其插入缓存中，如果内存超过最">
+<meta name="twitter:image" content="http://zhuixinzu.win/img/白话LeetCode/146/data-structure.png">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -94,14 +90,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line" itemprop="url">白话LeetCode | 149. Max Points on a Line</a>
+      <a href="/2016/10/04/白话LeetCode-146-LRU-Cache/" title="白话LeetCode | 146. LRU Cache" itemprop="url">白话LeetCode | 146. LRU Cache</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-02T09:12:04.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-04T06:35:17.000Z" itemprop="datePublished"> 发表于 2016-10-04</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -122,22 +118,25 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">LeetCode | 149. Max Points on a Line</a>)</p>
-<p>给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。</p>
-<p>因此，我们可以按照如下步骤进行：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/lru-cache/" target="_blank" rel="external">LeetCode | 146. LRU Cache</a>)</p>
+<p>请设计并实现<code>最近最少使用(Least Recently Used, LRU)</code>缓存替换算法所需要的数据结构，它需要支持以下两个操作：</p>
+<ul>
+<li><code>get(key)</code> - 返回缓存中key对应的value，如果不存在key的话，返回-1；</li>
+<li><code>set(key, value)</code> - 如果缓存中不存在该键值对的话，将其插入缓存中，如果内存超过最大容量，则将内存中最近最久没有使用的键值对删除。</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道很经典的设计题，下面我们来逐步分析该数据结构的设计。</p>
 <ol>
-<li>枚举题目中给出的点坐标作为点p；</li>
-<li>计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的点的数目；</li>
-<li>从第(2)步中选取最大值即为所求。</li>
+<li>为了实现<code>get(key)</code>方法，所以必然要通过Map来建立从key到value的映射，这样查询的时间复杂度为<code>O(1)</code>；</li>
+<li>为了实现<code>set(key, value)</code>方法，我们需要知道内存中最近最久没有使用的键值对，该功能可以通过一个双端队列来实现，并按照使用的时间来排列双端队列中的元素，这样插入新元素及删除过期元素的时间复杂度为<code>O(1)</code>；</li>
+<li>综合第(1)点和第(2)点来看，我们可以将第(1)步中的Map由key到value的映射改为key到双端队列中节点的映射，这样无论是查询、插入还是删除的时间复杂度均为<code>O(1)</code>，该数据结构如下图所示。</li>
 </ol>
-<p>到这里，我们可以发现这道题目其实很简单，但是需要注意以下情况：</p>
-<ol>
-<li>可能存在与点p重合的点而导致无法计算斜率，因此需要使用一个变量来统计与点p重合的点的个数；</li>
-<li>可能存在通过点p且与X轴垂直的直线，因此需要使用另一个变量来统计通过点p且与X轴垂直的点的个数。</li>
-</ol>
-<p>OK，问题得解，<code>时间复杂度为O(n^2)</code>。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;Point&gt;&amp; points)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.size(); ++i) &#123;</div><div class="line">            <span class="comment">// 记录通过点i的不同斜率的直线上的点的个数</span></div><div class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">double</span>, <span class="keyword">int</span>&gt; mp;</div><div class="line">            <span class="comment">// 记录通过点i且垂直于X轴的直线上的点的个数</span></div><div class="line">            <span class="keyword">int</span> vertical = <span class="number">0</span>;</div><div class="line">            <span class="comment">// 记录与点i重合的点的个数</span></div><div class="line">            <span class="keyword">int</span> duplicate = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; points.size(); ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (points[i].x == points[j].x) &#123;</div><div class="line">                    <span class="keyword">if</span> (points[i].y == points[j].y) &#123;</div><div class="line">                        <span class="comment">// 点i与点j完全重合</span></div><div class="line">                        ++duplicate;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 点i与点j组成的直线垂直于X轴</span></div><div class="line">                        ++vertical;</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="comment">// k表示点i与点j组成的直线的斜率，且不与X轴垂直</span></div><div class="line">                    <span class="keyword">double</span> k = <span class="number">1.0</span> * (points[j].y - points[i].y) / (points[j].x - points[i].x);</div><div class="line">                    ++mp[k];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> kv : mp) &#123;</div><div class="line">                ans = max(ans, kv.second + duplicate);</div><div class="line">            &#125;</div><div class="line">            ans = max(ans, vertical + duplicate);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<p><img src="/img/白话LeetCode/146/data-structure.png" style="display:block;margin:auto"></p>
+<p>在自己实现双端队列等链表类型的数据结构时，有一些小技巧可供借鉴：</p>
+<ul>
+<li>在链表开始和结束的地方，各自额外增加一个节点作为链表头和链表尾，这样做的好处是在处理第一个节点元素和最后一个节点元素时，不需要进行特判是否位于链表的边界，这样既可以增加程序的健壮性，又可以让代码变得简洁美观。</li>
+</ul>
+<p>该题的难点在于如何综合已知的数据结构来构造一个可以满足新需求的数据结构，如果读者能够认真题目所需的功能并结合自己平时学到的数据结构的特点，相信一定可以给出正确的解决办法。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -159,7 +158,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/HashTable/">HashTable</a><a href="/tags/Math/">Math</a>
+  <span></span> <a href="/tags/Design/">Design</a>
   </div>
 
 </div>
@@ -168,7 +167,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" data-title="白话LeetCode | 149. Max Points on a Line | 追薪族" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixinzu.win/2016/10/04/白话LeetCode-146-LRU-Cache/" data-title="白话LeetCode | 146. LRU Cache | 追薪族" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -181,19 +180,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" title="白话LeetCode | 151. Reverse Words in a String">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 151. Reverse Words in a String</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/"  title="白话LeetCode | 8. String to Integer (atoi)">
+<a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/"  title="白话LeetCode | 151. Reverse Words in a String">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 8. String to Integer (atoi)
+ <span>白话LeetCode | 151. Reverse Words in a String
 </span>
 </a>
 </div>
@@ -202,7 +193,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" data-title="白话LeetCode | 149. Max Points on a Line" data-url="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/04/白话LeetCode-146-LRU-Cache/" data-title="白话LeetCode | 146. LRU Cache" data-url="http://zhuixinzu.win/2016/10/04/白话LeetCode-146-LRU-Cache/"></div>
 </section>
 
 
