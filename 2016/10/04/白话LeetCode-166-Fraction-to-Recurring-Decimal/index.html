@@ -31,7 +31,7 @@
 分母(2)，分子(3)，返回”0.(6)”
 
 解题思路答案可以分">
-<meta property="og:updated_time" content="2016-10-04T15:08:43.000Z">
+<meta property="og:updated_time" content="2016-10-04T15:09:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 166. Fraction to Recurring Decimal">
 <meta name="twitter:description" content="问题描述(原题链接：LeetCode | 166. Fraction to Recurring Decimal)
@@ -136,7 +136,7 @@
 <p><code>整数部分</code>只需要通过整数除法即可得到，然后转化为字符串形式即可。</p>
 <p><code>小数部分</code>是根据整数除法的余数得到的。我们可以逐位求解小数部分，每次计算一位并得到新的余数。会出现以下两种情况：</p>
 <ul>
-<li>当余数开始循环的时候，小数部分也会开始循环。因此，我们需要一个哈希表来记录余数(key)及该余数对应的小数部分中的位数(value)。一旦发现相同的余数，可以通过查找哈希表来获得循环节开始的位置，结束计算；</li>
+<li>当余数开始循环的时候，小数部分也会开始循环。因此，我们需要一个哈希表来记录余数(key)及该余数对应的小数部分中的位置(value)。一旦发现相同的余数，可以通过查找哈希表来获得循环节开始的位置，结束计算；</li>
 <li>当余数为0时，说明该小数为有限小数，没有循环节，结束计算。</li>
 </ul>
 <p>解题的过程中需要注意以下情况：</p>
@@ -254,11 +254,11 @@
 			
 		
 			
-				<li><a href="/tags/Math/" title="Math">Math<sup>3</sup></a></li>
+				<li><a href="/tags/String/" title="String">String<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/String/" title="String">String<sup>3</sup></a></li>
+				<li><a href="/tags/Math/" title="Math">Math<sup>3</sup></a></li>
 			
 		
 			
