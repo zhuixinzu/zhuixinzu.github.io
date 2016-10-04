@@ -23,7 +23,7 @@
 请实现整数除法操作，要求不能使用乘法、除法以及取模(mod)运算。
 解题思路解法一：Math除法运算得到的商，其实表示的就是被除数中有多少个除数。最朴素的思想是通过减法暴力数出被除数中有多少个除数，但是这种方法容易超时，所以需要通过数学的方法来进行一下优化$b_{31}$到$b_0$。
 借助二进制的思">
-<meta property="og:updated_time" content="2016-10-04T12:29:30.000Z">
+<meta property="og:updated_time" content="2016-10-04T12:31:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 29. Divide Two Integers">
 <meta name="twitter:description" content="问题描述(原题链接：LeetCode | 29. Divide Two Integers)
@@ -117,7 +117,7 @@
 <p>请实现整数除法操作，要求不能使用乘法、除法以及取模(mod)运算。</p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="解法一：Math"><a href="#解法一：Math" class="headerlink" title="解法一：Math"></a>解法一：Math</h3><p>除法运算得到的商，其实表示的就是被除数中有多少个除数。最朴素的思想是通过减法暴力数出被除数中有多少个除数，但是这种方法容易超时，所以需要通过数学的方法来进行一下优化$b_{31}$到$b_0$。</p>
 <p>借助二进制的思想，我们可以得到如下数学表达式：</p>
-<p>$$ dividend = b<em>{31}(2^{31}*divisor) + b</em>{30}(2^{30}<em>divisor) + … + b_{0}(2^{0}</em>divisor) $$</p>
+<p>$$ dividend = b_{31}(2^{31}<em>divisor) + b_{30}(2^{30}</em>divisor) + … + b_{0}(2^{0}*divisor) $$</p>
 <p>我们只需要从左到右依次求解$b<em>{31}$ 到 $b</em>{31}$，然后将$b<em>{31}b</em>{30}…b_{0}$拼在一起，就是答案的二进制表示形式。</p>
 <p>换句话说，该解法是在从高位到低位依次求解答案二进制表示形式的每一位bit。</p>
 <h3 id="解法二：Binary-Search"><a href="#解法二：Binary-Search" class="headerlink" title="解法二：Binary Search"></a>解法二：Binary Search</h3><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
