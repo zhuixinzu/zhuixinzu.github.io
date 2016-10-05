@@ -27,7 +27,7 @@
 每行刚好由L个字符组成；
 单词必须依次取用，并且每一行要尽可能多的取用单词。如果这些单词组成的文本的字符个数小于L，那么你可以使用额外的空格(‘ ‘)来使这一行的文本长度达到要求；
 多余的空格要求尽可能均匀的分布在单词之间。">
-<meta property="og:updated_time" content="2016-10-05T07:49:48.000Z">
+<meta property="og:updated_time" content="2016-10-05T07:50:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 68. Text Justification">
 <meta name="twitter:description" content="问题描述(原题链接：LeetCode | 68. Text Justification)
@@ -138,7 +138,7 @@
 ]
 </code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道字符串模拟题，模拟题是非常考验编程功底的题目类型，也是各大公司笔试中的常见题型。对于模拟题而言，你一定要做到在动手之前尽可能的想好每一个细节。很多人还没有考虑清楚就开始盲目动手写代码，结果发现漏了一些情况，然后再修修补补，最后的结果通常是整个代码变得一团糟。</p>
 <p>当看到这道题的时候，你可以向面试官询问以下细节：</p>
-<ol>
+<ul>
 <li>如果某一行文本中只包含一个单词，那么这个单词应该如何放置(居中，左对齐，右对齐)？<ul>
 <li>在本题目中，出题人要求左对齐。</li>
 </ul>
@@ -147,7 +147,7 @@
 <li>不会出现这种情况，可以不考虑。虽然这样的情况不会出现，但是这样的问题可以向面试官展示你考虑问题的全面性。</li>
 </ul>
 </li>
-</ol>
+</ul>
 <p>当所有细节都考虑清楚之后，就可以开始考虑写代码了。因为是贪心地生成每一行文本，所以我们使用两个变量start和end来表示一行文本对应的单词区间：[start, end)，对于每行文本只要找到这个区间即可。</p>
 <p>我们知道，[start, end)对应的单词序列生成的文本的最小字符长度为len+(end-start)，其中len表示区间上单词的长度之和，end-start表示所需要的最少空格数。因此，只要不停的尝试让end加1，直到最小字符长度大于L，那么[start, end)即为本行文本对应的单词区间范围，然后在单词之间均匀补齐空格即可。</p>
 <p>该解法的时间复杂度为：<code>O(n)</code>，其中n表示数组中单词的个数。</p>
@@ -269,15 +269,15 @@
 			
 		
 			
-				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Design/" title="Design">Design<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
 			
 		
 		</ul>
