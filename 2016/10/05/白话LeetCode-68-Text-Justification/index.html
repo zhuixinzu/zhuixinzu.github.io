@@ -4,41 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 149. Max Points on a Line | 追薪族</title>
+    <title>白话LeetCode | 68. Text Justification | 追薪族</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪族">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
+    <meta name="description" content="问题描述(原题链接：LeetCode | 68. Text Justification)
+给定一个英文单词数组以及文本长度L，请你完成一个函数用来生成如下格式的文本：
 
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
+每行刚好由L个字符组成；
+单词必须依次取用，并且每一行要尽可能多的取用单词。如果这些单词组成的文本的字符个数小于L，那么你可以使用额外的空格(‘ ‘)来使这一行的文本长度达到要求；
+多余的空格要求尽可能均匀的分布在单词之间。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 149. Max Points on a Line">
-<meta property="og:url" content="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/index.html">
+<meta property="og:title" content="白话LeetCode | 68. Text Justification">
+<meta property="og:url" content="http://zhuixinzu.win/2016/10/05/白话LeetCode-68-Text-Justification/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
+<meta property="og:description" content="问题描述(原题链接：LeetCode | 68. Text Justification)
+给定一个英文单词数组以及文本长度L，请你完成一个函数用来生成如下格式的文本：
 
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
-<meta property="og:updated_time" content="2016-10-02T12:04:34.000Z">
+每行刚好由L个字符组成；
+单词必须依次取用，并且每一行要尽可能多的取用单词。如果这些单词组成的文本的字符个数小于L，那么你可以使用额外的空格(‘ ‘)来使这一行的文本长度达到要求；
+多余的空格要求尽可能均匀的分布在单词之间。">
+<meta property="og:updated_time" content="2016-10-05T07:47:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 149. Max Points on a Line">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
+<meta name="twitter:title" content="白话LeetCode | 68. Text Justification">
+<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 68. Text Justification)
+给定一个英文单词数组以及文本长度L，请你完成一个函数用来生成如下格式的文本：
 
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
+每行刚好由L个字符组成；
+单词必须依次取用，并且每一行要尽可能多的取用单词。如果这些单词组成的文本的字符个数小于L，那么你可以使用额外的空格(‘ ‘)来使这一行的文本长度达到要求；
+多余的空格要求尽可能均匀的分布在单词之间。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -94,14 +91,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line" itemprop="url">白话LeetCode | 149. Max Points on a Line</a>
+      <a href="/2016/10/05/白话LeetCode-68-Text-Justification/" title="白话LeetCode | 68. Text Justification" itemprop="url">白话LeetCode | 68. Text Justification</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-02T09:12:04.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-05T07:17:31.000Z" itemprop="datePublished"> 发表于 2016-10-05</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -122,22 +119,39 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">LeetCode | 149. Max Points on a Line</a>)</p>
-<p>给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。</p>
-<p>因此，我们可以按照如下步骤进行：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/text-justification/" target="_blank" rel="external">LeetCode | 68. Text Justification</a>)</p>
+<p>给定一个英文单词数组以及文本长度L，请你完成一个函数用来生成如下格式的文本：</p>
+<ul>
+<li>每行刚好由L个字符组成；</li>
+<li>单词必须依次取用，并且每一行要尽可能多的取用单词。如果这些单词组成的文本的字符个数小于L，那么你可以使用额外的空格(‘ ‘)来使这一行的文本长度达到要求；</li>
+<li>多余的空格要求尽可能均匀的分布在单词之间。如果单词之间空格的数量不能做到绝对均匀，那么优先左侧的单词间隔中放置多余空格。</li>
+<li>对于最后一行文本，单词只需要左对齐即可，不需要在单词间插入额外的空格。</li>
+</ul>
+<p>例如：</p>
+<p>words: <code>[&quot;This&quot;, &quot;is&quot;, &quot;an&quot;, &quot;example&quot;, &quot;of&quot;, &quot;text&quot;, &quot;justification.&quot;]</code></p>
+<p>L: <code>16</code></p>
+<p>返回的指定格式的文本为：</p>
+<pre><code>[
+    &quot;This    is    an&quot;,
+    &quot;example  of text&quot;,
+    &quot;justification.  &quot;
+]
+</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道字符串模拟题，模拟题是非常考验编程功底的题目类型，也是各大公司笔试中的常见题型。对于模拟题而言，你一定要做到在动手之前尽可能的想好每一个细节。很多人还没有考虑清楚就开始盲目动手写代码，结果发现漏了一些情况，然后再修修补补，最后的结果通常是整个代码变得一团糟。</p>
+<p>当看到这道题的时候，你可以向面试官询问以下细节：</p>
 <ol>
-<li>枚举题目中给出的点坐标作为点p；</li>
-<li>计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的点的数目；</li>
-<li>从第(2)步中选取最大值即为所求。</li>
+<li>如果某一行文本中只包含一个单词，那么这个单词应该如何放置(居中，左对齐，右对齐)？<ul>
+<li>在本题目中，出题人要求左对齐。</li>
+</ul>
+</li>
+<li>如果某一个单词的长度超过了一行文本的长度怎么办？<ul>
+<li>不会出现这种情况，可以不考虑。虽然这样的情况不会出现，但是这样的问题可以向面试官展示你考虑问题的全面性。</li>
+</ul>
+</li>
 </ol>
-<p>到这里，我们可以发现这道题目其实很简单，但是需要注意以下情况：</p>
-<ol>
-<li>可能存在与点p重合的点而导致无法计算斜率，因此需要使用一个变量来统计与点p重合的点的个数；</li>
-<li>可能存在通过点p且与X轴垂直的直线，因此需要使用另一个变量来统计通过点p且与X轴垂直的点的个数。</li>
-</ol>
-<p>OK，问题得解，<code>时间复杂度为O(n^2)</code>。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;Point&gt;&amp; points)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.size(); ++i) &#123;</div><div class="line">            <span class="comment">// 记录通过点i的不同斜率的直线上的点的个数</span></div><div class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">double</span>, <span class="keyword">int</span>&gt; mp;</div><div class="line">            <span class="comment">// 记录通过点i且垂直于X轴的直线上的点的个数</span></div><div class="line">            <span class="keyword">int</span> vertical = <span class="number">0</span>;</div><div class="line">            <span class="comment">// 记录与点i重合的点的个数</span></div><div class="line">            <span class="keyword">int</span> duplicate = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; points.size(); ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (points[i].x == points[j].x) &#123;</div><div class="line">                    <span class="keyword">if</span> (points[i].y == points[j].y) &#123;</div><div class="line">                        <span class="comment">// 点i与点j完全重合</span></div><div class="line">                        ++duplicate;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 点i与点j组成的直线垂直于X轴</span></div><div class="line">                        ++vertical;</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="comment">// k表示点i与点j组成的直线的斜率，且不与X轴垂直</span></div><div class="line">                    <span class="keyword">double</span> k = <span class="number">1.0</span> * (points[j].y - points[i].y) / (points[j].x - points[i].x);</div><div class="line">                    ++mp[k];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> kv : mp) &#123;</div><div class="line">                ans = max(ans, kv.second + duplicate);</div><div class="line">            &#125;</div><div class="line">            ans = max(ans, vertical + duplicate);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<p>当所有细节都考虑清楚之后，就可以开始考虑写代码了。因为是贪心地生成每一行文本，所以我们使用两个变量start和end来表示一行文本对应的单词区间：[start, end)，对于每行文本只要找到这个区间即可。</p>
+<p>我们知道，[start, end)对应的单词序列生成的文本的最小字符长度为len+(end-start)，其中len表示区间上单词的长度之和，end-start表示所需要的最少空格数。因此，只要不停的尝试让end加1，直到最小字符长度大于L，那么[start, end)即为本行文本对应的单词区间范围，然后在单词之间均匀补齐空格即可。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; fullJustify(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="keyword">int</span> maxWidth) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</div><div class="line">        <span class="keyword">int</span> size = words.size();</div><div class="line">        <span class="built_in">string</span> line;</div><div class="line">        <span class="comment">// 单词为空，直接返回</span></div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == size) &#123;</div><div class="line">        	<span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// start表示一行文本的起始单词位置，end表示一行文本的终止单词位置(不包括这个这个单词)</span></div><div class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">1</span>, len = words[<span class="number">0</span>].length();</div><div class="line">        <span class="keyword">while</span> (end &lt; size) &#123;</div><div class="line">            <span class="comment">// 判断是否找到了一行文本的终止单词位置</span></div><div class="line">        	<span class="keyword">if</span> (len + words[end].length() + (end - start) &gt; maxWidth) &#123;</div><div class="line">        	    <span class="comment">// 如果这一行文本中的单词数目大于一个，则单词需要均匀分布在这一行</span></div><div class="line">        		<span class="keyword">if</span> (end &gt; start + <span class="number">1</span>) &#123;</div><div class="line">        			<span class="keyword">int</span> q = (maxWidth - len) / (end - start - <span class="number">1</span>);</div><div class="line">        			<span class="keyword">int</span> r = (maxWidth - len) % (end - start - <span class="number">1</span>);</div><div class="line">        			line = words[start];</div><div class="line">        			<span class="keyword">for</span> (<span class="keyword">int</span> i = start + <span class="number">1</span>; i &lt; end; ++i) &#123;</div><div class="line">        				line += <span class="built_in">string</span>(q, <span class="string">' '</span>);</div><div class="line">        				<span class="keyword">if</span> (i - start &lt;= r) &#123;</div><div class="line">        					line += <span class="string">' '</span>;</div><div class="line">        				&#125;</div><div class="line">        				line += words[i];</div><div class="line">        			&#125;</div><div class="line">        			ans.push_back(line);</div><div class="line">        		&#125; </div><div class="line">        		<span class="comment">// 如果这一行文本中的单词数目只有一个，则单词需要左对齐，右补空格</span></div><div class="line">        		<span class="keyword">else</span> &#123;</div><div class="line">        			ans.push_back(words[start] + <span class="built_in">string</span>(maxWidth - len, <span class="string">' '</span>));</div><div class="line">        		&#125;</div><div class="line">        		start = end;</div><div class="line">        		len = words[end].length();</div><div class="line">        	&#125;</div><div class="line">            <span class="comment">// len表示一行文本的累计单词长度</span></div><div class="line">        	<span class="keyword">else</span> &#123;</div><div class="line">        		len += words[end].length();</div><div class="line">        	&#125;</div><div class="line"></div><div class="line">        	++end;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 最后一行需要特殊处理，文本左对齐，单词之间只需要填充一个空格</span></div><div class="line">        line = words[start];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start + <span class="number">1</span>; i &lt; end; ++i) &#123;</div><div class="line">        	line += <span class="string">' '</span> + words[i];</div><div class="line">        &#125;</div><div class="line">        line += <span class="built_in">string</span>(maxWidth - line.length(), <span class="string">' '</span>);</div><div class="line">        ans.push_back(line);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+  
 		<!--
 		<br>
 		<hr>
@@ -159,7 +173,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/HashTable/">HashTable</a><a href="/tags/Math/">Math</a>
+  <span></span> <a href="/tags/String/">String</a>
   </div>
 
 </div>
@@ -168,7 +182,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" data-title="白话LeetCode | 149. Max Points on a Line | 追薪族" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixinzu.win/2016/10/05/白话LeetCode-68-Text-Justification/" data-title="白话LeetCode | 68. Text Justification | 追薪族" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -181,19 +195,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" title="白话LeetCode | 151. Reverse Words in a String">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 151. Reverse Words in a String</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/"  title="白话LeetCode | 8. String to Integer (atoi)">
+<a href="/2016/10/05/白话LeetCode-130-Surrounded-Regions/"  title="白话LeetCode | 130. Surrounded Regions">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 8. String to Integer (atoi)
+ <span>白话LeetCode | 130. Surrounded Regions
 </span>
 </a>
 </div>
@@ -202,7 +208,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" data-title="白话LeetCode | 149. Max Points on a Line" data-url="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/05/白话LeetCode-68-Text-Justification/" data-title="白话LeetCode | 68. Text Justification" data-url="http://zhuixinzu.win/2016/10/05/白话LeetCode-68-Text-Justification/"></div>
 </section>
 
 
