@@ -4,35 +4,44 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 29. Divide Two Integers | 追薪族</title>
+    <title>白话LeetCode | 44. Wildcard Matching | 追薪族</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪族">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 29. Divide Two Integers)
-请实现整数除法操作，要求不能使用乘法、除法以及取模(mod)运算。
-解题思路除法运算得到的商，其实表示的就是被除数中有多少个除数。最朴素的思想是通过减法暴力数出被除数中有多少个除数，但是这种方法容易超时，所以需要通过数学的方法来进行一下优化。
-借助二进制的思想，我们可以得到如下数学表达式：
-$$ di">
+    <meta name="description" content="问题描述(原题链接：LeetCode | 44. Wildcard Matching)
+请实现支持’?’和’*’字符的通配符匹配功能。详细说明如下：
+
+‘?’可以匹配任意的单个字符
+‘*’可以匹配任意的字符序列(包括空字符序列)
+
+匹配规则要求能覆盖整个待匹配的字符串，而不是其中的一部分。
+函数的原型为：bool isMatch(const char *s, const char *p)，其">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 29. Divide Two Integers">
-<meta property="og:url" content="http://zhuixinzu.win/2016/10/04/白话LeetCode-29-Divide-Two-Integers/index.html">
+<meta property="og:title" content="白话LeetCode | 44. Wildcard Matching">
+<meta property="og:url" content="http://zhuixinzu.win/2016/10/05/白话LeetCode-44-Wildcard-Matching/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 29. Divide Two Integers)
-请实现整数除法操作，要求不能使用乘法、除法以及取模(mod)运算。
-解题思路除法运算得到的商，其实表示的就是被除数中有多少个除数。最朴素的思想是通过减法暴力数出被除数中有多少个除数，但是这种方法容易超时，所以需要通过数学的方法来进行一下优化。
-借助二进制的思想，我们可以得到如下数学表达式：
-$$ di">
-<meta property="og:updated_time" content="2016-10-04T13:26:35.000Z">
+<meta property="og:description" content="问题描述(原题链接：LeetCode | 44. Wildcard Matching)
+请实现支持’?’和’*’字符的通配符匹配功能。详细说明如下：
+
+‘?’可以匹配任意的单个字符
+‘*’可以匹配任意的字符序列(包括空字符序列)
+
+匹配规则要求能覆盖整个待匹配的字符串，而不是其中的一部分。
+函数的原型为：bool isMatch(const char *s, const char *p)，其">
+<meta property="og:updated_time" content="2016-10-05T10:07:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 29. Divide Two Integers">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 29. Divide Two Integers)
-请实现整数除法操作，要求不能使用乘法、除法以及取模(mod)运算。
-解题思路除法运算得到的商，其实表示的就是被除数中有多少个除数。最朴素的思想是通过减法暴力数出被除数中有多少个除数，但是这种方法容易超时，所以需要通过数学的方法来进行一下优化。
-借助二进制的思想，我们可以得到如下数学表达式：
-$$ di">
+<meta name="twitter:title" content="白话LeetCode | 44. Wildcard Matching">
+<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 44. Wildcard Matching)
+请实现支持’?’和’*’字符的通配符匹配功能。详细说明如下：
+
+‘?’可以匹配任意的单个字符
+‘*’可以匹配任意的字符序列(包括空字符序列)
+
+匹配规则要求能覆盖整个待匹配的字符串，而不是其中的一部分。
+函数的原型为：bool isMatch(const char *s, const char *p)，其">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -88,14 +97,14 @@ $$ di">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/04/白话LeetCode-29-Divide-Two-Integers/" title="白话LeetCode | 29. Divide Two Integers" itemprop="url">白话LeetCode | 29. Divide Two Integers</a>
+      <a href="/2016/10/05/白话LeetCode-44-Wildcard-Matching/" title="白话LeetCode | 44. Wildcard Matching" itemprop="url">白话LeetCode | 44. Wildcard Matching</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-04T11:46:37.000Z" itemprop="datePublished"> 发表于 2016-10-04</time>
+    <time datetime="2016-10-05T07:55:54.000Z" itemprop="datePublished"> 发表于 2016-10-05</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -116,17 +125,37 @@ $$ di">
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/divide-two-integers/" target="_blank" rel="external">LeetCode | 29. Divide Two Integers</a>)</p>
-<p>请实现整数除法操作，要求不能使用乘法、除法以及取模(mod)运算。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>除法运算得到的商，其实表示的就是被除数中有多少个除数。最朴素的思想是通过减法暴力数出被除数中有多少个除数，但是这种方法容易超时，所以需要通过数学的方法来进行一下优化。</p>
-<p>借助二进制的思想，我们可以得到如下数学表达式：</p>
-<p>$$ dividend = b_{31}(2^{31}*divisor) + b_{30}(2^{30}*divisor) + … + b_{0}(2^{0}*divisor) $$</p>
-<p>我们只需要从左到右依次求解$b_{31}$到$b_{0}$，然后将$b_{31}b_{30}…b_{0}$拼在一起，就是答案的二进制表示形式。换句话说，该解法是在从高位到低位依次求解答案二进制表示形式的每一位bit。</p>
-<p>需要注意：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/wildcard-matching/" target="_blank" rel="external">LeetCode | 44. Wildcard Matching</a>)</p>
+<p>请实现支持’?’和’*’字符的通配符匹配功能。详细说明如下：</p>
 <ul>
-<li>当$divident = INT\_MIN$，同时$divisor = -1$时，结果会超出$INT\_MAX$，因此需要使用long long做运算并对结果进行溢出判断。</li>
+<li>‘?’可以匹配任意的单个字符</li>
+<li>‘*’可以匹配任意的字符序列(包括空字符序列)</li>
 </ul>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> dd = dividend &gt;= <span class="number">0</span> ? dividend : -(<span class="keyword">long</span> <span class="keyword">long</span>)dividend;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> dv = divisor &gt;= <span class="number">0</span> ? divisor : -(<span class="keyword">long</span> <span class="keyword">long</span>)divisor;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>, bit = <span class="number">31</span>;</div><div class="line">        <span class="comment">// 逐位确定答案的值</span></div><div class="line">        <span class="keyword">while</span> (<span class="number">0</span> &lt;= bit) &#123;</div><div class="line">            <span class="keyword">if</span> (dd &gt;= dv &lt;&lt; bit) &#123;</div><div class="line">                dd -= dv &lt;&lt; bit;</div><div class="line">                ans += <span class="number">1L</span> &lt;&lt; bit;</div><div class="line">            &#125;</div><div class="line">            --bit;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 判断答案的正负(整数类型的最高位为符号位)</span></div><div class="line">        ans = ((dividend ^ divisor) &gt;&gt; <span class="number">31</span>) ? (-ans) : (ans);</div><div class="line">        <span class="comment">// 如果结果溢出，返回INT_MAX</span></div><div class="line">        <span class="keyword">if</span> (ans &gt; INT_MAX) <span class="keyword">return</span> INT_MAX;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>匹配规则要求能覆盖整个待匹配的字符串，而不是其中的一部分。</p>
+<p>函数的原型为：<code>bool isMatch(const char *s, const char *p)</code>，其中s表示待匹配的字符串，p表示匹配规则，返回值表示是否匹配成功。例如：</p>
+<pre><code>isMatch(&quot;aa&quot;,&quot;a&quot;) → false
+isMatch(&quot;aa&quot;,&quot;aa&quot;) → true
+isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false
+isMatch(&quot;aa&quot;, &quot;*&quot;) → true
+isMatch(&quot;aa&quot;, &quot;a*&quot;) → true
+isMatch(&quot;ab&quot;, &quot;?*&quot;) → true
+isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → false
+</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>题目中关于’*‘的匹配规则是经过了简化，因此降低了题目的难度。</p>
+<p>这道题目可以通过回溯的办法来解决。设置两个分别指向待匹配字符串和匹配规则的指针，初始化为0，然后按照如下规则前进：</p>
+<ol>
+<li>如果两个指针指向的字符匹配成功，则一同前进；</li>
+<li>如果指向匹配规则的指针对应的字符为’*‘，则记录下匹配规则中最近一次出现’*‘的位置(记为ip_star)，以及此时指向待匹配字符串指针的位置(记为is_star)，然后跳过’*‘继续进行匹配；</li>
+<li>如果两个指针指向的字符匹配失败，则指向匹配规则的指针返回ip_star+1的位置，指向待匹配的字符串的指针返回is_star+1的位置，并且将is_star指向的位置向后挪一位；</li>
+<li>如果两个指针指向的字符匹配失败，同时没有在匹配规则中出现过’*’，那么一定匹配失败。</li>
+</ol>
+<p>按照如上步骤移动指针，直到指向待匹配字符串的指针达到字符串的终点，如果指向匹配规则的指针也同时到达终点或者剩余的字符全部为’*’，那么匹配成功，否则匹配失败。</p>
+<p>以上的描述略显抽象，用一句话总结：待匹配字符串和匹配规则逐个字符匹配，如果失败就返回最近遇到’*’的位置重新尝试。这也是为什么叫做回溯法的原因。</p>
+<p>时间复杂度分析：</p>
+<ul>
+<li>最佳情况下为<code>O(l)</code>，其中l表示待匹配字符串和匹配规则字符串长度的最大值；</li>
+<li>最差情况下为<code>O(n\*m)</code>，其中n和m分别表示待匹配字符串和匹配规则字符串的长度。</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</div><div class="line">        <span class="comment">// 分别指向待匹配字符串和匹配规则的指针</span></div><div class="line">    	<span class="keyword">int</span> is = <span class="number">0</span>, ip = <span class="number">0</span>;</div><div class="line">    	<span class="comment">// 匹配规则中最近一次出现'*'的位置(ip_star), 指向待匹配字符串指针对应的位置(is_star)</span></div><div class="line">    	<span class="keyword">int</span> is_star = <span class="number">-1</span>, ip_star = <span class="number">-1</span>;</div><div class="line">    	<span class="keyword">int</span> ls = s.length(), lp = p.length();</div><div class="line">        <span class="comment">// 逐个字符匹配，直到待匹配字符串的末尾</span></div><div class="line">    	<span class="keyword">while</span> (is &lt; ls) &#123;</div><div class="line">    		<span class="keyword">if</span> (<span class="string">'*'</span> != p[ip]) &#123;</div><div class="line">    		    <span class="comment">// 如果匹配成功，两个指针同时前进</span></div><div class="line">    			<span class="keyword">if</span> (s[is] == p[ip] || <span class="string">'?'</span> == p[ip]) &#123;</div><div class="line">    				++is;</div><div class="line">    				++ip;</div><div class="line">    			&#125;</div><div class="line">    			<span class="comment">// 如果匹配失败</span></div><div class="line">    			<span class="keyword">else</span> &#123;</div><div class="line">    			    <span class="comment">// 如果没有在匹配规则中出现过'*'，那么一定匹配失败</span></div><div class="line">    				<span class="keyword">if</span> (<span class="number">-1</span> == ip_star) &#123;</div><div class="line">    					<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    				&#125;</div><div class="line">    				<span class="comment">// 指向匹配规则的指针返回ip_star+1的位置, 指向待匹配的字符串的指针返回is_star+1的位置，并且将is_star指向的位置向后挪一位</span></div><div class="line">    				<span class="keyword">else</span> &#123;</div><div class="line">    					is = ++is_star;</div><div class="line">    					ip = ip_star + <span class="number">1</span>;</div><div class="line">    				&#125;</div><div class="line">    			&#125;</div><div class="line">    		&#125; </div><div class="line">    		<span class="comment">// 记录下匹配规则中最近一次出现'*'的位置(ip_star)，以及此时指向待匹配字符串指针的位置(is_star)</span></div><div class="line">    		<span class="keyword">else</span> &#123;</div><div class="line">    			ip_star = ip++;</div><div class="line">    			is_star = is;</div><div class="line">    		&#125;</div><div class="line">    	&#125;</div><div class="line">    	<span class="comment">// 剩余的字符全部为'*'，那么匹配成功</span></div><div class="line">    	<span class="keyword">while</span> (<span class="string">'*'</span> == p[ip]) &#123;</div><div class="line">    		++ip;</div><div class="line">    	&#125;</div><div class="line">    	<span class="comment">// ip指针是否到达终点</span></div><div class="line">    	<span class="keyword">return</span> ip == lp;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
   
 		<!--
 		<br>
@@ -149,7 +178,7 @@ $$ di">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Math/">Math</a>
+  <span></span> <a href="/tags/Backtracking/">Backtracking</a>
   </div>
 
 </div>
@@ -158,7 +187,7 @@ $$ di">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixinzu.win/2016/10/04/白话LeetCode-29-Divide-Two-Integers/" data-title="白话LeetCode | 29. Divide Two Integers | 追薪族" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixinzu.win/2016/10/05/白话LeetCode-44-Wildcard-Matching/" data-title="白话LeetCode | 44. Wildcard Matching | 追薪族" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -171,19 +200,11 @@ $$ di">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/04/白话LeetCode-166-Fraction-to-Recurring-Decimal/" title="白话LeetCode | 166. Fraction to Recurring Decimal">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 166. Fraction to Recurring Decimal</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/04/白话LeetCode-146-LRU-Cache/"  title="白话LeetCode | 146. LRU Cache">
+<a href="/2016/10/05/白话LeetCode-68-Text-Justification/"  title="白话LeetCode | 68. Text Justification">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 146. LRU Cache
+ <span>白话LeetCode | 68. Text Justification
 </span>
 </a>
 </div>
@@ -192,7 +213,7 @@ $$ di">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/04/白话LeetCode-29-Divide-Two-Integers/" data-title="白话LeetCode | 29. Divide Two Integers" data-url="http://zhuixinzu.win/2016/10/04/白话LeetCode-29-Divide-Two-Integers/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/05/白话LeetCode-44-Wildcard-Matching/" data-title="白话LeetCode | 44. Wildcard Matching" data-url="http://zhuixinzu.win/2016/10/05/白话LeetCode-44-Wildcard-Matching/"></div>
 </section>
 
 
