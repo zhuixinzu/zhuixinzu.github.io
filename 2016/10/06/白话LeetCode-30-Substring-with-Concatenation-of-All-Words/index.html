@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-30-Substring-with-Concatenation-of-All-Words/index.html">
 <meta property="og:site_name" content="追薪族">
 <meta property="og:description" content="巧妙的利用滑动窗口，使得在指定字符串中查找单词序列的时间复杂度降为线性时间复杂度。">
-<meta property="og:updated_time" content="2016-10-06T12:01:27.000Z">
+<meta property="og:updated_time" content="2016-10-06T12:04:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 30. Substring with Concatenation of All Words">
 <meta name="twitter:description" content="巧妙的利用滑动窗口，使得在指定字符串中查找单词序列的时间复杂度降为线性时间复杂度。">
@@ -118,7 +118,7 @@
 <ol>
 <li>如果滑动窗口内的子串在单词数组中出现，那么该单词的计数加1；</li>
 <li>如果滑动窗口内的子串在单词数组中没有出现，那么之前的所有计数清空，重新开始计数；</li>
-<li>如果滑动窗口内的子串在单词数组中出现，且在滑动窗口中出现的次数大于该单词在单词数组中出现的次数，那么找到该单词最近一次出现的位置，删去该位置之前(包括该位置)被计数的单词出现的次数；</li>
+<li>如果滑动窗口内的子串在单词数组中出现，且在滑动窗口中出现的次数大于该单词在单词数组中出现的次数，那么找到该单词最早一次被计数的位置，删去该位置之前(包括该位置)被计数的单词出现的次数；</li>
 <li>如果计数的总和等于单词数组的大小，说明找到了一个可行解，记录下该子串的起始位置。</li>
 </ol>
 <p>滑动窗口的起始位置并不仅仅可以从字符串s的首部开始，它可以从[0, L)的任意位置开始，因此以上查找的过程需要进行L次(滑动窗口不同的起始位置对应一次查找)。</p>
@@ -232,11 +232,11 @@
 			
 		
 			
-				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+				<li><a href="/tags/HashTable/" title="HashTable">HashTable<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HashTable/" title="HashTable">HashTable<sup>4</sup></a></li>
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
 			
 		
 			
@@ -256,7 +256,7 @@
 			
 		
 			
-				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>1</sup></a></li>
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
 			
 		
 			
@@ -264,7 +264,7 @@
 			
 		
 			
-				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>1</sup></a></li>
 			
 		
 			
@@ -272,7 +272,7 @@
 			
 		
 			
-				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
+				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
 			
 		
 			
