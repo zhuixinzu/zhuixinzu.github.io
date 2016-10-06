@@ -11,22 +11,16 @@
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 212. Word Search II)
-给定一个二维矩阵(由字母组成)，以及一个单词词典，请在二维矩阵中找到所有在字典中出现的单词。使用二维矩阵构造单词的时候，单词中相邻的字母必须在二维矩阵中也相邻(垂直方向或者水平方向)，且在构造同一个单词时，二维矩阵中的同一个字母不可以重复使用。例如：
-条件：words = [&amp;quot;oath&amp;quot;,">
+    <meta name="description" content="测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="白话LeetCode | 212. Word Search II">
 <meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-212-Word-Search-II/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 212. Word Search II)
-给定一个二维矩阵(由字母组成)，以及一个单词词典，请在二维矩阵中找到所有在字典中出现的单词。使用二维矩阵构造单词的时候，单词中相邻的字母必须在二维矩阵中也相邻(垂直方向或者水平方向)，且在构造同一个单词时，二维矩阵中的同一个字母不可以重复使用。例如：
-条件：words = [&amp;quot;oath&amp;quot;,">
-<meta property="og:updated_time" content="2016-10-06T10:25:19.000Z">
+<meta property="og:description" content="测试">
+<meta property="og:updated_time" content="2016-10-06T10:26:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 212. Word Search II">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 212. Word Search II)
-给定一个二维矩阵(由字母组成)，以及一个单词词典，请在二维矩阵中找到所有在字典中出现的单词。使用二维矩阵构造单词的时候，单词中相邻的字母必须在二维矩阵中也相邻(垂直方向或者水平方向)，且在构造同一个单词时，二维矩阵中的同一个字母不可以重复使用。例如：
-条件：words = [&amp;quot;oath&amp;quot;,">
+<meta name="twitter:description" content="测试">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -113,10 +107,15 @@
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/word-search-ii/" target="_blank" rel="external">LeetCode | 212. Word Search II</a>)</p>
 <p>给定一个二维矩阵(由字母组成)，以及一个单词词典，请在二维矩阵中找到所有在字典中出现的单词。使用二维矩阵构造单词的时候，单词中相邻的字母必须在二维矩阵中也相邻(垂直方向或者水平方向)，且在构造同一个单词时，二维矩阵中的同一个字母不可以重复使用。例如：</p>
 <p>条件：words = <code>[&quot;oath&quot;,&quot;pea&quot;,&quot;eat&quot;,&quot;rain&quot;]</code>，board = </p>
-<blockquote>
-<p>[<br> [‘o’,’a’,’a’,’n’],<br> [‘e’,’t’,’a’,’e’],<br> [‘i’,’h’,’k’,’r’],<br> [‘i’,’f’,’l’,’v’]<br>]</p>
-</blockquote>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>[<br>  [‘o’,’a’,’a’,’n’],<br>  [‘e’,’t’,’a’,’e’],<br>  [‘i’,’h’,’k’,’r’],<br>  [‘i’,’f’,’l’,’v’]<br>]</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>相信大家都可以发现这是一道关于搜索的题目。如果不考虑时间复杂度的话，我们可以用深度优先搜索算法暴力枚举所有可能的切分方法：</p>
+<ol>
+<li>对于一个字符串s，我们可以对前缀进行枚举，将其拆分成前缀和后缀两部分。如果前缀在字典中出现，那么只需要求解后缀所有可能的切分方法，并将后缀所有可能的切分方法与前缀进行拼接即为最终答案；</li>
+<li>在求解后缀可能的切分方法时，只需要将后缀看做字符串s，然后重复第(1)步即可。</li>
+</ol>
+<p>以上便是未经优化的深度优先搜索算法给出的解题方案。在以上的解题方案中，相同的后缀有可能会被重复搜索，这样造成了重复计算，这也是暴力搜索为什么会超时的原因。针对这个原因，我们可以使用一个Map来记录已经搜索过的后缀对应的答案。当碰到重复的后缀需要搜索时，直接查找Map便可以知道答案。</p>
+<p>经过上述分析，我们变得到了传说中的记忆化搜索算法，这也是动态规划的思想：对需要重复计算的状态进行记录，之后直接查表即可。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; wordBreak(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict) &#123;</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; memory;</div><div class="line">        <span class="keyword">return</span> search(s, wordDict, memory);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; search(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict, <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; memory) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> != memory.count(s)) &#123;</div><div class="line">            <span class="keyword">return</span> memory[s];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == s.length()) &#123;</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt;= s.length(); ++len) &#123;</div><div class="line">            <span class="built_in">string</span> prefix = s.substr(<span class="number">0</span>, len);</div><div class="line">            <span class="keyword">if</span> (<span class="number">0</span> != wordDict.count(prefix)) &#123;</div><div class="line">                <span class="keyword">if</span>(len == s.length()) &#123;</div><div class="line">                    ans.push_back(prefix);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="built_in">string</span> suffix = s.substr(len);</div><div class="line">                    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; tmp = search(suffix, wordDict, memory);</div><div class="line">                    <span class="keyword">for</span> (<span class="built_in">string</span> item : tmp) &#123;</div><div class="line">                        ans.push_back(prefix + <span class="string">" "</span> + item);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        memory[s] = ans;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
   
 		<!--
 		<br>
@@ -246,15 +245,11 @@
 			
 		
 			
-				<li><a href="/tags/Array/" title="Array">Array<sup>1</sup></a></li>
+				<li><a href="/tags/Two-Pointers/" title="Two Pointers">Two Pointers<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Two-Pointers/" title="Two Pointers">Two Pointers<sup>1</sup></a></li>
 			
 		
 			
@@ -263,6 +258,10 @@
 		
 			
 				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Array/" title="Array">Array<sup>1</sup></a></li>
 			
 		
 			
