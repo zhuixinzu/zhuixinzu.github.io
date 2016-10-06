@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 140. Word Break II | 追薪族</title>
+    <title>白话LeetCode | 174. Dungeon Game | 追薪族</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪族">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 140. Word Break II)
-给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：
-条件：s = &amp;quot;catsanddog&amp;quot;, dict = [&amp;quot;cat&amp;quot;, &amp;quot;cats&amp;q">
+    <meta name="description" content="骑士即将去拯救被恶魔抓取的公主，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 140. Word Break II">
-<meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-140-Word-Break-II/index.html">
+<meta property="og:title" content="白话LeetCode | 174. Dungeon Game">
+<meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-174-Dungeon-Game/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 140. Word Break II)
-给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：
-条件：s = &amp;quot;catsanddog&amp;quot;, dict = [&amp;quot;cat&amp;quot;, &amp;quot;cats&amp;q">
-<meta property="og:updated_time" content="2016-10-06T09:51:44.000Z">
+<meta property="og:description" content="骑士即将去拯救被恶魔抓取的公主，">
+<meta property="og:updated_time" content="2016-10-06T14:34:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 140. Word Break II">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 140. Word Break II)
-给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：
-条件：s = &amp;quot;catsanddog&amp;quot;, dict = [&amp;quot;cat&amp;quot;, &amp;quot;cats&amp;q">
+<meta name="twitter:title" content="白话LeetCode | 174. Dungeon Game">
+<meta name="twitter:description" content="骑士即将去拯救被恶魔抓取的公主，">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -82,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/06/白话LeetCode-140-Word-Break-II/" title="白话LeetCode | 140. Word Break II" itemprop="url">白话LeetCode | 140. Word Break II</a>
+      <a href="/2016/10/06/白话LeetCode-174-Dungeon-Game/" title="白话LeetCode | 174. Dungeon Game" itemprop="url">白话LeetCode | 174. Dungeon Game</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-06T08:38:02.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
+    <time datetime="2016-10-06T13:52:12.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -110,19 +104,34 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="external">LeetCode | 140. Word Break II</a>)</p>
-<p>给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：</p>
-<p>条件：s = <code>&quot;catsanddog&quot;</code>, dict = <code>[&quot;cat&quot;, &quot;cats&quot;, &quot;and&quot;, &quot;sand&quot;, &quot;dog&quot;]</code></p>
-<p>答案：<code>[&quot;cats and dog&quot;, &quot;cat sand dog&quot;]</code></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>相信大家都可以发现这是一道关于搜索的题目。如果不考虑时间复杂度的话，我们可以用深度优先搜索算法暴力枚举所有可能的切分方法：</p>
-<ol>
-<li>对于一个字符串s，我们可以对前缀进行枚举，将其拆分成前缀和后缀两部分。如果前缀在字典中出现，那么只需要求解后缀所有可能的切分方法，并将后缀所有可能的切分方法与前缀进行拼接即为最终答案；</li>
-<li>在求解后缀可能的切分方法时，只需要将后缀看做字符串s，然后重复第(1)步即可。</li>
-</ol>
-<p>以上便是未经优化的深度优先搜索算法给出的解题方案。在以上的解题方案中，相同的后缀有可能会被重复搜索，这样造成了重复计算，这也是暴力搜索为什么会超时的原因。针对这个原因，我们可以使用一个Map来记录已经搜索过的后缀对应的答案。当碰到重复的后缀需要搜索时，直接查找Map便可以知道答案。</p>
-<p>经过上述分析，我们变得到了传说中的记忆化搜索算法，这也是动态规划的思想：对需要重复计算的状态进行记录，之后直接查表即可。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; wordBreak(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict) &#123;</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; memory;</div><div class="line">        <span class="keyword">return</span> search(s, wordDict, memory);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; search(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict, <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; memory) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> != memory.count(s)) &#123;</div><div class="line">            <span class="keyword">return</span> memory[s];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == s.length()) &#123;</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt;= s.length(); ++len) &#123;</div><div class="line">            <span class="built_in">string</span> prefix = s.substr(<span class="number">0</span>, len);</div><div class="line">            <span class="keyword">if</span> (<span class="number">0</span> != wordDict.count(prefix)) &#123;</div><div class="line">                <span class="keyword">if</span>(len == s.length()) &#123;</div><div class="line">                    ans.push_back(prefix);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="built_in">string</span> suffix = s.substr(len);</div><div class="line">                    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; tmp = search(suffix, wordDict, memory);</div><div class="line">                    <span class="keyword">for</span> (<span class="built_in">string</span> item : tmp) &#123;</div><div class="line">                        ans.push_back(prefix + <span class="string">" "</span> + item);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        memory[s] = ans;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-  
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/dungeon-game/" target="_blank" rel="external">LeetCode | 174. Dungeon Game</a>)</p>
+<p>公主(P)被恶魔抓走了！她被囚禁在了地牢的右下角。地牢由二维平面上的$M \times N$个房间组成。骑士(K)的起始位置在地图的左上角，他必须一路穿过地牢的房间去拯救位于右下角的公主。</p>
+<p>骑士起始的时候有一定数量的生命值。如果在任意时刻，骑士的血量低于或者等于零，他会立即死去。</p>
+<p>有一些房间是由恶魔把守的，骑士进入这些房间会损失掉一定数量的生命值(负整数)，其他房间可能是空的(零)也有可能有魔法药水来帮助他增加生命值(正整数)。</p>
+<p>为了尽可能快的营救公主，骑士决定每次移动只向右和向下两个方向走。</p>
+<p>请写一个函数来计算骑士营救公主所需要的最少血量。</p>
+<p>例如，给出地牢的地图如下所示，骑士初始情况下最少需要7滴血量才可营救公主，移动方向为<code>右-&gt;右-&gt;下-&gt;下</code>。</p>
+<table border="1" style="margin:auto"><br><tr><br><td>-2(K)</td><br><td>-3</td><br><td>3</td><br></tr><br><tr><br><td>-5</td><br><td>-10</td><br><td>1</td><br></tr><br><tr><br><td>10</td><br><td>30</td><br><td>-5(P)</td><br></tr><br></table>
+
+
+<p>注意：</p>
+<ul>
+<li>骑士的血量没有上限；</li>
+<li>任意的房间都有可能存在威胁或者补给，包括骑士初始位于的房间，以及公主所在的房间。</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>题目虽然看起来很长，答案并没有想象中的那么复杂。下面我们来一步步进行分析。</p>
+<p>假设骑士位于坐标为(i, j)的位置上，如果我们想要知道从这一点出发到达公主所在的房间所需要的最少血量(记为dp[i][j])的话，跟哪些因素有关系呢？因为骑士只能向右或者向下走，因此该值取决于三个方面：</p>
+<ul>
+<li>骑士从坐标(i+1,j)出发到达公主所在的房间所需要的最少血量，dp[i+1][j]；</li>
+<li>骑士从坐标(i,j+1)出发到达公主所在的房间所需要的最少血量，dp[i][j+1]；</li>
+<li>坐标(i,j)坐在的房间中包含的补给或威胁对应的数值，dungeon[i][j]。</li>
+</ul>
+<p>分析到这里，其实可以看出动态规划转移方程的雏形了，具体描述如下：</p>
+<p>$$dp[i][j] = max(1, min(dp[i+1][j],dp[i][j+1])-dungeon[i][j])$$</p>
+<p>其中，$min(dp[i+1][j],dp[i][j+1])$表示从向右或者向下的道路中选择所需血量最少的那一条路前进，因为房间中可能有怪物或者补给，所以得到的值需要减去这个房间对应的数值dungeon[i][j]，又因为骑士的血量不能低于1，因此还需要执行max函数来保证得到的值大于等于1。</p>
+<p>最终，根据动态规划转移方程得到的dp[0][0]即为所求。</p>
+<p>相信你对这道题目动态规划解法的来龙去脉已经理清楚了。需要注意的是，在写代码的过程中一定要注意边界的检查，不要出现数组越界的情况。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculateMinimumHP</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; dungeon)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> dungeonRowSize = dungeon.size();</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == dungeonRowSize) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> dungeonColSize = dungeon[<span class="number">0</span>].size();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = dungeonRowSize - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = dungeonColSize - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</div><div class="line">                <span class="keyword">if</span> (i == dungeonRowSize - <span class="number">1</span> &amp;&amp; j == dungeonColSize - <span class="number">1</span>) &#123;</div><div class="line">                    dungeon[i][j] = max(<span class="number">1</span>, <span class="number">1</span> - dungeon[i][j]);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">int</span> r = j &lt; dungeonColSize - <span class="number">1</span> ? dungeon[i][j + <span class="number">1</span>] : INF;</div><div class="line">                    <span class="keyword">int</span> d = i &lt; dungeonRowSize - <span class="number">1</span> ? dungeon[i + <span class="number">1</span>][j] : INF;</div><div class="line">                    dungeon[i][j] = max(<span class="number">1</span>, min(r, d) - dungeon[i][j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dungeon[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -144,7 +153,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a><a href="/tags/Backtracking/">Backtracking</a>
+  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
   </div>
 
 </div>
@@ -153,7 +162,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-140-Word-Break-II/" data-title="白话LeetCode | 140. Word Break II | 追薪族" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-174-Dungeon-Game/" data-title="白话LeetCode | 174. Dungeon Game | 追薪族" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -166,19 +175,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/06/白话LeetCode-212-Word-Search-II/" title="白话LeetCode | 212. Word Search II">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 212. Word Search II</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/06/白话LeetCode-179-Largest-Number/"  title="白话LeetCode | 179. Largest Number">
+<a href="/2016/10/06/白话LeetCode-98-Validate-Binary-Search-Tree/"  title="白话LeetCode | 98. Validate Binary Search Tree">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 179. Largest Number
+ <span>白话LeetCode | 98. Validate Binary Search Tree
 </span>
 </a>
 </div>
@@ -187,7 +188,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-140-Word-Break-II/" data-title="白话LeetCode | 140. Word Break II" data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-140-Word-Break-II/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-174-Dungeon-Game/" data-title="白话LeetCode | 174. Dungeon Game" data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-174-Dungeon-Game/"></div>
 </section>
 
 

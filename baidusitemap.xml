@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://zhuixinzu.win/2016/10/06/%E7%99%BD%E8%AF%9DLeetCode-174-Dungeon-Game/</loc>
+    <lastmod>2016-10-06T14:34:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>白话LeetCode | 174. Dungeon Game</title>
+        <pubTime>2016-10-06T13:52:12.000Z</pubTime>
+        
+        <tag>Dynamic Programming</tag>
+         
+         
+           
+             
+              <breadCrumb title="白话LeetCode" url="http://zhuixinzu.win/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://zhuixinzu.win/2016/10/06/%E7%99%BD%E8%AF%9DLeetCode-98-Validate-Binary-Search-Tree/</loc>
     <lastmod>2016-10-06T13:42:59.000Z</lastmod>
     <data>
@@ -75,9 +95,9 @@
         <title>白话LeetCode | 212. Word Search II</title>
         <pubTime>2016-10-06T09:55:32.000Z</pubTime>
         
-        <tag>Trie</tag>
-         
         <tag>Backtracking</tag>
+         
+        <tag>Trie</tag>
          
          
            
@@ -97,9 +117,9 @@
         <title>白话LeetCode | 140. Word Break II</title>
         <pubTime>2016-10-06T08:38:02.000Z</pubTime>
         
-        <tag>Backtracking</tag>
-         
         <tag>Dynamic Programming</tag>
+         
+        <tag>Backtracking</tag>
          
          
            
@@ -161,11 +181,11 @@
         <title>白话LeetCode | 211. Add and Search Word - Data structure design</title>
         <pubTime>2016-10-06T02:24:40.000Z</pubTime>
         
+        <tag>Backtracking</tag>
+         
         <tag>Design</tag>
          
         <tag>Trie</tag>
-         
-        <tag>Backtracking</tag>
          
          
            
