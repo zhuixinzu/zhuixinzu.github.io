@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://zhuixinzu.win/2016/10/06/%E7%99%BD%E8%AF%9DLeetCode-174-Dungeon-Game/</loc>
-    <lastmod>2016-10-06T14:44:39.000Z</lastmod>
+    <lastmod>2016-10-06T14:46:16.000Z</lastmod>
     <data>
         <display>
         <title>白话LeetCode | 174. Dungeon Game</title>
@@ -181,9 +181,9 @@
         <title>白话LeetCode | 211. Add and Search Word - Data structure design</title>
         <pubTime>2016-10-06T02:24:40.000Z</pubTime>
         
-        <tag>Backtracking</tag>
-         
         <tag>Design</tag>
+         
+        <tag>Backtracking</tag>
          
         <tag>Trie</tag>
          
