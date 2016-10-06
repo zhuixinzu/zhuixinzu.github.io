@@ -4,37 +4,47 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 211. Add and Search Word - Data structure design | 追薪族</title>
+    <title>白话LeetCode | 15. 3Sum | 追薪族</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪族">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 211. Add and Search Word - Data structure design)
-请设计一个数据结构来支持以下两个操作：
-void addWord(word)
-bool search(word)
-其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由a-z或者.组成，一个.可以匹配任意一个字母。例">
+    <meta name="description" content="问题描述(原题链接：LeetCode | 15. 3Sum)
+给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c使得$a+b+c=0$？请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
+数组S = [-1, 0, 1, 2, -1, -4],
+返回：
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+解题思路虽然">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 211. Add and Search Word - Data structure design">
-<meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/index.html">
+<meta property="og:title" content="白话LeetCode | 15. 3Sum">
+<meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-15-3Sum/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 211. Add and Search Word - Data structure design)
-请设计一个数据结构来支持以下两个操作：
-void addWord(word)
-bool search(word)
-其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由a-z或者.组成，一个.可以匹配任意一个字母。例">
-<meta property="og:image" content="http://zhuixinzu.win/img/白话LeetCode/211/trie.png">
-<meta property="og:updated_time" content="2016-10-06T03:14:29.000Z">
+<meta property="og:description" content="问题描述(原题链接：LeetCode | 15. 3Sum)
+给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c使得$a+b+c=0$？请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
+数组S = [-1, 0, 1, 2, -1, -4],
+返回：
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+解题思路虽然">
+<meta property="og:updated_time" content="2016-10-06T04:09:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 211. Add and Search Word - Data structure design">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 211. Add and Search Word - Data structure design)
-请设计一个数据结构来支持以下两个操作：
-void addWord(word)
-bool search(word)
-其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由a-z或者.组成，一个.可以匹配任意一个字母。例">
-<meta name="twitter:image" content="http://zhuixinzu.win/img/白话LeetCode/211/trie.png">
+<meta name="twitter:title" content="白话LeetCode | 15. 3Sum">
+<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 15. 3Sum)
+给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c使得$a+b+c=0$？请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
+数组S = [-1, 0, 1, 2, -1, -4],
+返回：
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+解题思路虽然">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -90,14 +100,14 @@ bool search(word)
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/" title="白话LeetCode | 211. Add and Search Word - Data structure design" itemprop="url">白话LeetCode | 211. Add and Search Word - Data structure design</a>
+      <a href="/2016/10/06/白话LeetCode-15-3Sum/" title="白话LeetCode | 15. 3Sum" itemprop="url">白话LeetCode | 15. 3Sum</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-06T02:24:40.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
+    <time datetime="2016-10-06T03:20:53.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -118,30 +128,27 @@ bool search(word)
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/add-and-search-word-data-structure-design/" target="_blank" rel="external">LeetCode | 211. Add and Search Word - Data structure design</a>)</p>
-<p>请设计一个数据结构来支持以下两个操作：</p>
-<pre><code>void addWord(word)
-bool search(word)
-</code></pre><p>其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由<code>a-z</code>或者<code>.</code>组成，一个<code>.</code>可以匹配任意一个字母。例如：</p>
-<pre><code>addWord(&quot;bad&quot;)
-addWord(&quot;dad&quot;)
-addWord(&quot;mad&quot;)
-search(&quot;pad&quot;) -&gt; false
-search(&quot;bad&quot;) -&gt; true
-search(&quot;.ad&quot;) -&gt; true
-search(&quot;b..&quot;) -&gt; true
-</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道很典型的字典树(Trie)的题目，唯一的变化是在字典树查找的过程中引入了通配符<code>.</code>，通配符匹配可以通过回溯法(枚举26个英文)实现。</p>
-<p>字典树(Trie)是面试中常见的题型，也叫做前缀树，是一种用来快速检索的多叉树结构。对于本题而言，需要构造的是一个英文字母字典树，因此是一个26叉树。</p>
-<p>字典树可以利用字符串的公共前缀来节约存储的空间并加快检索的速度。下图中的字典树包含了五个英文单词dad, do, dog, done, bi：</p>
-<p><img src="/img/白话LeetCode/211/trie.png" style="display:block;margin:auto"></p>
-<p>字典树有如下基本性质：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/3sum/" target="_blank" rel="external">LeetCode | 15. 3Sum</a>)</p>
+<p>给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c使得$a+b+c=0$？请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：</p>
+<pre><code>数组S = [-1, 0, 1, 2, -1, -4],
+返回：
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>虽然题目中要求的是$a+b+c=0$，我们可以对问题进行拓展，推广到$a+b+c=target$：</p>
 <ol>
-<li>字典树的根节点不包含字符，代表一个空字符串；</li>
-<li>从根节点到某节点，路径上经过的字符连接起来即为该节点所代表的字符串；</li>
-<li>每个节点所代表的字符串各不相同，父节点代表的字符串一定是它孩子节点代表的字符串的前缀。</li>
+<li>首先对数组进行排序，然后从左到右枚举数字作为我们要找的第一个元素a，这样问题就转化为了在剩余的数字中寻找元素b和c，使得$b+c=target-a$。</li>
+<li>因为在第(1)步中，已经对数组进行了排序，因此我们可以使用两个指针，一个指针从a右侧的第一个元素开始向右扫描，另一个指针从数组末尾的元素开始向左扫描：<ol>
+<li>如果两个指针指向的数字之和比$target-a$小，那么左侧的指针向右移动；</li>
+<li>如果两个指针指向的数字之和比$target-a$大，那么右侧的指针向左移动；</li>
+<li>如果两个指针指向的数字之和等于$target-a$，那么我们就找到了三个元素，并且$a+b+c=target$，将这个三元组记入答案，指针继续扫描，直到两个指针相遇。</li>
 </ol>
-<p>了解了这些之后，相信你一定可以轻松搞定字典树相关题目。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> TrieNode &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">bool</span> end;</div><div class="line">    TrieNode* next[<span class="number">26</span>];</div><div class="line">    TrieNode() &#123;</div><div class="line">        <span class="built_in">memset</span>(next, <span class="number">0</span>, <span class="keyword">sizeof</span>(next));</div><div class="line">        end = <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">class</span> WordDictionary &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">// 字典树的根节点</span></div><div class="line">    TrieNode* trie_root;</div><div class="line">    <span class="comment">// 回溯法查找单词word是否存在</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(TrieNode* node, <span class="built_in">string</span>&amp; word, <span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (id == word.length()) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="literal">true</span> == node-&gt;end) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="string">'.'</span> == word[id]) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) &#123;</div><div class="line">                <span class="keyword">if</span> (node-&gt;next[i] &amp;&amp; dfs(node-&gt;next[i], word, id + <span class="number">1</span>)) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="literal">NULL</span> == node-&gt;next[word[id] - <span class="string">'a'</span>]) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> dfs(node-&gt;next[word[id] - <span class="string">'a'</span>], word, id + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    WordDictionary() &#123;</div><div class="line">        trie_root = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Adds a word into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addWord</span><span class="params">(<span class="built_in">string</span> word)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (trie_root == <span class="literal">NULL</span>) &#123;</div><div class="line">            trie_root = <span class="keyword">new</span> TrieNode();</div><div class="line">        &#125;</div><div class="line">        TrieNode* tmp = trie_root;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; word.length(); ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (tmp-&gt;next[word[i] - <span class="string">'a'</span>] == <span class="literal">NULL</span>) &#123;</div><div class="line">                tmp-&gt;next[word[i] - <span class="string">'a'</span>] = <span class="keyword">new</span> TrieNode();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (i &lt; word.length() - <span class="number">1</span>) &#123;</div><div class="line">                tmp = tmp-&gt;next[word[i] - <span class="string">'a'</span>];</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                tmp-&gt;next[word[i] - <span class="string">'a'</span>]-&gt;end = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns if the word is in the data structure. A word could</span></div><div class="line">    <span class="comment">// contain the dot character '.' to represent any one letter.</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="built_in">string</span> word)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (trie_root == <span class="literal">NULL</span>) &#123;</div><div class="line">            trie_root = <span class="keyword">new</span> TrieNode();</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> dfs(trie_root, word, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过上述的描述，我们可以发现，当枚举了一个数组元素作为a后，寻找b和c只需要O(n)的时间复杂度。因此，整体的时间复杂度为<code>O(n^2)</code>。</p>
+<p>在这道题中，需要注意的一点就是去重，去重其实并不难实现：因为数组有序，所以在扫描数组的过程中，如果发现该元素与它之前的元素相同，则跳过该元素。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">int</span> n = nums.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</div><div class="line">        </div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">2</span>; ++i) &#123;</div><div class="line">            <span class="comment">// 去重</span></div><div class="line">            <span class="keyword">if</span> (i &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">int</span> l = i + <span class="number">1</span>, r = n - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">                <span class="comment">// 去重</span></div><div class="line">                <span class="keyword">if</span> (l != i + <span class="number">1</span> &amp;&amp; nums[l] == nums[l - <span class="number">1</span>]) &#123;</div><div class="line">                    ++l;</div><div class="line">                    <span class="keyword">continue</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 去重</span></div><div class="line">                <span class="keyword">if</span> (r != n - <span class="number">1</span> &amp;&amp; nums[r] == nums[r + <span class="number">1</span>]) &#123;</div><div class="line">                    --r;</div><div class="line">                    <span class="keyword">continue</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (nums[i] + nums[l] + nums[r] == <span class="number">0</span>) &#123;</div><div class="line">                    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tuple;</div><div class="line">                    tuple.push_back(nums[i]);</div><div class="line">                    tuple.push_back(nums[l]);</div><div class="line">                    tuple.push_back(nums[r]);</div><div class="line">                    ans.push_back(tuple);</div><div class="line">                    ++l;</div><div class="line">                    --r;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] + nums[l] + nums[r] &lt; <span class="number">0</span>) &#123;</div><div class="line">                    ++l;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    --r;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
   
 		<!--
 		<br>
@@ -164,7 +171,7 @@ search(&quot;b..&quot;) -&gt; true
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Design/">Design</a><a href="/tags/Trie/">Trie</a><a href="/tags/Backtracking/">Backtracking</a>
+  <span></span> <a href="/tags/Array/">Array</a><a href="/tags/Two-Pointers/">Two Pointers</a>
   </div>
 
 </div>
@@ -173,7 +180,7 @@ search(&quot;b..&quot;) -&gt; true
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/" data-title="白话LeetCode | 211. Add and Search Word - Data structure design | 追薪族" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-15-3Sum/" data-title="白话LeetCode | 15. 3Sum | 追薪族" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -186,19 +193,11 @@ search(&quot;b..&quot;) -&gt; true
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/06/白话LeetCode-15-3Sum/" title="白话LeetCode | 15. 3Sum">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 15. 3Sum</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/06/白话LeetCode-4-Median-of-Two-Sorted-Arrays/"  title="白话LeetCode | 4. Median of Two Sorted Arrays">
+<a href="/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/"  title="白话LeetCode | 211. Add and Search Word - Data structure design">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 4. Median of Two Sorted Arrays
+ <span>白话LeetCode | 211. Add and Search Word - Data structure design
 </span>
 </a>
 </div>
@@ -207,7 +206,7 @@ search(&quot;b..&quot;) -&gt; true
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/" data-title="白话LeetCode | 211. Add and Search Word - Data structure design" data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-15-3Sum/" data-title="白话LeetCode | 15. 3Sum" data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-15-3Sum/"></div>
 </section>
 
 
