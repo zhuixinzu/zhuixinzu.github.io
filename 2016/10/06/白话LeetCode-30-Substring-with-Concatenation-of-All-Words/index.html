@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-30-Substring-with-Concatenation-of-All-Words/index.html">
 <meta property="og:site_name" content="追薪族">
 <meta property="og:description" content="巧妙的利用滑动窗口，使得在指定字符串中查找单词序列的时间复杂度降为线性时间复杂度。">
-<meta property="og:updated_time" content="2016-10-06T12:04:43.000Z">
+<meta property="og:updated_time" content="2016-10-06T12:05:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 30. Substring with Concatenation of All Words">
 <meta name="twitter:description" content="巧妙的利用滑动窗口，使得在指定字符串中查找单词序列的时间复杂度降为线性时间复杂度。">
@@ -122,7 +122,7 @@
 <li>如果计数的总和等于单词数组的大小，说明找到了一个可行解，记录下该子串的起始位置。</li>
 </ol>
 <p>滑动窗口的起始位置并不仅仅可以从字符串s的首部开始，它可以从[0, L)的任意位置开始，因此以上查找的过程需要进行L次(滑动窗口不同的起始位置对应一次查找)。</p>
-<p>该滑动窗口的思想非常巧妙，使得算法的时间复杂度之间降为线性时间复杂度。</p>
+<p>该滑动窗口的思想非常巧妙，使得算法的时间复杂度降为线性时间复杂度。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findSubstring(<span class="built_in">string</span> s, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == words.size()) &#123;</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 统计单词数组中各单词出现的次数</span></div><div class="line">        <span class="keyword">int</span> len = words[<span class="number">0</span>].length();</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; ws_num;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.size(); ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (ws_num.end() == ws_num.find(words[i])) &#123;</div><div class="line">                ws_num[words[i]] = <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                ++ws_num[words[i]];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// L次利用滑动窗口查找(L表示单词长度)</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</div><div class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">            <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; ws_cnt;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; s.length(); j += len) &#123;</div><div class="line">                <span class="built_in">string</span> word = s.substr(j, len);</div><div class="line">                <span class="comment">// 如果滑动窗口内的子串在单词数组中没有出现，那么之前的所有计数清空，重新开始计数</span></div><div class="line">                <span class="keyword">if</span> (ws_num.end() == ws_num.find(word)) &#123;</div><div class="line">                    count = <span class="number">0</span>;</div><div class="line">                    ws_cnt.clear();</div><div class="line">                &#125; </div><div class="line">                <span class="comment">// 如果滑动窗口内的子串在单词数组中出现</span></div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    ++count;</div><div class="line">                    <span class="keyword">if</span> (ws_cnt.end() == ws_cnt.find(word)) &#123;</div><div class="line">                        ws_cnt[word] = <span class="number">1</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        ++ws_cnt[word];</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">while</span> (ws_cnt[word] &gt; ws_num[word]) &#123;</div><div class="line">                        <span class="built_in">string</span> pre_word = s.substr(j - (count - <span class="number">1</span>) * len, len);</div><div class="line">                        --count;</div><div class="line">                        --ws_cnt[pre_word];</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span> (words.size() == count) &#123;</div><div class="line">                        ans.push_back(j - (count - <span class="number">1</span>) * len);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
@@ -256,7 +256,7 @@
 			
 		
 			
-				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
+				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
 			
 		
 			
@@ -264,15 +264,15 @@
 			
 		
 			
-				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Sort/" title="Sort">Sort<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
 			
 		
 			
