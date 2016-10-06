@@ -21,7 +21,7 @@
 <meta property="og:description" content="问题描述(原题链接：LeetCode | 140. Word Break II)
 给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：
 条件：s = &amp;quot;catsanddog&amp;quot;, dict = [&amp;quot;cat&amp;quot;, &amp;quot;cats&amp;q">
-<meta property="og:updated_time" content="2016-10-06T09:49:48.000Z">
+<meta property="og:updated_time" content="2016-10-06T09:51:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 140. Word Break II">
 <meta name="twitter:description" content="问题描述(原题链接：LeetCode | 140. Word Break II)
@@ -120,7 +120,7 @@
 <li>在求解后缀可能的切分方法时，只需要将后缀看做字符串s，然后重复第(1)步即可。</li>
 </ol>
 <p>以上便是未经优化的深度优先搜索算法给出的解题方案。在以上的解题方案中，相同的后缀有可能会被重复搜索，这样造成了重复计算，这也是暴力搜索为什么会超时的原因。针对这个原因，我们可以使用一个Map来记录已经搜索过的后缀对应的答案。当碰到重复的后缀需要搜索时，直接查找Map便可以知道答案。</p>
-<p>经过上述分析，我们变得到了传说中的记忆化搜索算法，其实这也是动态规划的思想：对需要重复计算的状态进行记录，之后直接查表即可。</p>
+<p>经过上述分析，我们变得到了传说中的记忆化搜索算法，这也是动态规划的思想：对需要重复计算的状态进行记录，之后直接查表即可。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; wordBreak(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict) &#123;</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; memory;</div><div class="line">        <span class="keyword">return</span> search(s, wordDict, memory);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; search(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict, <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; memory) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> != memory.count(s)) &#123;</div><div class="line">            <span class="keyword">return</span> memory[s];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == s.length()) &#123;</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt;= s.length(); ++len) &#123;</div><div class="line">            <span class="built_in">string</span> prefix = s.substr(<span class="number">0</span>, len);</div><div class="line">            <span class="keyword">if</span> (<span class="number">0</span> != wordDict.count(prefix)) &#123;</div><div class="line">                <span class="keyword">if</span>(len == s.length()) &#123;</div><div class="line">                    ans.push_back(prefix);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="built_in">string</span> suffix = s.substr(len);</div><div class="line">                    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; tmp = search(suffix, wordDict, memory);</div><div class="line">                    <span class="keyword">for</span> (<span class="built_in">string</span> item : tmp) &#123;</div><div class="line">                        ans.push_back(prefix + <span class="string">" "</span> + item);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        memory[s] = ans;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
   
 		<!--
@@ -166,6 +166,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/10/06/白话LeetCode-212-Word-Search-II/" title="白话LeetCode | 212. Word Search II">
+  <strong>上一篇：</strong><br/>
+  <span>
+  白话LeetCode | 212. Word Search II</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/10/06/白话LeetCode-179-Largest-Number/"  title="白话LeetCode | 179. Largest Number">
@@ -214,7 +222,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/白话LeetCode/" title="白话LeetCode">白话LeetCode<sup>16</sup></a></li>
+			<li><a href="/categories/白话LeetCode/" title="白话LeetCode">白话LeetCode<sup>17</sup></a></li>
 		  
 		
 		</ul>
@@ -227,15 +235,11 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/String/" title="String">String<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HashTable/" title="HashTable">HashTable<sup>3</sup></a></li>
 			
 		
 			
@@ -243,11 +247,15 @@
 			
 		
 			
+				<li><a href="/tags/HashTable/" title="HashTable">HashTable<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Design/" title="Design">Design<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
 			
 		
 			
@@ -271,7 +279,11 @@
 			
 		
 			
-				<li><a href="/tags/Trie/" title="Trie">Trie<sup>1</sup></a></li>
+				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
 			
 		
 			
@@ -280,10 +292,6 @@
 		
 			
 				<li><a href="/tags/Divide-and-Conquer/" title="Divide and Conquer">Divide and Conquer<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
 			
 		
 		</ul>
