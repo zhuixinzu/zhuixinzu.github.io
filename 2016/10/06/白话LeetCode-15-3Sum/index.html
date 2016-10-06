@@ -12,39 +12,39 @@
 
     
     <meta name="description" content="问题描述(原题链接：LeetCode | 15. 3Sum)
-给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c使得$a+b+c=0$？请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
+给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c，使得$a+b+c=0$。请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
 数组S = [-1, 0, 1, 2, -1, -4],
 返回：
 [
   [-1, 0, 1],
   [-1, -1, 2]
 ]
-解题思路虽然">
+解题思路虽">
 <meta property="og:type" content="article">
 <meta property="og:title" content="白话LeetCode | 15. 3Sum">
 <meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-15-3Sum/index.html">
 <meta property="og:site_name" content="追薪族">
 <meta property="og:description" content="问题描述(原题链接：LeetCode | 15. 3Sum)
-给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c使得$a+b+c=0$？请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
+给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c，使得$a+b+c=0$。请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
 数组S = [-1, 0, 1, 2, -1, -4],
 返回：
 [
   [-1, 0, 1],
   [-1, -1, 2]
 ]
-解题思路虽然">
-<meta property="og:updated_time" content="2016-10-06T04:09:59.000Z">
+解题思路虽">
+<meta property="og:updated_time" content="2016-10-06T04:12:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 15. 3Sum">
 <meta name="twitter:description" content="问题描述(原题链接：LeetCode | 15. 3Sum)
-给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c使得$a+b+c=0$？请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
+给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c，使得$a+b+c=0$。请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：
 数组S = [-1, 0, 1, 2, -1, -4],
 返回：
 [
   [-1, 0, 1],
   [-1, -1, 2]
 ]
-解题思路虽然">
+解题思路虽">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -129,7 +129,7 @@
 
 
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/3sum/" target="_blank" rel="external">LeetCode | 15. 3Sum</a>)</p>
-<p>给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c使得$a+b+c=0$？请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：</p>
+<p>给定一个由n个元素组成的整数数组S，问其中是否包含三个元素a,b,c，使得$a+b+c=0$。请找出所有可能的三元组，使得三元组的和为零(要求返回的答案中相同的三元组不可以重复出现)。例如：</p>
 <pre><code>数组S = [-1, 0, 1, 2, -1, -4],
 返回：
 [
@@ -142,13 +142,13 @@
 <li>因为在第(1)步中，已经对数组进行了排序，因此我们可以使用两个指针，一个指针从a右侧的第一个元素开始向右扫描，另一个指针从数组末尾的元素开始向左扫描：<ol>
 <li>如果两个指针指向的数字之和比$target-a$小，那么左侧的指针向右移动；</li>
 <li>如果两个指针指向的数字之和比$target-a$大，那么右侧的指针向左移动；</li>
-<li>如果两个指针指向的数字之和等于$target-a$，那么我们就找到了三个元素，并且$a+b+c=target$，将这个三元组记入答案，指针继续扫描，直到两个指针相遇。</li>
+<li>如果两个指针指向的数字之和等于$target-a$，那么我们就找到了三个元素a,b,c，并且$a+b+c=target$，将这个三元组记入答案，指针继续扫描，直到两个指针相遇。</li>
 </ol>
 </li>
 </ol>
 <p>通过上述的描述，我们可以发现，当枚举了一个数组元素作为a后，寻找b和c只需要O(n)的时间复杂度。因此，整体的时间复杂度为<code>O(n^2)</code>。</p>
 <p>在这道题中，需要注意的一点就是去重，去重其实并不难实现：因为数组有序，所以在扫描数组的过程中，如果发现该元素与它之前的元素相同，则跳过该元素。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">int</span> n = nums.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</div><div class="line">        </div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">2</span>; ++i) &#123;</div><div class="line">            <span class="comment">// 去重</span></div><div class="line">            <span class="keyword">if</span> (i &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">int</span> l = i + <span class="number">1</span>, r = n - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">                <span class="comment">// 去重</span></div><div class="line">                <span class="keyword">if</span> (l != i + <span class="number">1</span> &amp;&amp; nums[l] == nums[l - <span class="number">1</span>]) &#123;</div><div class="line">                    ++l;</div><div class="line">                    <span class="keyword">continue</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 去重</span></div><div class="line">                <span class="keyword">if</span> (r != n - <span class="number">1</span> &amp;&amp; nums[r] == nums[r + <span class="number">1</span>]) &#123;</div><div class="line">                    --r;</div><div class="line">                    <span class="keyword">continue</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (nums[i] + nums[l] + nums[r] == <span class="number">0</span>) &#123;</div><div class="line">                    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tuple;</div><div class="line">                    tuple.push_back(nums[i]);</div><div class="line">                    tuple.push_back(nums[l]);</div><div class="line">                    tuple.push_back(nums[r]);</div><div class="line">                    ans.push_back(tuple);</div><div class="line">                    ++l;</div><div class="line">                    --r;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] + nums[l] + nums[r] &lt; <span class="number">0</span>) &#123;</div><div class="line">                    ++l;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    --r;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">int</span> n = nums.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</div><div class="line">        </div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">2</span>; ++i) &#123;</div><div class="line">            <span class="comment">// 'a'去重</span></div><div class="line">            <span class="keyword">if</span> (i &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">int</span> l = i + <span class="number">1</span>, r = n - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">                <span class="comment">// 'b'去重</span></div><div class="line">                <span class="keyword">if</span> (l != i + <span class="number">1</span> &amp;&amp; nums[l] == nums[l - <span class="number">1</span>]) &#123;</div><div class="line">                    ++l;</div><div class="line">                    <span class="keyword">continue</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 'c'去重</span></div><div class="line">                <span class="keyword">if</span> (r != n - <span class="number">1</span> &amp;&amp; nums[r] == nums[r + <span class="number">1</span>]) &#123;</div><div class="line">                    --r;</div><div class="line">                    <span class="keyword">continue</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (nums[i] + nums[l] + nums[r] == <span class="number">0</span>) &#123;</div><div class="line">                    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tuple;</div><div class="line">                    tuple.push_back(nums[i]);</div><div class="line">                    tuple.push_back(nums[l]);</div><div class="line">                    tuple.push_back(nums[r]);</div><div class="line">                    ans.push_back(tuple);</div><div class="line">                    ++l;</div><div class="line">                    --r;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] + nums[l] + nums[r] &lt; <span class="number">0</span>) &#123;</div><div class="line">                    ++l;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    --r;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
   
 		<!--
 		<br>
@@ -286,15 +286,15 @@
 			
 		
 			
-				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Trie/" title="Trie">Trie<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Array/" title="Array">Array<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
 			
 		
 			
