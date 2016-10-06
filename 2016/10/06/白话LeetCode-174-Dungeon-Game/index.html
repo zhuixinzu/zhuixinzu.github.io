@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-174-Dungeon-Game/index.html">
 <meta property="og:site_name" content="追薪族">
 <meta property="og:description" content="骑士即将去拯救被恶魔抓走的公主，请帮助骑士计算他需要的最少血量。">
-<meta property="og:updated_time" content="2016-10-06T14:51:26.000Z">
+<meta property="og:updated_time" content="2016-10-06T14:55:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 174. Dungeon Game">
 <meta name="twitter:description" content="骑士即将去拯救被恶魔抓走的公主，请帮助骑士计算他需要的最少血量。">
@@ -119,16 +119,16 @@
 <li>任意的房间都有可能存在威胁或者补给，包括骑士初始位于的房间，以及公主所在的房间。</li>
 </ul>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>题目虽然看起来很长，答案并没有想象中的那么复杂。下面我们来一步步进行分析。</p>
-<p>假设骑士位于坐标为(i, j)的位置上，如果我们想要知道从这一点出发到达公主所在的房间所需要的最少血量(记为dp[i][j])的话，跟哪些因素有关系呢？因为骑士只能向右或者向下走，因此该值取决于三个方面：</p>
+<p>假设骑士位于坐标为(i, j)的位置上，如果我们想要知道从这一点出发到达公主所在的房间所需要的最少血量(记为dp[i][j])的话，与哪些因素有关系呢？因为骑士只能向右或者向下走，因此该值取决于三个方面：</p>
 <ul>
 <li>骑士从坐标(i+1,j)出发到达公主所在的房间所需要的最少血量，dp[i+1][j]；</li>
 <li>骑士从坐标(i,j+1)出发到达公主所在的房间所需要的最少血量，dp[i][j+1]；</li>
-<li>坐标(i,j)坐在的房间中包含的补给或威胁对应的数值，dungeon[i][j]。</li>
+<li>坐标(i,j)所在的房间中包含的补给或威胁对应的数值，dungeon[i][j]。</li>
 </ul>
 <p>分析到这里，其实可以看出动态规划转移方程的雏形了，具体描述如下：</p>
 <p>$$dp[i][j] = max(1, min(dp[i+1][j],dp[i][j+1])-dungeon[i][j])$$</p>
-<p>其中，$min(dp[i+1][j],dp[i][j+1])$表示从向右或者向下的道路中选择所需血量最少的那一条路前进，因为房间中可能有怪物或者补给，所以得到的值需要减去这个房间对应的数值dungeon[i][j]，又因为骑士的血量不能低于1，因此还需要执行max函数来保证得到的值大于等于1。</p>
-<p>最终，根据动态规划转移方程得到的dp[0][0]即为所求。</p>
+<p>其中，$min(dp[i+1][j],dp[i][j+1])$表示从向右或者向下的道路中选择所需血量较少的那一条路前进，因为房间中可能有怪物或者补给，所以得到的值需要减去这个房间中补给或怪物对应的数值dungeon[i][j]，又因为骑士的血量不能低于1，因此还需要执行max函数来保证dp[i][j]大于等于1。</p>
+<p>然后根据动态规划转移方程从右向左、从下到上依次计算，最后得到的dp[0][0]即为所求。</p>
 <p>相信你对这道题目动态规划解法的来龙去脉已经理清楚了。需要注意的是，在写代码的过程中一定要注意边界的检查，不要出现数组越界的情况。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculateMinimumHP</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; dungeon)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> dungeonRowSize = dungeon.size();</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == dungeonRowSize) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> dungeonColSize = dungeon[<span class="number">0</span>].size();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = dungeonRowSize - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = dungeonColSize - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</div><div class="line">                <span class="keyword">if</span> (i == dungeonRowSize - <span class="number">1</span> &amp;&amp; j == dungeonColSize - <span class="number">1</span>) &#123;</div><div class="line">                    dungeon[i][j] = max(<span class="number">1</span>, <span class="number">1</span> - dungeon[i][j]);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">int</span> r = j &lt; dungeonColSize - <span class="number">1</span> ? dungeon[i][j + <span class="number">1</span>] : INF;</div><div class="line">                    <span class="keyword">int</span> d = i &lt; dungeonRowSize - <span class="number">1</span> ? dungeon[i + <span class="number">1</span>][j] : INF;</div><div class="line">                    dungeon[i][j] = max(<span class="number">1</span>, min(r, d) - dungeon[i][j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dungeon[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
