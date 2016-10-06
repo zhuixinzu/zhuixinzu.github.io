@@ -4,41 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 151. Reverse Words in a String | 追薪族</title>
+    <title>白话LeetCode | 30. Substring with Concatenation of All Words | 追薪族</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪族">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 151. Reverse Words in a String)
-给定一个字符串，对其中包含的单词的顺序进行反转，例如：
-输入：&amp;quot;the sky is blue&amp;quot;
-输出：&amp;quot;blue is sky the&amp;quot;
-解题思路反转单词序列是一个经典的问题，方法如下：
-
-将其中的每个单词进行反转，即&amp;quot;the sky">
+    <meta name="description" content="巧妙的利用滑动窗口，使得在指定字符串中查找单词序列的时间复杂度降为线性时间复杂度。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 151. Reverse Words in a String">
-<meta property="og:url" content="http://zhuixinzu.win/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/index.html">
+<meta property="og:title" content="白话LeetCode | 30. Substring with Concatenation of All Words">
+<meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-30-Substring-with-Concatenation-of-All-Words/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 151. Reverse Words in a String)
-给定一个字符串，对其中包含的单词的顺序进行反转，例如：
-输入：&amp;quot;the sky is blue&amp;quot;
-输出：&amp;quot;blue is sky the&amp;quot;
-解题思路反转单词序列是一个经典的问题，方法如下：
-
-将其中的每个单词进行反转，即&amp;quot;the sky">
-<meta property="og:updated_time" content="2016-10-02T13:31:05.000Z">
+<meta property="og:description" content="巧妙的利用滑动窗口，使得在指定字符串中查找单词序列的时间复杂度降为线性时间复杂度。">
+<meta property="og:updated_time" content="2016-10-06T12:01:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 151. Reverse Words in a String">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 151. Reverse Words in a String)
-给定一个字符串，对其中包含的单词的顺序进行反转，例如：
-输入：&amp;quot;the sky is blue&amp;quot;
-输出：&amp;quot;blue is sky the&amp;quot;
-解题思路反转单词序列是一个经典的问题，方法如下：
-
-将其中的每个单词进行反转，即&amp;quot;the sky">
+<meta name="twitter:title" content="白话LeetCode | 30. Substring with Concatenation of All Words">
+<meta name="twitter:description" content="巧妙的利用滑动窗口，使得在指定字符串中查找单词序列的时间复杂度降为线性时间复杂度。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -94,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" title="白话LeetCode | 151. Reverse Words in a String" itemprop="url">白话LeetCode | 151. Reverse Words in a String</a>
+      <a href="/2016/10/06/白话LeetCode-30-Substring-with-Concatenation-of-All-Words/" title="白话LeetCode | 30. Substring with Concatenation of All Words" itemprop="url">白话LeetCode | 30. Substring with Concatenation of All Words</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-02T12:05:21.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-06T11:14:22.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -122,22 +104,26 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="external">LeetCode | 151. Reverse Words in a String</a>)</p>
-<p>给定一个字符串，对其中包含的单词的顺序进行反转，例如：</p>
-<p>输入：<code>&quot;the sky is blue&quot;</code></p>
-<p>输出：<code>&quot;blue is sky the&quot;</code></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>反转单词序列是一个经典的问题，方法如下：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/substring-with-concatenation-of-all-words/" target="_blank" rel="external">LeetCode | 30. Substring with Concatenation of All Words</a>)</p>
+<p>给定一个字符串s和一个单词数组words，单词数组中的单词的长度均相等。请找出所有满足如下条件的s的子串开始的位置：</p>
 <ol>
-<li>将其中的每个单词进行反转，即<code>&quot;the sky is blue&quot;</code>=&gt;<code>&quot;eht yks si eulb&quot;</code>；</li>
-<li>将第(1)步中得到的字符串整体进行反转，即<code>&quot;eht yks si eulb&quot;</code>=&gt;<code>&quot;blue is sky the&quot;</code>。</li>
+<li>子串由单词数组中的单词拼接而成；</li>
+<li>单词数组中的单词必须全部使用且每个单词只能使用一次。</li>
 </ol>
-<p>虽然你知道了正确的方法，但还需要与面试官确认如下注意事项，来进一步提高你在面试官心中的印象分：</p>
+<p>例如：</p>
+<p>输入：s=<code>&quot;barfoothefoobarman&quot;</code>, words=<code>[&quot;foo&quot;, &quot;bar&quot;]</code></p>
+<p>输出：<code>[0,9]</code></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题目有一种很经典的滑动窗口解法，时间复杂度为<code>O(n)</code>，其中n为字符串s的长度。</p>
+<p>假设滑动窗口的大小为L(L表示单词数组中单词的长度)，起始的位置为字符串s的首部，每次滑动的距离也为L，那么滑动窗口内始终都包含一个单词长度的子串。在滑动窗口从左侧滑到最右侧的过程中，完成如下工作：</p>
 <ol>
-<li>该字符串的前缀和后缀中，是否包含多余的空格，这些空格是否需要进行删除；</li>
-<li>单词与单词之间的空格是否只有一个，如果有多个空格是否需要用一个空格来代替。</li>
+<li>如果滑动窗口内的子串在单词数组中出现，那么该单词的计数加1；</li>
+<li>如果滑动窗口内的子串在单词数组中没有出现，那么之前的所有计数清空，重新开始计数；</li>
+<li>如果滑动窗口内的子串在单词数组中出现，且在滑动窗口中出现的次数大于该单词在单词数组中出现的次数，那么找到该单词最近一次出现的位置，删去该位置之前(包括该位置)被计数的单词出现的次数；</li>
+<li>如果计数的总和等于单词数组的大小，说明找到了一个可行解，记录下该子串的起始位置。</li>
 </ol>
-<p>至此，问题得解，<code>时间复杂度为O(n)</code>。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseWords</span><span class="params">(<span class="built_in">string</span> &amp;s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>;</div><div class="line">        <span class="built_in">string</span> tmp;</div><div class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">            <span class="comment">// 找到每一个单词，并分别对其进行反转</span></div><div class="line">            <span class="keyword">while</span> (<span class="string">' '</span> != s[r] &amp;&amp; r &lt; s.length()) ++r;</div><div class="line">            <span class="built_in">string</span> word = s.substr(l, r - l);</div><div class="line">            reverse(word.begin(), word.end());</div><div class="line">            <span class="keyword">if</span> (<span class="number">0</span> != word.length()) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="number">0</span> != tmp.length()) &#123;</div><div class="line">                    tmp.append(<span class="string">" "</span>);</div><div class="line">                &#125;</div><div class="line">                tmp.append(word);</div><div class="line">            &#125;</div><div class="line">            l = r = r + <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span> (r &gt;= s.length()) <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        s = tmp;</div><div class="line">        <span class="comment">// 反转每个单词后，再反转整个字符串</span></div><div class="line">        reverse(s.begin(), s.end());</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<p>滑动窗口的起始位置并不仅仅可以从字符串s的首部开始，它可以从[0, L)的任意位置开始，因此以上查找的过程需要进行L次(滑动窗口不同的起始位置对应一次查找)。</p>
+<p>该滑动窗口的思想非常巧妙，使得算法的时间复杂度之间降为线性时间复杂度。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findSubstring(<span class="built_in">string</span> s, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == words.size()) &#123;</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 统计单词数组中各单词出现的次数</span></div><div class="line">        <span class="keyword">int</span> len = words[<span class="number">0</span>].length();</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; ws_num;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.size(); ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (ws_num.end() == ws_num.find(words[i])) &#123;</div><div class="line">                ws_num[words[i]] = <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                ++ws_num[words[i]];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// L次利用滑动窗口查找(L表示单词长度)</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</div><div class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">            <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; ws_cnt;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; s.length(); j += len) &#123;</div><div class="line">                <span class="built_in">string</span> word = s.substr(j, len);</div><div class="line">                <span class="comment">// 如果滑动窗口内的子串在单词数组中没有出现，那么之前的所有计数清空，重新开始计数</span></div><div class="line">                <span class="keyword">if</span> (ws_num.end() == ws_num.find(word)) &#123;</div><div class="line">                    count = <span class="number">0</span>;</div><div class="line">                    ws_cnt.clear();</div><div class="line">                &#125; </div><div class="line">                <span class="comment">// 如果滑动窗口内的子串在单词数组中出现</span></div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    ++count;</div><div class="line">                    <span class="keyword">if</span> (ws_cnt.end() == ws_cnt.find(word)) &#123;</div><div class="line">                        ws_cnt[word] = <span class="number">1</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        ++ws_cnt[word];</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">while</span> (ws_cnt[word] &gt; ws_num[word]) &#123;</div><div class="line">                        <span class="built_in">string</span> pre_word = s.substr(j - (count - <span class="number">1</span>) * len, len);</div><div class="line">                        --count;</div><div class="line">                        --ws_cnt[pre_word];</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">if</span> (words.size() == count) &#123;</div><div class="line">                        ans.push_back(j - (count - <span class="number">1</span>) * len);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -159,7 +145,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/String/">String</a>
+  <span></span> <a href="/tags/HashTable/">HashTable</a><a href="/tags/String/">String</a>
   </div>
 
 </div>
@@ -168,7 +154,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixinzu.win/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" data-title="白话LeetCode | 151. Reverse Words in a String | 追薪族" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-30-Substring-with-Concatenation-of-All-Words/" data-title="白话LeetCode | 30. Substring with Concatenation of All Words | 追薪族" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -181,19 +167,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/04/白话LeetCode-146-LRU-Cache/" title="白话LeetCode | 146. LRU Cache">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 146. LRU Cache</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/"  title="白话LeetCode | 149. Max Points on a Line">
+<a href="/2016/10/06/白话LeetCode-212-Word-Search-II/"  title="白话LeetCode | 212. Word Search II">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 149. Max Points on a Line
+ <span>白话LeetCode | 212. Word Search II
 </span>
 </a>
 </div>
@@ -202,7 +180,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" data-title="白话LeetCode | 151. Reverse Words in a String" data-url="http://zhuixinzu.win/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-30-Substring-with-Concatenation-of-All-Words/" data-title="白话LeetCode | 30. Substring with Concatenation of All Words" data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-30-Substring-with-Concatenation-of-All-Words/"></div>
 </section>
 
 
