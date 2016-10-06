@@ -26,7 +26,7 @@ void addWord(word)
 bool search(word)
 其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由a-z或者.组成，一个.可以匹配任意一个字母。例">
 <meta property="og:image" content="http://zhuixinzu.win/img/白话LeetCode/211/trie.png">
-<meta property="og:updated_time" content="2016-10-06T03:03:38.000Z">
+<meta property="og:updated_time" content="2016-10-06T03:06:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 211. Add and Search Word - Data structure design">
 <meta name="twitter:description" content="问题描述(原题链接：LeetCode | 211. Add and Search Word - Data structure design)
@@ -131,7 +131,7 @@ search(&quot;bad&quot;) -&gt; true
 search(&quot;.ad&quot;) -&gt; true
 search(&quot;b..&quot;) -&gt; true
 </code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道很典型的字典树(Trie)的题目，唯一的变化是在字典树查找的过程中引入了通配符<code>.</code>，通配符匹配可以通过回溯法(枚举26个英文)实现。</p>
-<p>字典树(Trie)是面试中常见的题型，它也叫做前缀树，是一种用来快速检索的多叉树结构。对于本题而言，需要构造的是一个英文字母字典树，因此是一个26叉树。</p>
+<p>字典树(Trie)是面试中常见的题型，也叫做前缀树，是一种用来快速检索的多叉树结构。对于本题而言，需要构造的是一个英文字母字典树，因此是一个26叉树。</p>
 <p>字典树可以利用字符串的公共前缀来节约存储的空间并加快检索的速度。下图中的字典树包含了五个英文单词dad, do, dog, done, bi：</p>
 <p><img src="/img/白话LeetCode/211/trie.png" style="display:block;margin:auto"></p>
 <p>字典树有如下基本性质：</p>
@@ -251,11 +251,11 @@ search(&quot;b..&quot;) -&gt; true
 			
 		
 			
-				<li><a href="/tags/HashTable/" title="HashTable">HashTable<sup>3</sup></a></li>
+				<li><a href="/tags/Math/" title="Math">Math<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Math/" title="Math">Math<sup>3</sup></a></li>
+				<li><a href="/tags/HashTable/" title="HashTable">HashTable<sup>3</sup></a></li>
 			
 		
 			
