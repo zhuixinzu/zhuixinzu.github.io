@@ -4,41 +4,35 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 149. Max Points on a Line | 追薪族</title>
+    <title>白话LeetCode | 179. Largest Number | 追薪族</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪族">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
-
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
+    <meta name="description" content="问题描述(原题链接：LeetCode | 179. Largest Number)
+给定一个正整数数组，请按一定的顺序对数组中的元素进行重新排序，使得他们按序拼接后形成的数字最大。
+例如，数组为[3, 30, 34, 5, 9]，拼接可以形成的最大数字为9534330。
+注意：因为拼接形成的数字可能非常大，所以答案要求返回字符串类型而不是整数类型。
+解题思路这道题是2016年Indeed公司">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 149. Max Points on a Line">
-<meta property="og:url" content="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/index.html">
+<meta property="og:title" content="白话LeetCode | 179. Largest Number">
+<meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-179-Largest-Number/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
-
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
-<meta property="og:updated_time" content="2016-10-02T12:04:34.000Z">
+<meta property="og:description" content="问题描述(原题链接：LeetCode | 179. Largest Number)
+给定一个正整数数组，请按一定的顺序对数组中的元素进行重新排序，使得他们按序拼接后形成的数字最大。
+例如，数组为[3, 30, 34, 5, 9]，拼接可以形成的最大数字为9534330。
+注意：因为拼接形成的数字可能非常大，所以答案要求返回字符串类型而不是整数类型。
+解题思路这道题是2016年Indeed公司">
+<meta property="og:updated_time" content="2016-10-06T08:34:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 149. Max Points on a Line">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
-
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
+<meta name="twitter:title" content="白话LeetCode | 179. Largest Number">
+<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 179. Largest Number)
+给定一个正整数数组，请按一定的顺序对数组中的元素进行重新排序，使得他们按序拼接后形成的数字最大。
+例如，数组为[3, 30, 34, 5, 9]，拼接可以形成的最大数字为9534330。
+注意：因为拼接形成的数字可能非常大，所以答案要求返回字符串类型而不是整数类型。
+解题思路这道题是2016年Indeed公司">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -94,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line" itemprop="url">白话LeetCode | 149. Max Points on a Line</a>
+      <a href="/2016/10/06/白话LeetCode-179-Largest-Number/" title="白话LeetCode | 179. Largest Number" itemprop="url">白话LeetCode | 179. Largest Number</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-02T09:12:04.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-06T04:14:01.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -122,22 +116,21 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">LeetCode | 149. Max Points on a Line</a>)</p>
-<p>给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。</p>
-<p>因此，我们可以按照如下步骤进行：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/largest-number/" target="_blank" rel="external">LeetCode | 179. Largest Number</a>)</p>
+<p>给定一个正整数数组，请按一定的顺序对数组中的元素进行重新排序，使得他们按序拼接后形成的数字最大。</p>
+<p>例如，数组为<code>[3, 30, 34, 5, 9]</code>，拼接可以形成的最大数字为<code>9534330</code>。</p>
+<p>注意：因为拼接形成的数字可能非常大，所以答案要求返回字符串类型而不是整数类型。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题是2016年Indeed公司海外招聘的现场面试题之一。那么这道题应该如何解决呢？</p>
+<p>因为数组中的数字已经确定，因此无论如何拼接这些数字，最终得到的数字的位数是固定的，也就是字符串的长度是固定的，题目要求返回最大的那个数字，也就是从所有可能的拼接结果中返回字典序最大的那个。</p>
+<p>接下来，我们需要做的就是确定数组中数字的顺序：对于两个数字，如果<code>str(a)+str(b)&gt;str(b)+str(a)</code>，那么把a排在b之前，最终形成的字符串的字典序一定更大。所以，只要按照这样的规则对数组中的数字进行排序即可。</p>
+<p>分析到这里，这道题的解题办法已经很明朗了。最终方案的时间复杂度等于排序的时间复杂度，为<code>O(n*log(n))</code>，其中n为数组的大小。</p>
+<p>这道题有一些地方需要大家注意：</p>
 <ol>
-<li>枚举题目中给出的点坐标作为点p；</li>
-<li>计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的点的数目；</li>
-<li>从第(2)步中选取最大值即为所求。</li>
+<li>最终拼接后的数字有可能会出现多余的前缀’0’，例如：’0’和’0’拼接后为’00’，这时候我们要返回’0’，把额外的前缀0进行删除；</li>
+<li>C++中整数类型转字符串类型有很多种方法，一定要熟练掌握至少一种方法。</li>
 </ol>
-<p>到这里，我们可以发现这道题目其实很简单，但是需要注意以下情况：</p>
-<ol>
-<li>可能存在与点p重合的点而导致无法计算斜率，因此需要使用一个变量来统计与点p重合的点的个数；</li>
-<li>可能存在通过点p且与X轴垂直的直线，因此需要使用另一个变量来统计通过点p且与X轴垂直的点的个数。</li>
-</ol>
-<p>OK，问题得解，<code>时间复杂度为O(n^2)</code>。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;Point&gt;&amp; points)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.size(); ++i) &#123;</div><div class="line">            <span class="comment">// 记录通过点i的不同斜率的直线上的点的个数</span></div><div class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">double</span>, <span class="keyword">int</span>&gt; mp;</div><div class="line">            <span class="comment">// 记录通过点i且垂直于X轴的直线上的点的个数</span></div><div class="line">            <span class="keyword">int</span> vertical = <span class="number">0</span>;</div><div class="line">            <span class="comment">// 记录与点i重合的点的个数</span></div><div class="line">            <span class="keyword">int</span> duplicate = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; points.size(); ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (points[i].x == points[j].x) &#123;</div><div class="line">                    <span class="keyword">if</span> (points[i].y == points[j].y) &#123;</div><div class="line">                        <span class="comment">// 点i与点j完全重合</span></div><div class="line">                        ++duplicate;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 点i与点j组成的直线垂直于X轴</span></div><div class="line">                        ++vertical;</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="comment">// k表示点i与点j组成的直线的斜率，且不与X轴垂直</span></div><div class="line">                    <span class="keyword">double</span> k = <span class="number">1.0</span> * (points[j].y - points[i].y) / (points[j].x - points[i].x);</div><div class="line">                    ++mp[k];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> kv : mp) &#123;</div><div class="line">                ans = max(ans, kv.second + duplicate);</div><div class="line">            &#125;</div><div class="line">            ans = max(ans, vertical + duplicate);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;a, <span class="keyword">const</span> <span class="built_in">string</span> &amp;b)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> a + b &gt; b + a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">largestNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="built_in">stringstream</span> ss;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ns;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</div><div class="line">            <span class="built_in">string</span> num;</div><div class="line">            ss &lt;&lt; nums[i];</div><div class="line">            ss &gt;&gt; num;</div><div class="line">            ss.clear();</div><div class="line">            ns.push_back(num);</div><div class="line">        &#125;</div><div class="line">        sort(ns.begin(), ns.end(), cmp);</div><div class="line">        </div><div class="line">        <span class="built_in">string</span> ans;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ns.size(); ++i) &#123;</div><div class="line">            ans += ns[i];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (<span class="number">-1</span> == ans.find_first_not_of(<span class="string">'0'</span>)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"0"</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+  
 		<!--
 		<br>
 		<hr>
@@ -159,7 +152,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/HashTable/">HashTable</a><a href="/tags/Math/">Math</a>
+  <span></span> <a href="/tags/Sort/">Sort</a>
   </div>
 
 </div>
@@ -168,7 +161,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" data-title="白话LeetCode | 149. Max Points on a Line | 追薪族" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-179-Largest-Number/" data-title="白话LeetCode | 179. Largest Number | 追薪族" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -181,19 +174,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" title="白话LeetCode | 151. Reverse Words in a String">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 151. Reverse Words in a String</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/"  title="白话LeetCode | 8. String to Integer (atoi)">
+<a href="/2016/10/06/白话LeetCode-15-3Sum/"  title="白话LeetCode | 15. 3Sum">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 8. String to Integer (atoi)
+ <span>白话LeetCode | 15. 3Sum
 </span>
 </a>
 </div>
@@ -202,7 +187,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" data-title="白话LeetCode | 149. Max Points on a Line" data-url="http://zhuixinzu.win/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-179-Largest-Number/" data-title="白话LeetCode | 179. Largest Number" data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-179-Largest-Number/"></div>
 </section>
 
 
