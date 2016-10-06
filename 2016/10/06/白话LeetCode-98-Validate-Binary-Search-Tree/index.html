@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 140. Word Break II | 追薪族</title>
+    <title>白话LeetCode | 98. Validate Binary Search Tree | 追薪族</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪族">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 140. Word Break II)
-给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：
-条件：s = &amp;quot;catsanddog&amp;quot;, dict = [&amp;quot;cat&amp;quot;, &amp;quot;cats&amp;q">
+    <meta name="description" content="判断给定的二叉树是否为合法的二叉搜索树。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 140. Word Break II">
-<meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-140-Word-Break-II/index.html">
+<meta property="og:title" content="白话LeetCode | 98. Validate Binary Search Tree">
+<meta property="og:url" content="http://zhuixinzu.win/2016/10/06/白话LeetCode-98-Validate-Binary-Search-Tree/index.html">
 <meta property="og:site_name" content="追薪族">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 140. Word Break II)
-给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：
-条件：s = &amp;quot;catsanddog&amp;quot;, dict = [&amp;quot;cat&amp;quot;, &amp;quot;cats&amp;q">
-<meta property="og:updated_time" content="2016-10-06T09:51:44.000Z">
+<meta property="og:description" content="判断给定的二叉树是否为合法的二叉搜索树。">
+<meta property="og:updated_time" content="2016-10-06T13:42:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 140. Word Break II">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 140. Word Break II)
-给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：
-条件：s = &amp;quot;catsanddog&amp;quot;, dict = [&amp;quot;cat&amp;quot;, &amp;quot;cats&amp;q">
+<meta name="twitter:title" content="白话LeetCode | 98. Validate Binary Search Tree">
+<meta name="twitter:description" content="判断给定的二叉树是否为合法的二叉搜索树。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪族" type="application/atom+xml">
@@ -82,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/06/白话LeetCode-140-Word-Break-II/" title="白话LeetCode | 140. Word Break II" itemprop="url">白话LeetCode | 140. Word Break II</a>
+      <a href="/2016/10/06/白话LeetCode-98-Validate-Binary-Search-Tree/" title="白话LeetCode | 98. Validate Binary Search Tree" itemprop="url">白话LeetCode | 98. Validate Binary Search Tree</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪族" target="_blank" itemprop="author">追薪族</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-06T08:38:02.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
+    <time datetime="2016-10-06T13:04:21.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -110,19 +104,18 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/word-break-ii/" target="_blank" rel="external">LeetCode | 140. Word Break II</a>)</p>
-<p>给定一个字符串s和一个单词词典dict，在字符串s中添加若干空格使其形成一串单词序列，要求序列中的每个单词都包含在题目所给的单词词典中。请你给出所有可能形成的单词序列。例如：</p>
-<p>条件：s = <code>&quot;catsanddog&quot;</code>, dict = <code>[&quot;cat&quot;, &quot;cats&quot;, &quot;and&quot;, &quot;sand&quot;, &quot;dog&quot;]</code></p>
-<p>答案：<code>[&quot;cats and dog&quot;, &quot;cat sand dog&quot;]</code></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>相信大家都可以发现这是一道关于搜索的题目。如果不考虑时间复杂度的话，我们可以用深度优先搜索算法暴力枚举所有可能的切分方法：</p>
-<ol>
-<li>对于一个字符串s，我们可以对前缀进行枚举，将其拆分成前缀和后缀两部分。如果前缀在字典中出现，那么只需要求解后缀所有可能的切分方法，并将后缀所有可能的切分方法与前缀进行拼接即为最终答案；</li>
-<li>在求解后缀可能的切分方法时，只需要将后缀看做字符串s，然后重复第(1)步即可。</li>
-</ol>
-<p>以上便是未经优化的深度优先搜索算法给出的解题方案。在以上的解题方案中，相同的后缀有可能会被重复搜索，这样造成了重复计算，这也是暴力搜索为什么会超时的原因。针对这个原因，我们可以使用一个Map来记录已经搜索过的后缀对应的答案。当碰到重复的后缀需要搜索时，直接查找Map便可以知道答案。</p>
-<p>经过上述分析，我们变得到了传说中的记忆化搜索算法，这也是动态规划的思想：对需要重复计算的状态进行记录，之后直接查表即可。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; wordBreak(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict) &#123;</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; memory;</div><div class="line">        <span class="keyword">return</span> search(s, wordDict, memory);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; search(<span class="built_in">string</span> s, <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict, <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; memory) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> != memory.count(s)) &#123;</div><div class="line">            <span class="keyword">return</span> memory[s];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ans;</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == s.length()) &#123;</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt;= s.length(); ++len) &#123;</div><div class="line">            <span class="built_in">string</span> prefix = s.substr(<span class="number">0</span>, len);</div><div class="line">            <span class="keyword">if</span> (<span class="number">0</span> != wordDict.count(prefix)) &#123;</div><div class="line">                <span class="keyword">if</span>(len == s.length()) &#123;</div><div class="line">                    ans.push_back(prefix);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="built_in">string</span> suffix = s.substr(len);</div><div class="line">                    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; tmp = search(suffix, wordDict, memory);</div><div class="line">                    <span class="keyword">for</span> (<span class="built_in">string</span> item : tmp) &#123;</div><div class="line">                        ans.push_back(prefix + <span class="string">" "</span> + item);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        memory[s] = ans;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-  
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank" rel="external">LeetCode | 98. Validate Binary Search Tree</a>)</p>
+<p>给定一个二叉树，请判断它是否是合法的二叉搜索树(BST)。</p>
+<p>二叉搜索树的定义如下：</p>
+<ul>
+<li>左子树中包含的节点值全部小于父节点值；</li>
+<li>右子树中包含的节点值全部大于父节点值；</li>
+<li>左右子树必须是二叉搜索树。</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>通常在面试的过程中，面试官只会问你如何判断一个二叉树是否为合法的二叉搜索树，而不会告诉你二叉搜索树的具体定义。因此需要在平时打好基础，掌握这些常见的概念及性质。</p>
+<p>二叉搜索树有这样一个性质：<code>二叉搜索树如果按照中序遍历，得到的序列一定是严格递增的</code>。</p>
+<p>因此，解决这道题目只需要中序遍历给出的二叉树，用一个全局变量来记录之前已经访问的元素的大小，看这个全局的变量是否随着中序遍历的进行严格递增即可。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> last = LONG_MIN;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="literal">NULL</span> == root) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;        </div><div class="line">        <span class="keyword">if</span> (!isValidBST(root-&gt;left)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (root-&gt;val &lt;= last) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">        last = root-&gt;val;</div><div class="line">        <span class="keyword">return</span> isValidBST(root-&gt;right);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -144,7 +137,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Backtracking/">Backtracking</a><a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
+  <span></span> <a href="/tags/Tree/">Tree</a><a href="/tags/Depth-first-Search/">Depth-first Search</a>
   </div>
 
 </div>
@@ -153,7 +146,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-140-Word-Break-II/" data-title="白话LeetCode | 140. Word Break II | 追薪族" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-98-Validate-Binary-Search-Tree/" data-title="白话LeetCode | 98. Validate Binary Search Tree | 追薪族" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -166,19 +159,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/06/白话LeetCode-212-Word-Search-II/" title="白话LeetCode | 212. Word Search II">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 212. Word Search II</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/06/白话LeetCode-179-Largest-Number/"  title="白话LeetCode | 179. Largest Number">
+<a href="/2016/10/06/白话LeetCode-30-Substring-with-Concatenation-of-All-Words/"  title="白话LeetCode | 30. Substring with Concatenation of All Words">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 179. Largest Number
+ <span>白话LeetCode | 30. Substring with Concatenation of All Words
 </span>
 </a>
 </div>
@@ -187,7 +172,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-140-Word-Break-II/" data-title="白话LeetCode | 140. Word Break II" data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-140-Word-Break-II/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-98-Validate-Binary-Search-Tree/" data-title="白话LeetCode | 98. Validate Binary Search Tree" data-url="http://zhuixinzu.win/2016/10/06/白话LeetCode-98-Validate-Binary-Search-Tree/"></div>
 </section>
 
 
