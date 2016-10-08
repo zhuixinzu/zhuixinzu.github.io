@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://zhuixin8.com/2016/10/08/%E7%99%BD%E8%AF%9DLeetCode-304-Range-Sum-Query-2D-Immutable/</loc>
-    <lastmod>2016-10-08T13:41:35.000Z</lastmod>
+    <lastmod>2016-10-08T13:45:44.000Z</lastmod>
     <data>
         <display>
         <title>白话LeetCode | 304. Range Sum Query 2D - Immutable</title>
@@ -204,9 +204,9 @@
         <title>白话LeetCode | 211. Add and Search Word - Data structure design</title>
         <pubTime>2016-10-06T02:24:40.000Z</pubTime>
         
-        <tag>Design</tag>
-         
         <tag>Backtracking</tag>
+         
+        <tag>Design</tag>
          
         <tag>Trie</tag>
          
