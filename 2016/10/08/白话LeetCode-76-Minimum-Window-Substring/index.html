@@ -4,38 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 130. Surrounded Regions | 追薪吧</title>
+    <title>白话LeetCode | 76. Minimum Window Substring | 追薪吧</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪吧">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 130. Surrounded Regions)
-给定一个二维平面上的地图，全部由大写字母’X’和’O’组成。请将地图上由&amp;#39;O&amp;#39;组成且被&amp;#39;X&amp;#39;完全包围的区域全部设置为’X’。例如：
-X X X X      X X X X
-X O O X  =&amp;gt;  X X X X
-X X O X      X X X X
-X O">
+    <meta name="description" content="从字符串S中寻找最短子串，使其包含字符串T中的所有字符。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 130. Surrounded Regions">
-<meta property="og:url" content="http://zhuixin8.com/2016/10/05/白话LeetCode-130-Surrounded-Regions/index.html">
+<meta property="og:title" content="白话LeetCode | 76. Minimum Window Substring">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/08/白话LeetCode-76-Minimum-Window-Substring/index.html">
 <meta property="og:site_name" content="追薪吧">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 130. Surrounded Regions)
-给定一个二维平面上的地图，全部由大写字母’X’和’O’组成。请将地图上由&amp;#39;O&amp;#39;组成且被&amp;#39;X&amp;#39;完全包围的区域全部设置为’X’。例如：
-X X X X      X X X X
-X O O X  =&amp;gt;  X X X X
-X X O X      X X X X
-X O">
-<meta property="og:updated_time" content="2016-10-05T03:15:02.000Z">
+<meta property="og:description" content="从字符串S中寻找最短子串，使其包含字符串T中的所有字符。">
+<meta property="og:updated_time" content="2016-10-08T15:15:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 130. Surrounded Regions">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 130. Surrounded Regions)
-给定一个二维平面上的地图，全部由大写字母’X’和’O’组成。请将地图上由&amp;#39;O&amp;#39;组成且被&amp;#39;X&amp;#39;完全包围的区域全部设置为’X’。例如：
-X X X X      X X X X
-X O O X  =&amp;gt;  X X X X
-X X O X      X X X X
-X O">
+<meta name="twitter:title" content="白话LeetCode | 76. Minimum Window Substring">
+<meta name="twitter:description" content="从字符串S中寻找最短子串，使其包含字符串T中的所有字符。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
@@ -91,14 +76,14 @@ X O">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/05/白话LeetCode-130-Surrounded-Regions/" title="白话LeetCode | 130. Surrounded Regions" itemprop="url">白话LeetCode | 130. Surrounded Regions</a>
+      <a href="/2016/10/08/白话LeetCode-76-Minimum-Window-Substring/" title="白话LeetCode | 76. Minimum Window Substring" itemprop="url">白话LeetCode | 76. Minimum Window Substring</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-05T02:36:36.000Z" itemprop="datePublished"> 发表于 2016-10-05</time>
+    <time datetime="2016-10-08T14:11:54.000Z" itemprop="datePublished"> 发表于 2016-10-08</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -119,21 +104,22 @@ X O">
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/surrounded-regions/" target="_blank" rel="external">LeetCode | 130. Surrounded Regions</a>)</p>
-<p>给定一个二维平面上的地图，全部由大写字母’X’和’O’组成。请将地图上<code>由&#39;O&#39;组成</code>且<code>被&#39;X&#39;完全包围</code>的区域全部设置为’X’。例如：</p>
-<pre><code>X X X X      X X X X
-X O O X  =&gt;  X X X X
-X X O X      X X X X
-X O X X      X O X X
-</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一个比较明显的搜索题目。最朴素的思想是你可以遍历地图上每一个点，如果为’O’的话就通过广度优先搜索找到与他连通的所有’O’，同时在搜索的时候判断是否有连通的’O’位于边界上，如果该连通块上没’O’位于边界上，那么将这个连通块上的’O’全部设置为’X’。</p>
-<p>上面这种做法是完全可行的，不过代码略显复杂，你可以稍作变换，让你的解法变得更加优美简洁：</p>
-<ol>
-<li>遍历边界，如果边界上存在’O’，则从这些’O’开始进行广度优先搜索，找到所有与它们连通的’O’，然后将它们全部标记为一个特殊的字符，例如’Y’，这样我们就找到了与边界连通的由’O’组成的区域；</li>
-<li>遍历一遍地图，将剩余的’O’标记为’X’(因为这些’O’一定不与边界连通)，再将第(1)步中的’Y’全部设置回’O’。</li>
-</ol>
-<p>以上方法的时间复杂度均为<code>O(m*n)</code>(m和n分别表示地图长宽)。通过这道题你可以发现，相同的解题思想稍微变换一些思路可以让你的代码质量变得更高。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> m = board.size();</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == m) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> n = board[<span class="number">0</span>].size();</div><div class="line">        <span class="comment">// 通过宽度优先搜索，将所有临近边界的'O'区域全部标记为'Y'</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="string">'O'</span> == board[i][<span class="number">0</span>]) bfs(board, i, <span class="number">0</span>);</div><div class="line">            <span class="keyword">if</span> (<span class="string">'O'</span> == board[i][n - <span class="number">1</span>]) bfs(board, i, n - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="string">'O'</span> == board[<span class="number">0</span>][i]) bfs(board, <span class="number">0</span>, i);</div><div class="line">            <span class="keyword">if</span> (<span class="string">'O'</span> == board[m - <span class="number">1</span>][i]) bfs(board, m - <span class="number">1</span>, i);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 遍历一遍地图，将'O'区域全部标记为'X'，再将'Y'全部标记回'O'</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="string">'O'</span> == board[i][j]) board[i][j] = <span class="string">'X'</span>;</div><div class="line">                <span class="keyword">if</span> (<span class="string">'Y'</span> == board[i][j]) board[i][j] = <span class="string">'O'</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> m = board.size();</div><div class="line">        <span class="keyword">int</span> n = board[<span class="number">0</span>].size();</div><div class="line">        <span class="built_in">queue</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</div><div class="line">        que.push(make_pair(x, y));</div><div class="line">        <span class="keyword">while</span> (!que.empty()) &#123;</div><div class="line">            pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; p = que.front();</div><div class="line">            que.pop();</div><div class="line">            <span class="keyword">int</span> px = p.first, py = p.second;</div><div class="line">            <span class="comment">// 判断是否超出地图边界</span></div><div class="line">            <span class="keyword">if</span> (px &lt; <span class="number">0</span> || px &gt;= m || py &lt; <span class="number">0</span> || py &gt;= n) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 判断是否为临近边界的'O'区域</span></div><div class="line">            <span class="keyword">if</span> (<span class="string">'O'</span> != board[px][py]) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 将临近边界的'O'区域标记为'Y'</span></div><div class="line">            board[px][py] = <span class="string">'Y'</span>;</div><div class="line">            <span class="comment">// 向四个方向搜索</span></div><div class="line">            que.push(make_pair(px, py + <span class="number">1</span>));</div><div class="line">            que.push(make_pair(px, py - <span class="number">1</span>));</div><div class="line">            que.push(make_pair(px + <span class="number">1</span>, py));</div><div class="line">            que.push(make_pair(px - <span class="number">1</span>, py));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-  
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank" rel="external">LeetCode | 76. Minimum Window Substring</a>)</p>
+<p>给定两个字符串S和T，请从S中找到一个长度最小的子串，使得该子串包含T中的所有字符，并且要求时间复杂度为<code>O(n)</code>。例如：</p>
+<pre><code>输入：S = &quot;ADOBECODEBANC&quot;，T = &quot;ABC&quot;
+返回：&quot;BANC&quot;
+</code></pre><p>注意：</p>
+<ul>
+<li>如果S中不包含这样的子串(长度最小且包含T中的全部字符)，请返回空字符串<code>&quot;&quot;</code>；</li>
+<li>如果S中包含答案，那么测试数据会保证答案唯一。</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>从题目的描述可以看出，我们需要为字符串S找到一个窗口，使得窗口内的子串满足题目中的要求。因此，需要两个指针来表示这个窗口(一个指针指向窗口的开始位置，另一个指针指向窗口的结束位置)。</p>
+<p>刚开始的时候，两个指针均位于S的头部。首先，用来表示窗口结束位置的指针(尾指针)从左向右扫描，在该指针每次移动的过程中，用来表示窗口开始位置的指针(头指针)尝试缩小窗口的大小，也就是尽可能的向右移动，具体描述如下：</p>
+<ul>
+<li>如果头指针的移动造成窗口内某个字符的数目小于该字符在字符串T中的数目，则停止移动头指针；否则持续移动头指针，直到无法移动为止。</li>
+</ul>
+<p>另外，可以设置一个计数器total，初始值为字符串T的长度。如果尾指针向右移动一位时，窗口内新增的字符在字符串T中出现，则计数器加1；如果头指针向右移动一位时，窗口内刚刚被删除那个字符在字符串T中出现，则计数器减1。当计数器等于0的时候，说明窗口中包含字符串T中的全部字符，为可能的备选答案，从备选答案中挑选长度最短的即为最优解。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ls = s.length(), lt = t.length(), ans = INT_MAX;</div><div class="line">        <span class="keyword">int</span> count[<span class="number">256</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line">        <span class="keyword">int</span> flag[<span class="number">256</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lt; ++i) &#123;</div><div class="line">            ++count[t[i]];</div><div class="line">            flag[t[i]] = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> begin = <span class="number">0</span>, ans_begin = <span class="number">0</span>, total = lt;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ls; ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (flag[s[i]] &amp;&amp; --count[s[i]] &gt;= <span class="number">0</span>) &#123;</div><div class="line">                --total;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (!total) &#123;</div><div class="line">                <span class="keyword">while</span> (begin &lt;= i) &#123;</div><div class="line">                    <span class="keyword">if</span> (flag[s[begin]]) &#123;</div><div class="line">                        <span class="keyword">if</span> (<span class="number">0</span> &gt; count[s[begin]]) &#123;</div><div class="line">                            ++count[s[begin]];</div><div class="line">                        &#125; <span class="keyword">else</span> &#123;</div><div class="line">                            <span class="keyword">break</span>;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    ++begin;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (ans &gt; i - begin + <span class="number">1</span>) &#123;</div><div class="line">                    ans = i - begin + <span class="number">1</span>;</div><div class="line">                    ans_begin = begin;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (INT_MAX != ans) &#123;</div><div class="line">            <span class="keyword">return</span> s.substr(ans_begin, ans);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -155,7 +141,7 @@ X O X X      X O X X
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Breadth-first-Search/">Breadth-first Search</a>
+  <span></span> <a href="/tags/HashTable/">HashTable</a><a href="/tags/String/">String</a><a href="/tags/Two-Pointers/">Two Pointers</a>
   </div>
 
 </div>
@@ -164,7 +150,7 @@ X O X X      X O X X
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixin8.com/2016/10/05/白话LeetCode-130-Surrounded-Regions/" data-title="白话LeetCode | 130. Surrounded Regions | 追薪吧" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixin8.com/2016/10/08/白话LeetCode-76-Minimum-Window-Substring/" data-title="白话LeetCode | 76. Minimum Window Substring | 追薪吧" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -177,19 +163,11 @@ X O X X      X O X X
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/05/白话LeetCode-68-Text-Justification/" title="白话LeetCode | 68. Text Justification">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 68. Text Justification</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/04/白话LeetCode-166-Fraction-to-Recurring-Decimal/"  title="白话LeetCode | 166. Fraction to Recurring Decimal">
+<a href="/2016/10/08/白话LeetCode-304-Range-Sum-Query-2D-Immutable/"  title="白话LeetCode | 304. Range Sum Query 2D - Immutable">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 166. Fraction to Recurring Decimal
+ <span>白话LeetCode | 304. Range Sum Query 2D - Immutable
 </span>
 </a>
 </div>
@@ -198,7 +176,7 @@ X O X X      X O X X
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/05/白话LeetCode-130-Surrounded-Regions/" data-title="白话LeetCode | 130. Surrounded Regions" data-url="http://zhuixin8.com/2016/10/05/白话LeetCode-130-Surrounded-Regions/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/08/白话LeetCode-76-Minimum-Window-Substring/" data-title="白话LeetCode | 76. Minimum Window Substring" data-url="http://zhuixin8.com/2016/10/08/白话LeetCode-76-Minimum-Window-Substring/"></div>
 </section>
 
 
