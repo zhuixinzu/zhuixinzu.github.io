@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="从&apos;(&apos;和&apos;)&apos;组成的字符串中，寻找最长合法括号序列子串。">
 <meta property="og:image" content="http://zhuixin8.com/img/白话LeetCode/32/dp.png">
-<meta property="og:updated_time" content="2016-10-09T11:31:18.000Z">
+<meta property="og:updated_time" content="2016-10-09T11:32:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 32. Longest Valid Parentheses">
 <meta name="twitter:description" content="从&apos;(&apos;和&apos;)&apos;组成的字符串中，寻找最长合法括号序列子串。">
@@ -111,7 +111,7 @@
 <p>对于<code>&quot;(()&quot;</code>，最长合法序列子串为<code>&quot;()&quot;</code>，它的长度为2。</p>
 <p>另一个样例为<code>&quot;)()())&quot;</code>，最长合法序列子串为<code>&quot;()()&quot;</code>，它的长度为4。</p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="解法一：栈-Stack"><a href="#解法一：栈-Stack" class="headerlink" title="解法一：栈(Stack)"></a>解法一：栈(Stack)</h3><p>相信提起括号匹配，大家自然而然的可以想到栈这样的数据结构。因此，我们可以用栈来存储之前已经访问的、但是没有配对的’(‘和’)’，然后使用接下来尚未访问的’)’去消除栈顶的字符’(‘。合法的括号子串一定会在上述过程中相互抵消。因此，每次消除结束后，我们可以寻找距离当前位置最近的未被消除的字符，它之后的字符串一直到当前字符为止即为一个合法的括号子串。从所有的合法括号子串中选择长度最长的那个即为答案。</p>
-<p>具体实现时，我们需要在栈中存储左右括号标识及该字符的位置，例如：stack<pair<bool, int="">&gt;，其中的bool变量为true表示’(‘，false标识’)’，int记录该字符的位置。</pair<bool,></p>
+<p>具体实现时，我们需要在栈中存储左右括号标识及该字符的位置，例如：stack\<pair\<bool, int\="">>，其中的bool变量为true表示’(‘，false标识’)’，int记录该字符的位置。</pair\<bool,></p>
 <p>这样，经过一遍扫描即可知道合法括号子串的最大长度，时间复杂度为<code>O(n)</code>。</p>
 <h3 id="解法二：动态规划-Dynamic-Programming"><a href="#解法二：动态规划-Dynamic-Programming" class="headerlink" title="解法二：动态规划(Dynamic Programming)"></a>解法二：动态规划(Dynamic Programming)</h3><p>合法括号子串的最大长度这一问题，还可以通过动态规划算法来解决。假设dp[i]表示以字符s[i-1]结尾的合法括号子串的最大长度，那么它跟哪些因素有关呢？</p>
 <ul>
@@ -240,11 +240,11 @@
 			
 		
 			
-				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>4</sup></a></li>
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
 			
 		
 			
@@ -256,11 +256,11 @@
 			
 		
 			
-				<li><a href="/tags/Design/" title="Design">Design<sup>2</sup></a></li>
+				<li><a href="/tags/Array/" title="Array">Array<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Array/" title="Array">Array<sup>2</sup></a></li>
+				<li><a href="/tags/Design/" title="Design">Design<sup>2</sup></a></li>
 			
 		
 			
@@ -268,7 +268,7 @@
 			
 		
 			
-				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
+				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
 			
 		
 			
@@ -276,7 +276,7 @@
 			
 		
 			
-				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
 			
 		
 			
