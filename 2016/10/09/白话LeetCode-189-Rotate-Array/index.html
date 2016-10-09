@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixin8.com/2016/10/09/白话LeetCode-189-Rotate-Array/index.html">
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="教你五行代码实现三步反转法。">
-<meta property="og:updated_time" content="2016-10-09T07:32:32.000Z">
+<meta property="og:updated_time" content="2016-10-09T07:33:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 189. Rotate Array">
 <meta name="twitter:description" content="教你五行代码实现三步反转法。">
@@ -119,7 +119,7 @@
 <li>将AB整体进行反转，得AB=”5671234”。</li>
 </ol>
 <p>这样就得到了答案，是不是很神奇？其实该方法可以通过数学原理进行说明：利用矩阵求逆的原理，假设原矩阵为AB，需要求解BA，那么求解过程如下所示：</p>
-<p>$$BA = (A^{-1}B{-1})^{-1}$$</p>
+<p>$$BA = (A^{-1}B^{-1})^{-1}$$</p>
 <p>相信到这里，你对<code>三步反转法</code>已经有了一个深刻的认识。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">            swap(nums[l++], nums[r--]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        k = k % nums.size();</div><div class="line">        reverseArray(nums, <span class="number">0</span>, nums.size() - k - <span class="number">1</span>);</div><div class="line">        reverseArray(nums, nums.size() - k, nums.size() - <span class="number">1</span>);</div><div class="line">        reverseArray(nums, <span class="number">0</span>, nums.size() - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
   
@@ -239,15 +239,11 @@
 			
 		
 			
-				<li><a href="/tags/Math/" title="Math">Math<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
+				<li><a href="/tags/Math/" title="Math">Math<sup>3</sup></a></li>
 			
 		
 			
@@ -263,7 +259,11 @@
 			
 		
 			
-				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
+				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
 			
 		
 			
@@ -271,7 +271,7 @@
 			
 		
 			
-				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
 			
 		
 			
