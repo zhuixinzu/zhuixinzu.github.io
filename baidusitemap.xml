@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://zhuixin8.com/2016/10/09/%E7%99%BD%E8%AF%9DLeetCode-189-Rotate-Array/</loc>
+    <lastmod>2016-10-09T07:32:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>白话LeetCode | 189. Rotate Array</title>
+        <pubTime>2016-10-09T07:09:34.000Z</pubTime>
+        
+        <tag>Array</tag>
+         
+         
+           
+             
+              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-44-Wildcard-Matching/</loc>
     <lastmod>2016-10-09T03:27:43.000Z</lastmod>
     <data>
@@ -396,9 +416,9 @@
         <title>白话LeetCode | 146. LRU Cache</title>
         <pubTime>2016-10-04T06:35:17.000Z</pubTime>
         
-        <tag>HashTable</tag>
-         
         <tag>Design</tag>
+         
+        <tag>HashTable</tag>
          
         <tag>Deque</tag>
          

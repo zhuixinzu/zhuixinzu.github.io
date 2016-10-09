@@ -4,41 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 149. Max Points on a Line | 追薪吧</title>
+    <title>白话LeetCode | 189. Rotate Array | 追薪吧</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪吧">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
-
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
+    <meta name="description" content="教你五行代码实现三步反转法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 149. Max Points on a Line">
-<meta property="og:url" content="http://zhuixin8.com/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/index.html">
+<meta property="og:title" content="白话LeetCode | 189. Rotate Array">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/09/白话LeetCode-189-Rotate-Array/index.html">
 <meta property="og:site_name" content="追薪吧">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
-
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
-<meta property="og:updated_time" content="2016-10-02T12:04:34.000Z">
+<meta property="og:description" content="教你五行代码实现三步反转法。">
+<meta property="og:updated_time" content="2016-10-09T07:32:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 149. Max Points on a Line">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 149. Max Points on a Line)
-给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。
-解题思路首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。
-因此，我们可以按照如下步骤进行：
-
-枚举题目中给出的点坐标作为点p；
-计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的">
+<meta name="twitter:title" content="白话LeetCode | 189. Rotate Array">
+<meta name="twitter:description" content="教你五行代码实现三步反转法。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
@@ -94,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line" itemprop="url">白话LeetCode | 149. Max Points on a Line</a>
+      <a href="/2016/10/09/白话LeetCode-189-Rotate-Array/" title="白话LeetCode | 189. Rotate Array" itemprop="url">白话LeetCode | 189. Rotate Array</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-02T09:12:04.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-09T07:09:34.000Z" itemprop="datePublished"> 发表于 2016-10-09</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -122,22 +104,25 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/max-points-on-a-line/" target="_blank" rel="external">LeetCode | 149. Max Points on a Line</a>)</p>
-<p>给定n个二维平面上的点坐标，求位于同一条直线上的点的最大数目。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先，根据平面上的一个点p以及一个斜率k可以唯一的确定一条直线。</p>
-<p>因此，我们可以按照如下步骤进行：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/rotate-array/" target="_blank" rel="external">LeetCode | 189. Rotate Array</a>)</p>
+<p>请旋转一个包含n个元素的数组k次，每次旋转操作将数组中的所有元素向右平移一位，并将最后一个元素挪到数组的最左侧。例如：</p>
+<pre><code>输入：n=7，k=3，arry=`[1,2,3,4,5,6,7]`
+输出：[5,6,7,1,2,3,4]
+</code></pre><p>注意：</p>
+<ul>
+<li>请用尽可能多的方法解决这道题目，最少有三种方法可以解决。</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题目有一种很经典的做法：<code>三步反转法</code>。结合题目中给出的样例进行说明：</p>
 <ol>
-<li>枚举题目中给出的点坐标作为点p；</li>
-<li>计算所有点与点p构成的直线的斜率k，通过哈希表来记录不同斜率出现的次数，即为同一条直线上的点的数目；</li>
-<li>从第(2)步中选取最大值即为所求。</li>
+<li>首先根据$k%n$的大小，将字符串S切分为A、B两部分(A的长度为$n-k%n$，B的长度为$k%n$)，则A=”1234”，B=”567”；</li>
+<li>将A和B分别进行反转，得A=”4321”，B=”765”，AB=”4321765”；</li>
+<li>将AB整体进行反转，得AB=”5671234”。</li>
 </ol>
-<p>到这里，我们可以发现这道题目其实很简单，但是需要注意以下情况：</p>
-<ol>
-<li>可能存在与点p重合的点而导致无法计算斜率，因此需要使用一个变量来统计与点p重合的点的个数；</li>
-<li>可能存在通过点p且与X轴垂直的直线，因此需要使用另一个变量来统计通过点p且与X轴垂直的点的个数。</li>
-</ol>
-<p>OK，问题得解，<code>时间复杂度为O(n^2)</code>。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(<span class="built_in">vector</span>&lt;Point&gt;&amp; points)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.size(); ++i) &#123;</div><div class="line">            <span class="comment">// 记录通过点i的不同斜率的直线上的点的个数</span></div><div class="line">            <span class="built_in">unordered_map</span>&lt;<span class="keyword">double</span>, <span class="keyword">int</span>&gt; mp;</div><div class="line">            <span class="comment">// 记录通过点i且垂直于X轴的直线上的点的个数</span></div><div class="line">            <span class="keyword">int</span> vertical = <span class="number">0</span>;</div><div class="line">            <span class="comment">// 记录与点i重合的点的个数</span></div><div class="line">            <span class="keyword">int</span> duplicate = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; points.size(); ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (points[i].x == points[j].x) &#123;</div><div class="line">                    <span class="keyword">if</span> (points[i].y == points[j].y) &#123;</div><div class="line">                        <span class="comment">// 点i与点j完全重合</span></div><div class="line">                        ++duplicate;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 点i与点j组成的直线垂直于X轴</span></div><div class="line">                        ++vertical;</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="comment">// k表示点i与点j组成的直线的斜率，且不与X轴垂直</span></div><div class="line">                    <span class="keyword">double</span> k = <span class="number">1.0</span> * (points[j].y - points[i].y) / (points[j].x - points[i].x);</div><div class="line">                    ++mp[k];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> kv : mp) &#123;</div><div class="line">                ans = max(ans, kv.second + duplicate);</div><div class="line">            &#125;</div><div class="line">            ans = max(ans, vertical + duplicate);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<p>这样就得到了答案，是不是很神奇？其实该方法可以通过数学原理进行说明：利用矩阵求逆的原理，假设原矩阵为AB，需要求解BA，那么求解过程如下所示：</p>
+<p>$$BA = (A^{-1}B{-1})^{-1}$$</p>
+<p>相信到这里，你对<code>三步反转法</code>已经有了一个深刻的认识。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">            swap(nums[l++], nums[r--]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        k = k % nums.size();</div><div class="line">        reverseArray(nums, <span class="number">0</span>, nums.size() - k - <span class="number">1</span>);</div><div class="line">        reverseArray(nums, nums.size() - k, nums.size() - <span class="number">1</span>);</div><div class="line">        reverseArray(nums, <span class="number">0</span>, nums.size() - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+  
 		<!--
 		<br>
 		<hr>
@@ -159,7 +144,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/HashTable/">HashTable</a><a href="/tags/Math/">Math</a>
+  <span></span> <a href="/tags/Array/">Array</a>
   </div>
 
 </div>
@@ -168,7 +153,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" data-title="白话LeetCode | 149. Max Points on a Line | 追薪吧" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixin8.com/2016/10/09/白话LeetCode-189-Rotate-Array/" data-title="白话LeetCode | 189. Rotate Array | 追薪吧" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -181,19 +166,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/02/白话LeetCode-151-Reverse-Words-in-a-String/" title="白话LeetCode | 151. Reverse Words in a String">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 151. Reverse Words in a String</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/"  title="白话LeetCode | 8. String to Integer (atoi)">
+<a href="/2016/10/08/白话LeetCode-76-Minimum-Window-Substring/"  title="白话LeetCode | 76. Minimum Window Substring">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 8. String to Integer (atoi)
+ <span>白话LeetCode | 76. Minimum Window Substring
 </span>
 </a>
 </div>
@@ -202,7 +179,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" data-title="白话LeetCode | 149. Max Points on a Line" data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/09/白话LeetCode-189-Rotate-Array/" data-title="白话LeetCode | 189. Rotate Array" data-url="http://zhuixin8.com/2016/10/09/白话LeetCode-189-Rotate-Array/"></div>
 </section>
 
 
