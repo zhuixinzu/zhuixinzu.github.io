@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-68-Text-Justification/</loc>
+    <lastmod>2016-10-09T03:23:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>白话LeetCode | 68. Text Justification</title>
+        <pubTime>2016-10-05T07:17:31.000Z</pubTime>
+        
+        <tag>String</tag>
+         
+         
+           
+             
+              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://zhuixin8.com/2016/10/08/%E7%99%BD%E8%AF%9DLeetCode-76-Minimum-Window-Substring/</loc>
     <lastmod>2016-10-08T15:15:18.000Z</lastmod>
     <data>
@@ -295,26 +315,6 @@
         <pubTime>2016-10-05T07:55:54.000Z</pubTime>
         
         <tag>Backtracking</tag>
-         
-         
-           
-             
-              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-68-Text-Justification/</loc>
-    <lastmod>2016-10-05T07:50:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>白话LeetCode | 68. Text Justification</title>
-        <pubTime>2016-10-05T07:17:31.000Z</pubTime>
-        
-        <tag>String</tag>
          
          
            

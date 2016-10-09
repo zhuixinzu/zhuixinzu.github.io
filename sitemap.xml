@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-68-Text-Justification/</loc>
+    
+    <lastmod>2016-10-09T03:23:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zhuixin8.com/2016/10/08/%E7%99%BD%E8%AF%9DLeetCode-76-Minimum-Window-Substring/</loc>
     
     <lastmod>2016-10-08T15:15:18.000Z</lastmod>
@@ -103,13 +110,6 @@
     <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-44-Wildcard-Matching/</loc>
     
     <lastmod>2016-10-05T10:09:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-68-Text-Justification/</loc>
-    
-    <lastmod>2016-10-05T07:50:22.000Z</lastmod>
     
   </url>
   
