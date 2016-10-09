@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://zhuixin8.com/2016/10/09/%E7%99%BD%E8%AF%9DLeetCode-32-Longest-Valid-Parentheses/</loc>
+    <lastmod>2016-10-09T11:30:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>白话LeetCode | 32. Longest Valid Parentheses</title>
+        <pubTime>2016-10-09T07:41:26.000Z</pubTime>
+        
+        <tag>Dynamic Programming</tag>
+         
+        <tag>String</tag>
+         
+        <tag>Stack</tag>
+         
+         
+           
+             
+              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://zhuixin8.com/2016/10/09/%E7%99%BD%E8%AF%9DLeetCode-189-Rotate-Array/</loc>
     <lastmod>2016-10-09T07:33:36.000Z</lastmod>
     <data>
@@ -73,9 +97,9 @@
         
         <tag>HashTable</tag>
          
-        <tag>Two Pointers</tag>
-         
         <tag>String</tag>
+         
+        <tag>Two Pointers</tag>
          
          
            
