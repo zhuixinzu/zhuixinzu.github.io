@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-44-Wildcard-Matching/</loc>
+    <lastmod>2016-10-09T03:27:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>白话LeetCode | 44. Wildcard Matching</title>
+        <pubTime>2016-10-05T07:55:54.000Z</pubTime>
+        
+        <tag>Backtracking</tag>
+         
+         
+           
+             
+              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-68-Text-Justification/</loc>
     <lastmod>2016-10-09T03:23:04.000Z</lastmod>
     <data>
@@ -295,26 +315,6 @@
         <pubTime>2016-10-05T11:03:44.000Z</pubTime>
         
         <tag>Binary Search Tree</tag>
-         
-         
-           
-             
-              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://zhuixin8.com/2016/10/05/%E7%99%BD%E8%AF%9DLeetCode-44-Wildcard-Matching/</loc>
-    <lastmod>2016-10-05T10:09:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>白话LeetCode | 44. Wildcard Matching</title>
-        <pubTime>2016-10-05T07:55:54.000Z</pubTime>
-        
-        <tag>Backtracking</tag>
          
          
            
