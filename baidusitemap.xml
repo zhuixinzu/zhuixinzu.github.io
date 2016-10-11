@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://zhuixin8.com/2016/10/10/%E7%99%BD%E8%AF%9DLeetCode-335-Self-Crossing/</loc>
+    <lastmod>2016-10-11T03:10:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>白话LeetCode | 335. Self Crossing</title>
+        <pubTime>2016-10-10T03:25:48.000Z</pubTime>
+        
+        <tag>Math</tag>
+         
+         
+           
+             
+              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://zhuixin8.com/2016/10/09/%E7%99%BD%E8%AF%9DLeetCode-32-Longest-Valid-Parentheses/</loc>
     <lastmod>2016-10-09T11:53:40.000Z</lastmod>
     <data>
@@ -97,9 +117,9 @@
         
         <tag>HashTable</tag>
          
-        <tag>String</tag>
-         
         <tag>Two Pointers</tag>
+         
+        <tag>String</tag>
          
          
            

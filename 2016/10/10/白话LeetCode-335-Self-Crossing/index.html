@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 174. Dungeon Game | 追薪吧</title>
+    <title>白话LeetCode | 335. Self Crossing | 追薪吧</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪吧">
     
 
     
-    <meta name="description" content="骑士即将去拯救被恶魔抓走的公主，请帮助骑士计算他需要的最少血量。">
+    <meta name="description" content="判断行进的路径是否会与自己相交。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 174. Dungeon Game">
-<meta property="og:url" content="http://zhuixin8.com/2016/10/06/白话LeetCode-174-Dungeon-Game/index.html">
+<meta property="og:title" content="白话LeetCode | 335. Self Crossing">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/10/白话LeetCode-335-Self-Crossing/index.html">
 <meta property="og:site_name" content="追薪吧">
-<meta property="og:description" content="骑士即将去拯救被恶魔抓走的公主，请帮助骑士计算他需要的最少血量。">
-<meta property="og:updated_time" content="2016-10-06T14:55:54.000Z">
+<meta property="og:description" content="判断行进的路径是否会与自己相交。">
+<meta property="og:updated_time" content="2016-10-11T03:10:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 174. Dungeon Game">
-<meta name="twitter:description" content="骑士即将去拯救被恶魔抓走的公主，请帮助骑士计算他需要的最少血量。">
+<meta name="twitter:title" content="白话LeetCode | 335. Self Crossing">
+<meta name="twitter:description" content="判断行进的路径是否会与自己相交。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
@@ -76,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/06/白话LeetCode-174-Dungeon-Game/" title="白话LeetCode | 174. Dungeon Game" itemprop="url">白话LeetCode | 174. Dungeon Game</a>
+      <a href="/2016/10/10/白话LeetCode-335-Self-Crossing/" title="白话LeetCode | 335. Self Crossing" itemprop="url">白话LeetCode | 335. Self Crossing</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-06T13:52:12.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
+    <time datetime="2016-10-10T03:25:48.000Z" itemprop="datePublished"> 发表于 2016-10-10</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -104,33 +104,44 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/dungeon-game/" target="_blank" rel="external">LeetCode | 174. Dungeon Game</a>)</p>
-<p>公主(P)被恶魔抓走了！她被囚禁在了地牢的右下角。地牢由二维平面上的$M \times N$个房间组成。骑士(K)的起始位置在地图的左上角，他必须一路穿过地牢的房间去拯救位于右下角的公主。</p>
-<p>骑士起始的时候有一定数量的生命值。如果在任意时刻，骑士的血量低于或者等于零，他会立即死去。</p>
-<p>有一些房间是由恶魔把守的，骑士进入这些房间会损失掉一定数量的生命值(负整数)，其他房间可能是空的(零)也有可能有魔法药水来帮助他增加生命值(正整数)。</p>
-<p>为了尽可能快的营救公主，骑士决定每次移动只向右和向下两个方向走。</p>
-<p>请写一个函数来计算骑士营救公主所需要的最少血量。</p>
-<p>例如，给出地牢的地图如下所示，骑士初始情况下最少需要7滴血量才可营救公主，移动方向为<code>右-&gt;右-&gt;下-&gt;下</code>。</p>
-<table border="1" style="margin:auto"><tr><td>-2(K)</td><td>-3</td><td>3</td></tr><tr><td>-5</td><td>-10</td><td>1</td></tr><tr><td>10</td><td>30</td><td>-5(P)</td></tr></table>
-
-<p>注意：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/self-crossing/" target="_blank" rel="external">LeetCode | 335. Self Crossing</a>)</p>
+<p>给定<code>n</code>个正整数组成的数组。从坐标点<code>(0,0)</code>开始，向北移动移动<code>x[0]</code>米，再向西移动<code>x[1]</code>米，向南移动<code>x[2]</code>米，向东移动<code>x[3]</code>米，依次类推。也就是说，沿着逆时针的方向依次前进。</p>
+<p>请实现一个时间复杂度为<code>O(n)</code>、空间复杂度为<code>O(1)</code>的算法，来判断移动的过程中是否会与之前的轨迹相交。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">输入：x = [2, 1, 1, 2],</div><div class="line">┌───┐</div><div class="line">│   │</div><div class="line">└───┼──&gt;</div><div class="line">    │</div><div class="line"></div><div class="line">输出： true (相交)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">输入： x = [1, 2, 3, 4],</div><div class="line">┌──────┐</div><div class="line">│      │</div><div class="line">│</div><div class="line">│</div><div class="line">└────────────&gt;</div><div class="line"></div><div class="line">输出： false (没有相交)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">输入： x = [1, 1, 1, 1],</div><div class="line">┌───┐</div><div class="line">│   │</div><div class="line">└───┼&gt;</div><div class="line"></div><div class="line">输出： true (相交)</div></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题是一道<code>智商题</code>，没有用到任何的算法，实际上相交的情况只有以下三种情况：</p>
+<ol>
+<li><p>第i条边和第i-3条边相交，相交的条件：</p>
 <ul>
-<li>骑士的血量没有上限；</li>
-<li>任意的房间都有可能存在威胁或者补给，包括骑士初始位于的房间，以及公主所在的房间。</li>
+<li>第i-1条边小于等于第i-3条边</li>
+<li><p>第i条边大于等于第i-2条边</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   	 x(i-2)</div><div class="line">      ┌───┐</div><div class="line">x(i-1)│   │x(i-3)</div><div class="line">   	  └───┼──&gt;</div><div class="line">      x(i)│</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>题目虽然看起来很长，答案并没有想象中的那么复杂。下面我们来一步步进行分析。</p>
-<p>假设骑士位于坐标为(i, j)的位置上，如果我们想要知道从这一点出发到达公主所在的房间所需要的最少血量(记为dp[i][j])的话，与哪些因素有关系呢？因为骑士只能向右或者向下走，因此该值取决于三个方面：</p>
+</li>
+</ol>
+<ol>
+<li><p>第i条边和第i-4条边相交，相交的条件：</p>
 <ul>
-<li>骑士从坐标(i+1,j)出发到达公主所在的房间所需要的最少血量，dp[i+1][j]；</li>
-<li>骑士从坐标(i,j+1)出发到达公主所在的房间所需要的最少血量，dp[i][j+1]；</li>
-<li>坐标(i,j)所在的房间中包含的补给或威胁对应的数值，dungeon[i][j]。</li>
+<li>第i-4条边加第i条边大于等于第i-2条边</li>
+<li><p>第i-3条边等于第i-1条边</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">   	   x(i-3)</div><div class="line">      ┌──────┐</div><div class="line">      │      │x(i-4)</div><div class="line">x(i-2)│      ^</div><div class="line">      │      │x(i)</div><div class="line">      └──────│</div><div class="line">       x(i-1)</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>分析到这里，其实可以看出动态规划转移方程的雏形了，具体描述如下：</p>
-<p>$$dp[i][j] = max(1, min(dp[i+1][j],dp[i][j+1])-dungeon[i][j])$$</p>
-<p>其中，$min(dp[i+1][j],dp[i][j+1])$表示从向右或者向下的道路中选择所需血量较少的那一条路前进，因为房间中可能有怪物或者补给，所以得到的值需要减去这个房间中补给或怪物对应的数值dungeon[i][j]，又因为骑士的血量不能低于1，因此还需要执行max函数来保证dp[i][j]大于等于1。</p>
-<p>然后根据动态规划转移方程从右向左、从下到上依次计算，最后得到的dp[0][0]即为所求。</p>
-<p>相信你对这道题目动态规划解法的来龙去脉已经理清楚了。需要注意的是，在写代码的过程中一定要注意边界的检查，不要出现数组越界的情况。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculateMinimumHP</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; dungeon)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> dungeonRowSize = dungeon.size();</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == dungeonRowSize) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> dungeonColSize = dungeon[<span class="number">0</span>].size();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = dungeonRowSize - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = dungeonColSize - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</div><div class="line">                <span class="keyword">if</span> (i == dungeonRowSize - <span class="number">1</span> &amp;&amp; j == dungeonColSize - <span class="number">1</span>) &#123;</div><div class="line">                    dungeon[i][j] = max(<span class="number">1</span>, <span class="number">1</span> - dungeon[i][j]);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">int</span> r = j &lt; dungeonColSize - <span class="number">1</span> ? dungeon[i][j + <span class="number">1</span>] : INF;</div><div class="line">                    <span class="keyword">int</span> d = i &lt; dungeonRowSize - <span class="number">1</span> ? dungeon[i + <span class="number">1</span>][j] : INF;</div><div class="line">                    dungeon[i][j] = max(<span class="number">1</span>, min(r, d) - dungeon[i][j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dungeon[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+</li>
+<li><p>第i条边和第i-5条边相交，相交的条件：</p>
+<ul>
+<li>第i-2条边大于等于第i-4条边</li>
+<li>第i-3条边大于等于第i-1条边</li>
+<li>第i-1条边加第i-5条边大于等于第i-3条边</li>
+<li>第i条边加第i-4条边大于等于第i-2条边</li>
+</ul>
+</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">       x(i-4)</div><div class="line">      ┌──────┐</div><div class="line">      │      │x(i-5)</div><div class="line">x(i-3)│     &lt;│────│</div><div class="line">      │       x(i)│x(i-1)</div><div class="line">      └───────────│</div><div class="line">         x(i-2)</div></pre></td></tr></table></figure>
+</code></pre><p>有了如上分析，我们只需要用<code>O(n)</code>的时间复杂度遍历一遍数组即可是否是否会发生相交的情况，而且不需要额外的存储空间，空间复杂度为<code>O(1)</code>。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    bool isSelfCrossing(vector&lt;int&gt;&amp; x) &#123;</div><div class="line">        for (int i = 3; i &lt; x.size(); ++i) &#123;</div><div class="line">            if (x[i - 3] &gt;= x[i - 1] &amp;&amp; x[i] &gt;= x[i - 2]) &#123;</div><div class="line">                return true;</div><div class="line">            &#125; else if (i &gt;= 4 &amp;&amp; x[i - 1] == x[i - 3] &amp;&amp; x[i] + x[i - 4] &gt;= x[i - 2]) &#123;</div><div class="line">                return true;</div><div class="line">            &#125; else if (i &gt;= 5 &amp;&amp; x[i - 4] &lt;= x[i - 2] &amp;&amp; x[i - 1] &lt;= x[i - 3] &amp;&amp; x[i - 1] + x[i - 5] &gt;= x[i - 3] &amp;&amp; x[i] + x[i - 4] &gt;= x[i - 2]) &#123;</div><div class="line">                return true;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -152,7 +163,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
+  <span></span> <a href="/tags/Math/">Math</a>
   </div>
 
 </div>
@@ -161,7 +172,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixin8.com/2016/10/06/白话LeetCode-174-Dungeon-Game/" data-title="白话LeetCode | 174. Dungeon Game | 追薪吧" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixin8.com/2016/10/10/白话LeetCode-335-Self-Crossing/" data-title="白话LeetCode | 335. Self Crossing | 追薪吧" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -174,19 +185,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/08/白话LeetCode-304-Range-Sum-Query-2D-Immutable/" title="白话LeetCode | 304. Range Sum Query 2D - Immutable">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 304. Range Sum Query 2D - Immutable</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/06/白话LeetCode-98-Validate-Binary-Search-Tree/"  title="白话LeetCode | 98. Validate Binary Search Tree">
+<a href="/2016/10/09/白话LeetCode-32-Longest-Valid-Parentheses/"  title="白话LeetCode | 32. Longest Valid Parentheses">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 98. Validate Binary Search Tree
+ <span>白话LeetCode | 32. Longest Valid Parentheses
 </span>
 </a>
 </div>
@@ -195,7 +198,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-174-Dungeon-Game/" data-title="白话LeetCode | 174. Dungeon Game" data-url="http://zhuixin8.com/2016/10/06/白话LeetCode-174-Dungeon-Game/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/10/白话LeetCode-335-Self-Crossing/" data-title="白话LeetCode | 335. Self Crossing" data-url="http://zhuixin8.com/2016/10/10/白话LeetCode-335-Self-Crossing/"></div>
 </section>
 
 
