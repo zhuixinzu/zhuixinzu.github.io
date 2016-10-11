@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixin8.com/2016/10/11/白话LeetCode-295-Find-Median-from-Data-Stream/index.html">
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="求解动态变化的数组中的中位数。">
-<meta property="og:updated_time" content="2016-10-11T09:13:45.000Z">
+<meta property="og:updated_time" content="2016-10-11T09:16:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 295. Find Median from Data Stream">
 <meta name="twitter:description" content="求解动态变化的数组中的中位数。">
@@ -105,7 +105,7 @@
 
 
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank" rel="external">LeetCode | 295. Find Median from Data Stream</a>)</p>
-<p>中位数指的是一串有序数列中的中值。如果数列的大小是偶数，那么中值是离中心最近的两个数值的平均值。例如：</p>
+<p>中位数指的是一串有序数字的中值。如果数列的大小是偶数，那么中值是离中心最近的两个数值的平均值。例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">输入：[2,3,4] </div><div class="line">输出：3</div><div class="line"></div><div class="line">输入：[2,3] </div><div class="line">输出：(2 + 3) / 2 = 2.5</div></pre></td></tr></table></figure>
 <p>请设计一个数据结构来支持以下两种操作：</p>
 <ul>
@@ -129,7 +129,7 @@
 </li>
 </ol>
 <p>值得一提的是，在标准库中已经为我们封装好了堆这种数据结构：<code>priority_queue</code>，因此我们需要熟练掌握标准库中的数据结构，这也是面试中考察面试者的一个方面。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class MedianFinder &#123;</div><div class="line">private:</div><div class="line">    priority_queue&lt;int&gt; lq;</div><div class="line">    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; rq;</div><div class="line"></div><div class="line">public:</div><div class="line">    // Adds a number into the data structure.</div><div class="line">    void addNum(int num) &#123;</div><div class="line">        if ((lq.size() == 0) || (lq.top() &gt;= num)) &#123;</div><div class="line">            lq.push(num);</div><div class="line">        &#125; else &#123;</div><div class="line">            rq.push(num);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        int n_lq = lq.size();</div><div class="line">        int n_rq = rq.size();</div><div class="line">        </div><div class="line">        if (n_lq - n_rq &gt; 1) &#123;</div><div class="line">            rq.push(lq.top());</div><div class="line">            lq.pop();</div><div class="line">        &#125;</div><div class="line">        if (n_rq - n_lq &gt; 0) &#123;</div><div class="line">            lq.push(rq.top());</div><div class="line">            rq.pop();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Returns the median of current data stream</div><div class="line">    double findMedian() &#123;</div><div class="line">        if (lq.size() == rq.size()) &#123;</div><div class="line">            return (lq.top() + rq.top()) / 2.0;</div><div class="line">        &#125; else &#123;</div><div class="line">            return lq.top();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> MedianFinder &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    priority_queue&lt;<span class="keyword">int</span>&gt; lq;</div><div class="line">    priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; rq;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">// Adds a number into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addNum</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> ((lq.size() == <span class="number">0</span>) || (lq.top() &gt;= num)) &#123;</div><div class="line">            lq.push(num);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            rq.push(num);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> n_lq = lq.size();</div><div class="line">        <span class="keyword">int</span> n_rq = rq.size();</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (n_lq - n_rq &gt; <span class="number">1</span>) &#123;</div><div class="line">            rq.push(lq.top());</div><div class="line">            lq.pop();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (n_rq - n_lq &gt; <span class="number">0</span>) &#123;</div><div class="line">            lq.push(rq.top());</div><div class="line">            rq.pop();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns the median of current data stream</span></div><div class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findMedian</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (lq.size() == rq.size()) &#123;</div><div class="line">            <span class="keyword">return</span> (lq.top() + rq.top()) / <span class="number">2.0</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> lq.top();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -242,15 +242,15 @@
 			
 		
 			
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
 			
 		
 			
@@ -278,23 +278,15 @@
 			
 		
 			
-				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Heap/" title="Heap">Heap<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Binary-Search/" title="Binary Search">Binary Search<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Divide-and-Conquer/" title="Divide and Conquer">Divide and Conquer<sup>1</sup></a></li>
 			
 		
 			
@@ -303,6 +295,14 @@
 		
 			
 				<li><a href="/tags/Stack/" title="Stack">Stack<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Binary-Search/" title="Binary Search">Binary Search<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Divide-and-Conquer/" title="Divide and Conquer">Divide and Conquer<sup>1</sup></a></li>
 			
 		
 			
