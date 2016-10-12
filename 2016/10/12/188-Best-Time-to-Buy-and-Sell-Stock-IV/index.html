@@ -4,41 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 8. String to Integer (atoi) | 追薪吧</title>
+    <title>188. Best Time to Buy and Sell Stock IV | 追薪吧</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪吧">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 8. String to Integer (atoi))
-请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。
-解题思路这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：
-
-当字符串为空时，函数的返回值是多少；
-当字符串中遇到非法字符时，函数的返回值是多少；
-当字符串表示的数值超过int类型的范围时，">
+    <meta name="description" content="买卖股票升级版：求解不超过k次买卖的最大收益。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 8. String to Integer (atoi)">
-<meta property="og:url" content="http://zhuixin8.com/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/index.html">
+<meta property="og:title" content="188. Best Time to Buy and Sell Stock IV">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/12/188-Best-Time-to-Buy-and-Sell-Stock-IV/index.html">
 <meta property="og:site_name" content="追薪吧">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 8. String to Integer (atoi))
-请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。
-解题思路这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：
-
-当字符串为空时，函数的返回值是多少；
-当字符串中遇到非法字符时，函数的返回值是多少；
-当字符串表示的数值超过int类型的范围时，">
-<meta property="og:updated_time" content="2016-10-02T09:12:54.000Z">
+<meta property="og:description" content="买卖股票升级版：求解不超过k次买卖的最大收益。">
+<meta property="og:updated_time" content="2016-10-12T14:45:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 8. String to Integer (atoi)">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 8. String to Integer (atoi))
-请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。
-解题思路这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：
-
-当字符串为空时，函数的返回值是多少；
-当字符串中遇到非法字符时，函数的返回值是多少；
-当字符串表示的数值超过int类型的范围时，">
+<meta name="twitter:title" content="188. Best Time to Buy and Sell Stock IV">
+<meta name="twitter:description" content="买卖股票升级版：求解不超过k次买卖的最大收益。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
@@ -94,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" title="白话LeetCode | 8. String to Integer (atoi)" itemprop="url">白话LeetCode | 8. String to Integer (atoi)</a>
+      <a href="/2016/10/12/188-Best-Time-to-Buy-and-Sell-Stock-IV/" title="188. Best Time to Buy and Sell Stock IV" itemprop="url">188. Best Time to Buy and Sell Stock IV</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-02T07:28:36.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-12T08:09:41.000Z" itemprop="datePublished"> 发表于 2016-10-12</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -122,27 +104,38 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/string-to-integer-atoi/" target="_blank" rel="external">LeetCode | 8. String to Integer (atoi)</a>)</p>
-<p>请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：</p>
-<ol>
-<li>当字符串为空时，函数的返回值是多少；</li>
-<li>当字符串中遇到非法字符时，函数的返回值是多少；</li>
-<li>当字符串表示的数值超过int类型的范围时，函数的返回值是多少。</li>
-</ol>
-<p>对于以上的三点问题，我们可以做出以下假设：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/" target="_blank" rel="external">LeetCode | 188. Best Time to Buy and Sell Stock IV</a>)</p>
+<p>给定一个数组，其中第$i^{th}$个元素表示第i天的股票价格。请设计一个算法来找到最大收益。你可以完成最多k次股票买卖。</p>
+<p>请注意：你不能同时参与多次交易(必须在买之前将股票卖出)。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><code>求最优解</code>通常是动态规划的一个明显特征。假设：</p>
 <ul>
-<li>对于第(1)点问题，可以假定返回值为0；</li>
-<li>对于第(2)点问题，可以返回遇到非法字符之前的那部分字符串对应的数字；</li>
-<li>对于第(3)点问题，可以假设当超过int可以容纳的最大值时返回INT_MAX，当超过int可以容纳的最小值时返回INT_MIN。</li>
+<li>local[i][j]表示最后一次买卖在第i天卖出，同时交易次数小于等于j次的最大收益；</li>
+<li>glocal[i][j]表示前i天完成小于等于j次交易的最大收益。</li>
 </ul>
-<p>在编写代码的时候，还有两点问题需要注意：</p>
+<p>下面，我们先来推导local[i][j]的状态转移方程。local[i][j]表示最后一次买卖在第i天卖出，同时交易次数小于等于j次的最大收益，那么最后一次买卖的买入时刻存在两种情况：最后一次买卖在第i-1天买入和最后一次买卖的第i-1天前买入。</p>
 <ol>
-<li>如果字符串的前缀或者后缀中包含空白符，需要对齐进行删除；</li>
-<li>字符串对应的int数值可能包含正负号，需要进行判断处理，例如<code>&quot;+12&quot;</code>、<code>&quot;-1&quot;</code>。</li>
+<li>最后一次买卖在第i-1天买入：local[i][j]=global[i-1][j-1] + prices[i] - prices[i-1]。其中，prices[i] - prices[i-1]表示最后一次买卖股票的收入，global[i-1][j-1]表示之前完成小于等于j-1次交易的最大收益。</li>
+<li>最后一次买卖的第i-1天前买入：local[i][j]=local[i-1][j]+prices[i]-prices[i-1]。其中，，prices[i] - prices[i-1]表示最后一次买卖股票的收入，local[i-1][j]表示之前完成小于等于j次交易且最后一次交易在第i-1天完成的最大收益。这里有的同学可能存在疑问，为什么可以这样推导。原因是，<code>当你在第i-1天卖出完成第j次买卖时，如果你在这一天再次买入，并在下一天卖出，此时的交易等同于在第i-1天不卖出，等到第i天再卖出，因此交易次数依然为j次，不会增加交易次数！</code></li>
 </ol>
-<p>当以上情况都考虑清楚之后，相信你可以很快的写出正确的解题代码。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(<span class="built_in">string</span> str)</span> </span>&#123;</div><div class="line">        <span class="comment">// 当字符串为空时，返回0</span></div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == str.length()) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="comment">// 删除前缀和后缀中包含的空白符</span></div><div class="line">        str.erase(<span class="number">0</span>, str.find_first_not_of(<span class="string">' '</span>));</div><div class="line">        str.erase(str.find_last_not_of(<span class="string">' '</span>) + <span class="number">1</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sign = <span class="number">1</span>, index = <span class="number">0</span>;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="comment">// 处理字符串中的正负号</span></div><div class="line">        <span class="keyword">if</span> (<span class="string">'+'</span> == str[index]) &#123;</div><div class="line">            ++index;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'-'</span> == str[index]) &#123;</div><div class="line">            sign = <span class="number">-1</span>;</div><div class="line">            ++index;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &lt; str.length(); ++i) &#123;</div><div class="line">            <span class="comment">// 当遇到非法字符时，返回之前那部分字符串对应的数值</span></div><div class="line">            <span class="keyword">if</span> (<span class="string">'0'</span> &gt; str[i] || <span class="string">'9'</span> &lt; str[i]) <span class="keyword">break</span>;</div><div class="line">            ans = ans * <span class="number">10</span> + str[i] - <span class="string">'0'</span>;</div><div class="line">            <span class="comment">// 当超过int范围时，返回'INT_MAX'或'INT_MIN'</span></div><div class="line">            <span class="keyword">if</span> (INT_MAX &lt; ans) <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 添加正负号</span></div><div class="line">        ans *= sign;</div><div class="line">        <span class="comment">// 当超过int可以容纳的最大值时可以返回INT_MAX</span></div><div class="line">        <span class="keyword">if</span> (INT_MAX &lt; ans) <span class="keyword">return</span> INT_MAX;</div><div class="line">        <span class="comment">// 当超过int可以容纳的最小值时可以返回INT_MIN</span></div><div class="line">        <span class="keyword">if</span> (INT_MIN &gt; ans) <span class="keyword">return</span> INT_MIN;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<p>通过上面的两步分析，我们可以知道，local[i][j]是这两种情况中的最优解，我们得到状态转移方程如下：</p>
+<p>$$local[i][j] = max(global[i-1][j-1], local[i-1][j]) + (prices[i]-prices[i-1])$$</p>
+<p>接下来，我们分析上式中global[i][j]的状态转移方程。glocal[i][j]表示前i天完成小于等于j次交易的最大收益，它可能来自两种情况：</p>
+<ol>
+<li>在前i-1天完成小于等于j次交易的最大收益，即global[i-1][j]；</li>
+<li>在第i天完成小于等于j次交易的最大收益，即local[i][j]。</li>
+</ol>
+<p>因此，得到global[i][j]的状态转移方程如下：</p>
+<p>$$global[i][j] = max(global[i-1][j], local[i][j])$$</p>
+<p>到这里，这道题目已经得以解决，时间复杂度为<code>O(N*K)</code>。当K非常大时，时间成本会上升，这里可以进一步优化：如果$K \ge N/2$，那么等同于你可以进行无限次交易(K超过了可供交易的最大次数)，那么你只要贪心的进行买卖就可以了(如果股票下跌，就在下跌前买入，下跌后卖出)。此时，时间复杂度为<code>O(N)</code>。</p>
+<p>OK，到这里，完美解决。真的完美了吗？如果想进一步优化代码空间复杂度的同学可以接着往下看。</p>
+<p>在求解local[i][j]的过程中，你会发现，他依赖于global[i-1][j-1]和local[i-1][j]，我们并不真的需要第一个纬度，可以把它简化如下：</p>
+<p>$$local[j] = max(global[j-1], local[j]) + (prices[i]-prices[i-1])$$</p>
+<p>是不是很神奇？因为local[i][j]只依赖于local[i-1][j]，而不依赖于local[i-2][j]，因此我们可以在求解local[i][j]的同时，覆盖之前的local[i-1][j]的值(它已经不需要了)。</p>
+<p>同理，global[i][j]的求解可以简化如下：</p>
+<p>$$global[j] = max(global[j], local[j])$$</p>
+<p>这里有一点需要注意，因为local[j]的求解依赖于global[j-1]，如果从左向右更新local和global的数组的话，global[j-1]此时已经被刷新为global[i][j-1]，而local[j]求解需要的是global[i-1][j-1]，global居然被提前更新了！因此，不能从左向右更新local和global数组，而是需要从右向左更新，这样可以保证每次计算local[j]时，使用的是global[i-1][j]，而不是global[i][j]！</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span> k, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;prices)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> max_profit = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span> (k &gt;= prices.size() / <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.size(); ++i) &#123;</div><div class="line">                <span class="keyword">if</span> (prices[i] - prices[i - <span class="number">1</span>] &gt; <span class="number">0</span>) &#123;</div><div class="line">                    max_profit += prices[i] - prices[i - <span class="number">1</span>];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; local(k+<span class="number">1</span>);</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; global(k+<span class="number">1</span>);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.size(); ++i) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = k; j &gt;= <span class="number">1</span>; --j) &#123;</div><div class="line">                    local[j] = max(global[j - <span class="number">1</span>], local[j]) + prices[i] - prices[i - <span class="number">1</span>];</div><div class="line">                    global[j] = max(global[j], local[j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            max_profit = global[k];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max_profit;</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+  
 		<!--
 		<br>
 		<hr>
@@ -164,7 +157,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/String/">String</a>
+  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
   </div>
 
 </div>
@@ -173,7 +166,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" data-title="白话LeetCode | 8. String to Integer (atoi) | 追薪吧" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixin8.com/2016/10/12/188-Best-Time-to-Buy-and-Sell-Stock-IV/" data-title="188. Best Time to Buy and Sell Stock IV | 追薪吧" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -186,19 +179,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 149. Max Points on a Line</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/09/30/白话LeetCode-65-Valid-Number/"  title="白话LeetCode | 65. Valid Number">
+<a href="/2016/10/11/白话LeetCode-295-Find-Median-from-Data-Stream/"  title="白话LeetCode | 295. Find Median from Data Stream">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 65. Valid Number
+ <span>白话LeetCode | 295. Find Median from Data Stream
 </span>
 </a>
 </div>
@@ -207,7 +192,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" data-title="白话LeetCode | 8. String to Integer (atoi)" data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/12/188-Best-Time-to-Buy-and-Sell-Stock-IV/" data-title="188. Best Time to Buy and Sell Stock IV" data-url="http://zhuixin8.com/2016/10/12/188-Best-Time-to-Buy-and-Sell-Stock-IV/"></div>
 </section>
 
 
