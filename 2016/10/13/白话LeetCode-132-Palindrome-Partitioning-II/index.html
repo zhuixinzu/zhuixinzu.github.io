@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixin8.com/2016/10/13/白话LeetCode-132-Palindrome-Partitioning-II/index.html">
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="求解将一个字符串切割为若干回文串所需要的最少次数。">
-<meta property="og:updated_time" content="2016-10-13T13:02:19.000Z">
+<meta property="og:updated_time" content="2016-10-13T13:04:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 132. Palindrome Partitioning II">
 <meta name="twitter:description" content="求解将一个字符串切割为若干回文串所需要的最少次数。">
@@ -109,11 +109,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">输入：s=&quot;aab&quot;</div><div class="line">输出：1 </div><div class="line">说明：&quot;aab&quot;-&gt;[&quot;aa&quot;, &quot;b&quot;]</div></pre></td></tr></table></figure>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>碰到需要解决<code>最少</code>、<code>最多</code>问题的题目，十有八九需要用到动态规划。</p>
 <p>假设flag[i][j]表示字符串s中下标从i到j的子串是否为回文串，那么可以得到如下状态转移方程：</p>
-<p>$$flag[i][j] = \left{\begin{matrix}true, if~s[i] == s[j]~and~flag[i+1][j-1]=true\ false, if~s[i] != s[j]~or~flag[i+1][j-1]=false\end{matrix}\right$$</p>
-<p>对上式做进一步的说明，如果从i到j是回文串的话，那么第i个字符一定等于第j个字符，同时去掉首尾两个字符后，从i+1到j-1也是回文串，否则，从i到j不能构成回文串。</p>
+<p>$$\left{\begin{matrix}1\ 2\end{matrix}\right.$$</p>
+<p>上式表示的意思是，如果从i到j是回文串的话，那么第i个字符一定等于第j个字符，同时去掉首尾两个字符后，从i+1到j-1也是回文串，否则，从i到j不能构成回文串。</p>
 <p>从上式可以看出，求解flag数组的时间复杂度为<code>O(n^2)</code>，其中n表示字符串s的长度。</p>
 <p>假设dp[j]表示字符串s中下标从0到j的子串需要切分的最少次数，那么可以得到如下状态转移方程：</p>
-<p>$$dp[j] = min(dp[i-1] + 1), 0\lei\lej~and~flag[i][j]=true$$</p>
+<p>$$dp[j] = min(dp[i-1] + 1), 0 \le i\le j~and~flag[i][j]=true$$</p>
 <p>上式表示的意思是，如果在求解字符串s中下标从0到j的子串需要切分的最少次数时，只需要枚举最后一次切分的位置即可，这样就将问题转化为之前已经求解出来的子问题。这一步的时间复杂度也为<code>O(n^2)</code>。</p>
 <p>综上所述，整个动态规划算法的时间复杂度为<code>O(n^2)</code>。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minCut</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> len = s.length();</div><div class="line">        </div><div class="line">        <span class="comment">// flag[i][j]表示字符串s中下标从i到j的子串是否为回文串</span></div><div class="line">        <span class="keyword">bool</span> flag[len][len];</div><div class="line">        <span class="built_in">memset</span>(flag, <span class="literal">false</span>, <span class="keyword">sizeof</span>(flag));</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</div><div class="line">            flag[i][i] = <span class="literal">true</span>;</div><div class="line">            <span class="keyword">if</span> (i &lt; len - <span class="number">1</span> &amp;&amp; s[i] == s[i + <span class="number">1</span>]) &#123;</div><div class="line">                flag[i][i + <span class="number">1</span>] = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">3</span>; l &lt;= len; ++l) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + l - <span class="number">1</span> &lt; len; ++i) &#123;</div><div class="line">                <span class="keyword">if</span> (flag[i + <span class="number">1</span>][i + l - <span class="number">2</span>] &amp;&amp; s[i] == s[i + l - <span class="number">1</span>]) &#123;</div><div class="line">                    flag[i][i + l - <span class="number">1</span>] = <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">// dp[j]表示字符串s中下标从0到j的子串需要切分的最少次数</span></div><div class="line">        <span class="keyword">int</span> dp[len];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</div><div class="line">            dp[i] = i;</div><div class="line">            <span class="keyword">if</span> (flag[<span class="number">0</span>][i]) &#123;</div><div class="line">                dp[i] = <span class="number">0</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                dp[i] = i;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) &#123;</div><div class="line">                    <span class="keyword">if</span> (flag[j][i]) &#123;</div><div class="line">                        dp[i] = min(dp[i], dp[j - <span class="number">1</span>] + <span class="number">1</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> dp[len - <span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
@@ -233,11 +233,11 @@
 			
 		
 			
-				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
 			
 		
 			
@@ -277,11 +277,11 @@
 			
 		
 			
-				<li><a href="/tags/Inclusion-exclusion/" title="Inclusion-exclusion">Inclusion-exclusion<sup>1</sup></a></li>
+				<li><a href="/tags/Stack/" title="Stack">Stack<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Stack/" title="Stack">Stack<sup>1</sup></a></li>
+				<li><a href="/tags/Inclusion-exclusion/" title="Inclusion-exclusion">Inclusion-exclusion<sup>1</sup></a></li>
 			
 		
 			
