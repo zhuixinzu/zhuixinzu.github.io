@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixin8.com/2016/10/13/白话LeetCode-132-Palindrome-Partitioning-II/index.html">
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="求解将一个字符串切割为若干回文串所需要的最少次数。">
-<meta property="og:updated_time" content="2016-10-13T13:11:07.000Z">
+<meta property="og:updated_time" content="2016-10-13T13:12:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 132. Palindrome Partitioning II">
 <meta name="twitter:description" content="求解将一个字符串切割为若干回文串所需要的最少次数。">
@@ -109,7 +109,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">输入：s=&quot;aab&quot;</div><div class="line">输出：1 </div><div class="line">说明：&quot;aab&quot;-&gt;[&quot;aa&quot;, &quot;b&quot;]</div></pre></td></tr></table></figure>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>碰到需要解决<code>最少</code>、<code>最多</code>问题的题目，十有八九需要用到动态规划。</p>
 <p>假设flag[i][j]表示字符串s中下标从i到j的子串是否为回文串，那么可以得到如下状态转移方程：</p>
-<p>$$<br>flag[i][j] =<br>  \left\{<br>    \begin{matrix}<br>           true, if~s[i] == s[j]~and~flag[i+1][j-1]=true \\<br>           false, if~s[i] != s[j]~or~flag[i+1][j-1]=false<br>    \end{matrix}<br>  \right.<br>$$</p>
+<p>$$<br>flag[i][j] =<br>  \left\{<br>    \begin{matrix}<br>           true, if~s[i] \eq s[j]~and~flag[i+1][j-1]=true \\<br>           false, if~s[i] \neq s[j]~or~flag[i+1][j-1]=false<br>    \end{matrix}<br>  \right.<br>$$</p>
 <p>上式表示的意思是，如果从i到j是回文串的话，那么第i个字符一定等于第j个字符，同时去掉首尾两个字符后，从i+1到j-1也是回文串，否则，从i到j不能构成回文串。</p>
 <p>从上式可以看出，求解flag数组的时间复杂度为<code>O(n^2)</code>，其中n表示字符串s的长度。</p>
 <p>假设dp[j]表示字符串s中下标从0到j的子串需要切分的最少次数，那么可以得到如下状态转移方程：</p>
