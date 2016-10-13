@@ -4,37 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 211. Add and Search Word - Data structure design | 追薪吧</title>
+    <title>白话LeetCode | 132. Palindrome Partitioning II | 追薪吧</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪吧">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 211. Add and Search Word - Data structure design)
-请设计一个数据结构来支持以下两个操作：
-void addWord(word)
-bool search(word)
-其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由a-z或者.组成，一个.可以匹配任意一个字母。例">
+    <meta name="description" content="求解将一个字符串切割为若干回文串所需要的最少次数。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 211. Add and Search Word - Data structure design">
-<meta property="og:url" content="http://zhuixin8.com/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/index.html">
+<meta property="og:title" content="白话LeetCode | 132. Palindrome Partitioning II">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/13/白话LeetCode-132-Palindrome-Partitioning-II/index.html">
 <meta property="og:site_name" content="追薪吧">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 211. Add and Search Word - Data structure design)
-请设计一个数据结构来支持以下两个操作：
-void addWord(word)
-bool search(word)
-其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由a-z或者.组成，一个.可以匹配任意一个字母。例">
-<meta property="og:image" content="http://zhuixin8.com/img/白话LeetCode/211/trie.png">
-<meta property="og:updated_time" content="2016-10-06T03:14:29.000Z">
+<meta property="og:description" content="求解将一个字符串切割为若干回文串所需要的最少次数。">
+<meta property="og:updated_time" content="2016-10-13T12:59:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 211. Add and Search Word - Data structure design">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 211. Add and Search Word - Data structure design)
-请设计一个数据结构来支持以下两个操作：
-void addWord(word)
-bool search(word)
-其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由a-z或者.组成，一个.可以匹配任意一个字母。例">
-<meta name="twitter:image" content="http://zhuixin8.com/img/白话LeetCode/211/trie.png">
+<meta name="twitter:title" content="白话LeetCode | 132. Palindrome Partitioning II">
+<meta name="twitter:description" content="求解将一个字符串切割为若干回文串所需要的最少次数。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
@@ -90,14 +76,14 @@ bool search(word)
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/" title="白话LeetCode | 211. Add and Search Word - Data structure design" itemprop="url">白话LeetCode | 211. Add and Search Word - Data structure design</a>
+      <a href="/2016/10/13/白话LeetCode-132-Palindrome-Partitioning-II/" title="白话LeetCode | 132. Palindrome Partitioning II" itemprop="url">白话LeetCode | 132. Palindrome Partitioning II</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-06T02:24:40.000Z" itemprop="datePublished"> 发表于 2016-10-06</time>
+    <time datetime="2016-10-13T01:48:56.000Z" itemprop="datePublished"> 发表于 2016-10-13</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -118,31 +104,19 @@ bool search(word)
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/add-and-search-word-data-structure-design/" target="_blank" rel="external">LeetCode | 211. Add and Search Word - Data structure design</a>)</p>
-<p>请设计一个数据结构来支持以下两个操作：</p>
-<pre><code>void addWord(word)
-bool search(word)
-</code></pre><p>其中，search(word)可以判断是否存在满足正则表达式word的单词存在。word由<code>a-z</code>或者<code>.</code>组成，一个<code>.</code>可以匹配任意一个字母。例如：</p>
-<pre><code>addWord(&quot;bad&quot;)
-addWord(&quot;dad&quot;)
-addWord(&quot;mad&quot;)
-search(&quot;pad&quot;) -&gt; false
-search(&quot;bad&quot;) -&gt; true
-search(&quot;.ad&quot;) -&gt; true
-search(&quot;b..&quot;) -&gt; true
-</code></pre><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道很典型的字典树(Trie)的题目，唯一的变化是在字典树查找的过程中引入了通配符<code>.</code>，通配符匹配可以通过回溯法(枚举26个英文)实现。</p>
-<p>字典树(Trie)是面试中常见的题型，也叫做前缀树，是一种用来快速检索的多叉树结构。对于本题而言，需要构造的是一个英文字母字典树，因此是一个26叉树。</p>
-<p>字典树可以利用字符串的公共前缀来节约存储的空间并加快检索的速度。下图中的字典树包含了五个英文单词dad, do, dog, done, bi：</p>
-<p><img src="/img/白话LeetCode/211/trie.png" style="display:block;margin:auto"></p>
-<p>字典树有如下基本性质：</p>
-<ol>
-<li>字典树的根节点不包含字符，代表一个空字符串；</li>
-<li>从根节点到某节点，路径上经过的字符连接起来即为该节点所代表的字符串；</li>
-<li>每个节点所代表的字符串各不相同，父节点代表的字符串一定是它孩子节点代表的字符串的前缀。</li>
-</ol>
-<p>了解了这些之后，相信你一定可以轻松搞定字典树相关题目。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> TrieNode &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">bool</span> end;</div><div class="line">    TrieNode* next[<span class="number">26</span>];</div><div class="line">    TrieNode() &#123;</div><div class="line">        <span class="built_in">memset</span>(next, <span class="number">0</span>, <span class="keyword">sizeof</span>(next));</div><div class="line">        end = <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">class</span> WordDictionary &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">// 字典树的根节点</span></div><div class="line">    TrieNode* trie_root;</div><div class="line">    <span class="comment">// 回溯法查找单词word是否存在</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(TrieNode* node, <span class="built_in">string</span>&amp; word, <span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (id == word.length()) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="literal">true</span> == node-&gt;end) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="string">'.'</span> == word[id]) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) &#123;</div><div class="line">                <span class="keyword">if</span> (node-&gt;next[i] &amp;&amp; dfs(node-&gt;next[i], word, id + <span class="number">1</span>)) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="literal">NULL</span> == node-&gt;next[word[id] - <span class="string">'a'</span>]) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> dfs(node-&gt;next[word[id] - <span class="string">'a'</span>], word, id + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    WordDictionary() &#123;</div><div class="line">        trie_root = <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Adds a word into the data structure.</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addWord</span><span class="params">(<span class="built_in">string</span> word)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (trie_root == <span class="literal">NULL</span>) &#123;</div><div class="line">            trie_root = <span class="keyword">new</span> TrieNode();</div><div class="line">        &#125;</div><div class="line">        TrieNode* tmp = trie_root;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; word.length(); ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (tmp-&gt;next[word[i] - <span class="string">'a'</span>] == <span class="literal">NULL</span>) &#123;</div><div class="line">                tmp-&gt;next[word[i] - <span class="string">'a'</span>] = <span class="keyword">new</span> TrieNode();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (i &lt; word.length() - <span class="number">1</span>) &#123;</div><div class="line">                tmp = tmp-&gt;next[word[i] - <span class="string">'a'</span>];</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                tmp-&gt;next[word[i] - <span class="string">'a'</span>]-&gt;end = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Returns if the word is in the data structure. A word could</span></div><div class="line">    <span class="comment">// contain the dot character '.' to represent any one letter.</span></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="built_in">string</span> word)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (trie_root == <span class="literal">NULL</span>) &#123;</div><div class="line">            trie_root = <span class="keyword">new</span> TrieNode();</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> dfs(trie_root, word, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-  
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/palindrome-partitioning-ii/" target="_blank" rel="external">LeetCode | 132. Palindrome Partitioning II</a>)</p>
+<p>给定一个字符串s，请切割该字符串并保证每个子串都是回文串，计算需要切割的最少次数。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">输入：s=&quot;aab&quot;</div><div class="line">输出：1 </div><div class="line">说明：&quot;aab&quot;-&gt;[&quot;aa&quot;, &quot;b&quot;]</div></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>碰到需要解决<code>最少</code>、<code>最多</code>问题的题目，十有八九需要用到动态规划。</p>
+<p>假设flag[i][j]表示字符串s中下标从i到j的子串是否为回文串，那么可以得到如下状态转移方程：</p>
+<p>$$flag[i][j] = \left{\begin{matrix}true, if s[i] == s[j]~and~flag[i+1][j-1]=true\ false, if s[i] != s[j]~or~flag[i+1][j-1]=false\end{matrix}\right.$$</p>
+<p>对上式做进一步的说明，如果从i到j是回文串的话，那么第i个字符一定等于第j个字符，同时去掉首尾两个字符后，从i+1到j-1也是回文串，否则，从i到j不能构成回文串。</p>
+<p>从上式可以看出，求解flag数组的时间复杂度为<code>O(n^2)</code>，其中n表示字符串s的长度。</p>
+<p>假设dp[j]表示字符串s中下标从0到j的子串需要切分的最少次数，那么可以得到如下状态转移方程：</p>
+<p>$$dp[j] = min(dp[i-1] + 1), 0\lei\lej~and~flag[i][j]=true$$</p>
+<p>上式表示的意思是，如果在求解字符串s中下标从0到j的子串需要切分的最少次数时，只需要枚举最后一次切分的位置即可，这样就将问题转化为之前已经求解出来的子问题。这一步的时间复杂度也为<code>O(n^2)</code>。</p>
+<p>综上所述，整个动态规划算法的时间复杂度为<code>O(n^2)</code>。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minCut</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> len = s.length();</div><div class="line">        </div><div class="line">        <span class="comment">// flag[i][j]表示字符串s中下标从i到j的子串是否为回文串</span></div><div class="line">        <span class="keyword">bool</span> flag[len][len];</div><div class="line">        <span class="built_in">memset</span>(flag, <span class="literal">false</span>, <span class="keyword">sizeof</span>(flag));</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</div><div class="line">            flag[i][i] = <span class="literal">true</span>;</div><div class="line">            <span class="keyword">if</span> (i &lt; len - <span class="number">1</span> &amp;&amp; s[i] == s[i + <span class="number">1</span>]) &#123;</div><div class="line">                flag[i][i + <span class="number">1</span>] = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">3</span>; l &lt;= len; ++l) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + l - <span class="number">1</span> &lt; len; ++i) &#123;</div><div class="line">                <span class="keyword">if</span> (flag[i + <span class="number">1</span>][i + l - <span class="number">2</span>] &amp;&amp; s[i] == s[i + l - <span class="number">1</span>]) &#123;</div><div class="line">                    flag[i][i + l - <span class="number">1</span>] = <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">// dp[j]表示字符串s中下标从0到j的子串需要切分的最少次数</span></div><div class="line">        <span class="keyword">int</span> dp[len];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</div><div class="line">            dp[i] = i;</div><div class="line">            <span class="keyword">if</span> (flag[<span class="number">0</span>][i]) &#123;</div><div class="line">                dp[i] = <span class="number">0</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                dp[i] = i;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) &#123;</div><div class="line">                    <span class="keyword">if</span> (flag[j][i]) &#123;</div><div class="line">                        dp[i] = min(dp[i], dp[j - <span class="number">1</span>] + <span class="number">1</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> dp[len - <span class="number">1</span>];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -164,7 +138,7 @@ search(&quot;b..&quot;) -&gt; true
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Backtracking/">Backtracking</a><a href="/tags/Design/">Design</a><a href="/tags/Trie/">Trie</a>
+  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
   </div>
 
 </div>
@@ -173,7 +147,7 @@ search(&quot;b..&quot;) -&gt; true
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixin8.com/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/" data-title="白话LeetCode | 211. Add and Search Word - Data structure design | 追薪吧" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixin8.com/2016/10/13/白话LeetCode-132-Palindrome-Partitioning-II/" data-title="白话LeetCode | 132. Palindrome Partitioning II | 追薪吧" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -186,19 +160,11 @@ search(&quot;b..&quot;) -&gt; true
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/06/白话LeetCode-15-3Sum/" title="白话LeetCode | 15. 3Sum">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 15. 3Sum</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/06/白话LeetCode-4-Median-of-Two-Sorted-Arrays/"  title="白话LeetCode | 4. Median of Two Sorted Arrays">
+<a href="/2016/10/12/白话LeetCode-188-Best-Time-to-Buy-and-Sell-Stock-IV/"  title="白话LeetCode | 188. Best Time to Buy and Sell Stock IV">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 4. Median of Two Sorted Arrays
+ <span>白话LeetCode | 188. Best Time to Buy and Sell Stock IV
 </span>
 </a>
 </div>
@@ -207,7 +173,7 @@ search(&quot;b..&quot;) -&gt; true
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/" data-title="白话LeetCode | 211. Add and Search Word - Data structure design" data-url="http://zhuixin8.com/2016/10/06/白话LeetCode-211-Add-and-Search-Word-Data-structure-design/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/13/白话LeetCode-132-Palindrome-Partitioning-II/" data-title="白话LeetCode | 132. Palindrome Partitioning II" data-url="http://zhuixin8.com/2016/10/13/白话LeetCode-132-Palindrome-Partitioning-II/"></div>
 </section>
 
 
