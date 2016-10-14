@@ -4,41 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 8. String to Integer (atoi) | 追薪吧</title>
+    <title>白话LeetCode | 321. Create Maximum Number | 追薪吧</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪吧">
     
 
     
-    <meta name="description" content="问题描述(原题链接：LeetCode | 8. String to Integer (atoi))
-请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。
-解题思路这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：
-
-当字符串为空时，函数的返回值是多少；
-当字符串中遇到非法字符时，函数的返回值是多少；
-当字符串表示的数值超过int类型的范围时，">
+    <meta name="description" content="通过两个数组构造指定位数的最大整数。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 8. String to Integer (atoi)">
-<meta property="og:url" content="http://zhuixin8.com/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/index.html">
+<meta property="og:title" content="白话LeetCode | 321. Create Maximum Number">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/14/白话LeetCode-321-Create-Maximum-Number/index.html">
 <meta property="og:site_name" content="追薪吧">
-<meta property="og:description" content="问题描述(原题链接：LeetCode | 8. String to Integer (atoi))
-请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。
-解题思路这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：
-
-当字符串为空时，函数的返回值是多少；
-当字符串中遇到非法字符时，函数的返回值是多少；
-当字符串表示的数值超过int类型的范围时，">
-<meta property="og:updated_time" content="2016-10-02T09:12:54.000Z">
+<meta property="og:description" content="通过两个数组构造指定位数的最大整数。">
+<meta property="og:updated_time" content="2016-10-14T06:23:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 8. String to Integer (atoi)">
-<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 8. String to Integer (atoi))
-请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。
-解题思路这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：
-
-当字符串为空时，函数的返回值是多少；
-当字符串中遇到非法字符时，函数的返回值是多少；
-当字符串表示的数值超过int类型的范围时，">
+<meta name="twitter:title" content="白话LeetCode | 321. Create Maximum Number">
+<meta name="twitter:description" content="通过两个数组构造指定位数的最大整数。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
@@ -94,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" title="白话LeetCode | 8. String to Integer (atoi)" itemprop="url">白话LeetCode | 8. String to Integer (atoi)</a>
+      <a href="/2016/10/14/白话LeetCode-321-Create-Maximum-Number/" title="白话LeetCode | 321. Create Maximum Number" itemprop="url">白话LeetCode | 321. Create Maximum Number</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-02T07:28:36.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-14T02:10:07.000Z" itemprop="datePublished"> 发表于 2016-10-14</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -115,34 +97,29 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决子问题1"><span class="toc-number">2.0.1.</span> <span class="toc-text">解决子问题1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决子问题2"><span class="toc-number">2.0.2.</span> <span class="toc-text">解决子问题2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
 		
 		</div>
 		
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/string-to-integer-atoi/" target="_blank" rel="external">LeetCode | 8. String to Integer (atoi)</a>)</p>
-<p>请实现C++内置的atoi函数，该函数可以将string类型转换为int类型。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道字符串类型的模拟题，编程者需要在动手之前与面试官沟通以下三点问题：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/create-maximum-number/" target="_blank" rel="external">LeetCode | 321. Create Maximum Number</a>)</p>
+<p>给定两个数组，长度分别为<code>m</code>和<code>n</code>，数组中的元素大小在<code>0-9</code>范围内，这两个数组表示两个整数数值。请从两个数组中挑选部分元素构造一个最大的整数数值，它的长度要求<code>k \le m + n</code>。这个整数数值中元素的相对位置必须和元素在原先数组中的相对位置一致。函数要求返回一个长度为<code>k</code>的数组。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">输入：nums1 = [3, 4, 6, 5]，nums2 = [9, 1, 2, 5, 8, 3]，k = 5</div><div class="line">输出：[9, 8, 6, 5, 3]</div><div class="line"></div><div class="line">输入：nums1 = [6, 7]，nums2 = [6, 0, 4]，k = 5</div><div class="line">输出：[6, 7, 6, 0, 4]</div><div class="line"></div><div class="line">输入：nums1 = [3, 9]，nums2 = [8, 9]，k = 3</div><div class="line">输出：[9, 8, 9]</div></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>该问题可以转化为以下<code>两个子问题</code>，分别进行求解：</p>
 <ol>
-<li>当字符串为空时，函数的返回值是多少；</li>
-<li>当字符串中遇到非法字符时，函数的返回值是多少；</li>
-<li>当字符串表示的数值超过int类型的范围时，函数的返回值是多少。</li>
+<li>给定一个数组，请从中选择<code>t</code>个元素，使得在保持元素的相对位置不变的情况下，这t个元素构成的整数数值最大；</li>
+<li>给定两个数组，在保持数组元素相对位置不变的情况下合并两个数组，并使合并之后的数组表示的整数数值最大。</li>
 </ol>
-<p>对于以上的三点问题，我们可以做出以下假设：</p>
-<ul>
-<li>对于第(1)点问题，可以假定返回值为0；</li>
-<li>对于第(2)点问题，可以返回遇到非法字符之前的那部分字符串对应的数字；</li>
-<li>对于第(3)点问题，可以假设当超过int可以容纳的最大值时返回INT_MAX，当超过int可以容纳的最小值时返回INT_MIN。</li>
-</ul>
-<p>在编写代码的时候，还有两点问题需要注意：</p>
-<ol>
-<li>如果字符串的前缀或者后缀中包含空白符，需要对齐进行删除；</li>
-<li>字符串对应的int数值可能包含正负号，需要进行判断处理，例如<code>&quot;+12&quot;</code>、<code>&quot;-1&quot;</code>。</li>
-</ol>
-<p>当以上情况都考虑清楚之后，相信你可以很快的写出正确的解题代码。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(<span class="built_in">string</span> str)</span> </span>&#123;</div><div class="line">        <span class="comment">// 当字符串为空时，返回0</span></div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == str.length()) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="comment">// 删除前缀和后缀中包含的空白符</span></div><div class="line">        str.erase(<span class="number">0</span>, str.find_first_not_of(<span class="string">' '</span>));</div><div class="line">        str.erase(str.find_last_not_of(<span class="string">' '</span>) + <span class="number">1</span>);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> sign = <span class="number">1</span>, index = <span class="number">0</span>;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="comment">// 处理字符串中的正负号</span></div><div class="line">        <span class="keyword">if</span> (<span class="string">'+'</span> == str[index]) &#123;</div><div class="line">            ++index;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">'-'</span> == str[index]) &#123;</div><div class="line">            sign = <span class="number">-1</span>;</div><div class="line">            ++index;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &lt; str.length(); ++i) &#123;</div><div class="line">            <span class="comment">// 当遇到非法字符时，返回之前那部分字符串对应的数值</span></div><div class="line">            <span class="keyword">if</span> (<span class="string">'0'</span> &gt; str[i] || <span class="string">'9'</span> &lt; str[i]) <span class="keyword">break</span>;</div><div class="line">            ans = ans * <span class="number">10</span> + str[i] - <span class="string">'0'</span>;</div><div class="line">            <span class="comment">// 当超过int范围时，返回'INT_MAX'或'INT_MIN'</span></div><div class="line">            <span class="keyword">if</span> (INT_MAX &lt; ans) <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 添加正负号</span></div><div class="line">        ans *= sign;</div><div class="line">        <span class="comment">// 当超过int可以容纳的最大值时可以返回INT_MAX</span></div><div class="line">        <span class="keyword">if</span> (INT_MAX &lt; ans) <span class="keyword">return</span> INT_MAX;</div><div class="line">        <span class="comment">// 当超过int可以容纳的最小值时可以返回INT_MIN</span></div><div class="line">        <span class="keyword">if</span> (INT_MIN &gt; ans) <span class="keyword">return</span> INT_MIN;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<p>也就是说，我们首先需要按照上述要求从数组<code>nums1</code>中挑出<code>t1</code>个元素，从数组<code>nums2</code>中挑出<code>t2</code>个元素，并满足$t1 + t2 = t$，然后再将两个子数组进行合并。</p>
+<h4 id="解决子问题1"><a href="#解决子问题1" class="headerlink" title="解决子问题1"></a>解决子问题1</h4><p>这个子问题求解的思路与<a href="http://zhuixin8.com/2016/10/13/白话LeetCode-316-Remove-Duplicate-Letters/">白话LeetCode | 316. Remove Duplicate Letters</a>是一模一样的，所以我们一定要对自己用过的方法熟记在心并能灵活应用。</p>
+<p>我们需要使用一个栈来保存生成的答案。对原始数组进行一次遍历，如果当前元素小于栈顶元素，且栈中元素个数和未遍历元素的个数之和大于等于<code>t</code>，则弹出栈顶元素，反复进行直到不满足上述条件为止，然后将当前元素入栈。</p>
+<p>从栈中取前<code>t</code>个元素即为最终答案。</p>
+<h4 id="解决子问题2"><a href="#解决子问题2" class="headerlink" title="解决子问题2"></a>解决子问题2</h4><p>合并两个子数组的过程要求相对位置保持不变，因此可以利用归并排序中<code>merge</code>的思想，每次比较两个子数组的首个元素，取较大的那个存入答案数组，再比较剩余部分，如此反复进行。</p>
+<p>但是，这里的合并与归并排序有一点不同，就是当两个子数组的首个元素相等时，我们需要跳过首个元素继续比较下个元素，直到找到不相等的两个元素或者某一个数组到达尾部为止。</p>
+<p>上述的比较过程，C++的vector已经实现，因此我们只要直接调用vector的比较函数即可。这里需要再次强调，一定要熟悉C++ STL库函数！</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxNumber(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="keyword">int</span> m = nums1.size(), n = nums2.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = max(<span class="number">0</span>, k - n); i &lt;= min(k, m); ++i) &#123;</div><div class="line">            ans = max(ans, mergeNumber(getMax(nums1, i), getMax(nums2, k- i)));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; getMax(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        <span class="keyword">int</span> del = nums.size() - k;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num: nums) &#123;</div><div class="line">            <span class="keyword">while</span> (ans.size() &amp;&amp; ans.back() &lt; num &amp;&amp; del) &#123;</div><div class="line">                ans.pop_back();</div><div class="line">                --del;</div><div class="line">            &#125;</div><div class="line">            ans.push_back(num);</div><div class="line">        &#125;</div><div class="line">        ans.resize(k);</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; mergeNumber(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums2) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        <span class="keyword">while</span> (nums1.size() || nums2.size()) &#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; temp = nums1 &gt; nums2 ? nums1 : nums2;</div><div class="line">            ans.push_back(temp[<span class="number">0</span>]);</div><div class="line">            temp.erase(temp.begin());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -164,7 +141,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/String/">String</a>
+  <span></span> <a href="/tags/Sort/">Sort</a><a href="/tags/Stack/">Stack</a><a href="/tags/Greedy/">Greedy</a>
   </div>
 
 </div>
@@ -173,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" data-title="白话LeetCode | 8. String to Integer (atoi) | 追薪吧" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixin8.com/2016/10/14/白话LeetCode-321-Create-Maximum-Number/" data-title="白话LeetCode | 321. Create Maximum Number | 追薪吧" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -186,19 +163,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line">
-  <strong>上一篇：</strong><br/>
-  <span>
-  白话LeetCode | 149. Max Points on a Line</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/09/30/白话LeetCode-65-Valid-Number/"  title="白话LeetCode | 65. Valid Number">
+<a href="/2016/10/13/白话LeetCode-316-Remove-Duplicate-Letters/"  title="白话LeetCode | 316. Remove Duplicate Letters">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 65. Valid Number
+ <span>白话LeetCode | 316. Remove Duplicate Letters
 </span>
 </a>
 </div>
@@ -207,7 +176,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-8-String-to-Integer-atoi/" data-title="白话LeetCode | 8. String to Integer (atoi)" data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-8-String-to-Integer-atoi/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/14/白话LeetCode-321-Create-Maximum-Number/" data-title="白话LeetCode | 321. Create Maximum Number" data-url="http://zhuixin8.com/2016/10/14/白话LeetCode-321-Create-Maximum-Number/"></div>
 </section>
 
 
@@ -218,7 +187,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决子问题1"><span class="toc-number">2.0.1.</span> <span class="toc-text">解决子问题1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决子问题2"><span class="toc-number">2.0.2.</span> <span class="toc-text">解决子问题2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
  
   </div>
 
