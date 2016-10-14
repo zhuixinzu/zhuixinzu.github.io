@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixin8.com/2016/10/14/白话LeetCode-321-Create-Maximum-Number/index.html">
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="通过两个数组构造指定位数的最大整数。">
-<meta property="og:updated_time" content="2016-10-14T06:26:46.000Z">
+<meta property="og:updated_time" content="2016-10-14T06:27:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 321. Create Maximum Number">
 <meta name="twitter:description" content="通过两个数组构造指定位数的最大整数。">
@@ -114,7 +114,7 @@
 </ol>
 <p>也就是说，我们首先需要按照上述要求从数组<code>nums1</code>中挑出<code>t1</code>个元素，从数组<code>nums2</code>中挑出<code>t2</code>个元素，并满足$t1 + t2 = t$，然后再将两个子数组进行合并。</p>
 <h3 id="解决子问题1"><a href="#解决子问题1" class="headerlink" title="解决子问题1"></a>解决子问题1</h3><p>这个子问题求解的思路与<a href="http://zhuixin8.com/2016/10/13/白话LeetCode-316-Remove-Duplicate-Letters/">白话LeetCode | 316. Remove Duplicate Letters</a>是一模一样的，所以我们一定要对自己用过的方法熟记在心并能灵活应用。</p>
-<p>我们需要使用一个栈来保存生成的答案。对原始数组进行一次遍历，如果当前元素小于栈顶元素，且栈中元素个数和未遍历元素的个数之和大于等于<code>t</code>，则弹出栈顶元素，反复进行直到不满足上述条件为止，然后将当前元素入栈。</p>
+<p>我们需要使用一个栈来保存生成的答案。对原始数组进行一次遍历，如果当前元素小于栈顶元素，且栈中元素个数与未遍历元素的个数之和大于等于<code>t</code>，则弹出栈顶元素，反复进行直到不满足上述条件为止，然后将当前元素入栈。</p>
 <p>从栈中取前<code>t</code>个元素即为最终答案。</p>
 <h3 id="解决子问题2"><a href="#解决子问题2" class="headerlink" title="解决子问题2"></a>解决子问题2</h3><p>合并两个子数组的过程要求相对位置保持不变，因此可以利用归并排序中<code>merge</code>的思想，每次比较两个子数组的首个元素，取较大的那个存入答案数组，再比较剩余部分，如此反复进行。</p>
 <p>但是，这里的合并与归并排序有一点不同，就是当两个子数组的首个元素相等时，我们需要跳过首个元素继续比较下个元素，直到找到不相等的两个元素或者某一个数组到达尾部为止。</p>
@@ -236,11 +236,11 @@
 			
 		
 			
-				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
 			
 		
 			
@@ -252,15 +252,7 @@
 			
 		
 			
-				<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Array/" title="Array">Array<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Two-Pointers/" title="Two Pointers">Two Pointers<sup>2</sup></a></li>
 			
 		
 			
@@ -269,6 +261,14 @@
 		
 			
 				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Two-Pointers/" title="Two Pointers">Two Pointers<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>2</sup></a></li>
 			
 		
 			
