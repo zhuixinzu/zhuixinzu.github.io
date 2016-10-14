@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixin8.com/2016/10/14/白话LeetCode-321-Create-Maximum-Number/index.html">
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="通过两个数组构造指定位数的最大整数。">
-<meta property="og:updated_time" content="2016-10-14T06:27:57.000Z">
+<meta property="og:updated_time" content="2016-10-14T06:37:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 321. Create Maximum Number">
 <meta name="twitter:description" content="通过两个数组构造指定位数的最大整数。">
@@ -97,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决子问题1"><span class="toc-number">2.1.</span> <span class="toc-text">解决子问题1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决子问题2"><span class="toc-number">2.2.</span> <span class="toc-text">解决子问题2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决子问题1"><span class="toc-number">2.1.</span> <span class="toc-text">解决子问题1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决子问题2"><span class="toc-number">2.2.</span> <span class="toc-text">解决子问题2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">2.3.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
 		
 		</div>
 		
@@ -118,6 +118,7 @@
 <h3 id="解决子问题2"><a href="#解决子问题2" class="headerlink" title="解决子问题2"></a>解决子问题2</h3><p>合并两个子数组的过程要求相对位置保持不变，因此可以利用归并排序中<code>merge</code>的思想，每次比较两个子数组的首个元素，取较大的那个存入答案数组，再比较剩余部分，如此反复进行。</p>
 <p>但是，这里的合并与归并排序有一点不同，就是当两个子数组的首个元素相等时，我们需要跳过首个元素继续比较下个元素，直到找到不相等的两个元素或者某一个数组到达尾部为止。</p>
 <p>上述的比较过程，C++的vector已经实现，因此我们只要直接调用vector的比较函数即可。这里需要再次强调，一定要熟悉C++ STL库函数！</p>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>在解决子问题一和子问题二之前，我们需要枚举<code>t1</code>和<code>t2</code>的大小，这一步的而时间复杂为<code>O(k)</code>；而解决子问题一的时间复杂度为<code>O(m+n)</code>，解决子问题二的时间复杂度为<code>O(k)</code>，而$k \le m + n$。因此，得到整体的时间复杂度为<code>O(k*(m+n))</code>。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxNumber(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="keyword">int</span> m = nums1.size(), n = nums2.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = max(<span class="number">0</span>, k - n); i &lt;= min(k, m); ++i) &#123;</div><div class="line">            ans = max(ans, mergeNumber(getMax(nums1, i), getMax(nums2, k- i)));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; getMax(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        <span class="keyword">int</span> del = nums.size() - k;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num: nums) &#123;</div><div class="line">            <span class="keyword">while</span> (ans.size() &amp;&amp; ans.back() &lt; num &amp;&amp; del) &#123;</div><div class="line">                ans.pop_back();</div><div class="line">                --del;</div><div class="line">            &#125;</div><div class="line">            ans.push_back(num);</div><div class="line">        &#125;</div><div class="line">        ans.resize(k);</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; mergeNumber(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums2) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        <span class="keyword">while</span> (nums1.size() || nums2.size()) &#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; temp = nums1 &gt; nums2 ? nums1 : nums2;</div><div class="line">            ans.push_back(temp[<span class="number">0</span>]);</div><div class="line">            temp.erase(temp.begin());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
@@ -186,7 +187,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决子问题1"><span class="toc-number">2.1.</span> <span class="toc-text">解决子问题1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决子问题2"><span class="toc-number">2.2.</span> <span class="toc-text">解决子问题2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决子问题1"><span class="toc-number">2.1.</span> <span class="toc-text">解决子问题1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决子问题2"><span class="toc-number">2.2.</span> <span class="toc-text">解决子问题2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">2.3.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
  
   </div>
 
@@ -255,11 +256,11 @@
 			
 		
 			
-				<li><a href="/tags/Sort/" title="Sort">Sort<sup>2</sup></a></li>
+				<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>2</sup></a></li>
 			
 		
 			
@@ -267,7 +268,7 @@
 			
 		
 			
-				<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>2</sup></a></li>
+				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
 			
 		
 			
@@ -275,19 +276,19 @@
 			
 		
 			
-				<li><a href="/tags/Heap/" title="Heap">Heap<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Inclusion-exclusion/" title="Inclusion-exclusion">Inclusion-exclusion<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
+				<li><a href="/tags/Heap/" title="Heap">Heap<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
 			
 		
 			
