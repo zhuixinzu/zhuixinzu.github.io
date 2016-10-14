@@ -5,12 +5,14 @@
     
   <url>
     <loc>http://zhuixin8.com/2016/10/14/%E7%99%BD%E8%AF%9DLeetCode-10-Regular-Expression-Matching/</loc>
-    <lastmod>2016-10-14T14:00:05.000Z</lastmod>
+    <lastmod>2016-10-14T14:01:22.000Z</lastmod>
     <data>
         <display>
         <title>白话LeetCode | 10. Regular Expression Matching</title>
         <pubTime>2016-10-14T07:55:40.000Z</pubTime>
         
+        <tag>Dynamic Programming</tag>
+         
          
            
              
@@ -460,9 +462,9 @@
         
         <tag>Backtracking</tag>
          
-        <tag>Trie</tag>
-         
         <tag>Design</tag>
+         
+        <tag>Trie</tag>
          
          
            
@@ -586,9 +588,9 @@
         <title>白话LeetCode | 146. LRU Cache</title>
         <pubTime>2016-10-04T06:35:17.000Z</pubTime>
         
-        <tag>HashTable</tag>
-         
         <tag>Design</tag>
+         
+        <tag>HashTable</tag>
          
         <tag>Deque</tag>
          
