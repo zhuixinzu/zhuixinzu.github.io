@@ -2,217 +2,224 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-98-Validate-Binary-Search-Tree/</loc>
+    <loc>http://zhuixin8.com/leetcode/index.html</loc>
+    
+    <lastmod>2016-10-15T06:53:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-98/</loc>
     
     <lastmod>2016-10-15T02:20:16.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-8-String-to-Integer-atoi/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-8/</loc>
     
     <lastmod>2016-10-15T02:19:45.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-76-Minimum-Window-Substring/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-76/</loc>
     
     <lastmod>2016-10-15T02:19:30.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-68-Text-Justification/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-68/</loc>
     
     <lastmod>2016-10-15T02:19:17.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-65-Valid-Number/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-65/</loc>
     
     <lastmod>2016-10-15T02:19:10.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-44-Wildcard-Matching/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-44/</loc>
     
     <lastmod>2016-10-15T02:18:54.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-4-Median-of-Two-Sorted-Arrays/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-4/</loc>
     
     <lastmod>2016-10-15T02:18:41.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-335-Self-Crossing/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-335/</loc>
     
     <lastmod>2016-10-15T02:18:29.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-321-Create-Maximum-Number/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-321/</loc>
     
     <lastmod>2016-10-15T02:18:17.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-32-Longest-Valid-Parentheses/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-32/</loc>
     
     <lastmod>2016-10-15T02:18:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-316-Remove-Duplicate-Letters/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-316/</loc>
     
     <lastmod>2016-10-15T02:17:52.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-304-Range-Sum-Query-2D-Immutable/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-304/</loc>
     
     <lastmod>2016-10-15T02:17:38.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-30-Substring-with-Concatenation-of-All-Words/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-30/</loc>
     
     <lastmod>2016-10-15T02:17:27.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-295-Find-Median-from-Data-Stream/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-295/</loc>
     
     <lastmod>2016-10-15T02:17:16.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-29-Divide-Two-Integers/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-29/</loc>
     
     <lastmod>2016-10-15T02:17:03.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-220-Contains-Duplicate-III/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-220/</loc>
     
     <lastmod>2016-10-15T02:16:44.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-212-Word-Search-II/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-212/</loc>
     
     <lastmod>2016-10-15T02:16:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-211-Add-and-Search-Word-Data-structure-design/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-211/</loc>
     
     <lastmod>2016-10-15T02:16:27.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-189-Rotate-Array/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-189/</loc>
     
     <lastmod>2016-10-15T02:16:10.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-188-Best-Time-to-Buy-and-Sell-Stock-IV/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-188/</loc>
     
     <lastmod>2016-10-15T02:15:58.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-179-Largest-Number/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-179/</loc>
     
     <lastmod>2016-10-15T02:15:44.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-174-Dungeon-Game/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-174/</loc>
     
     <lastmod>2016-10-15T02:15:28.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-166-Fraction-to-Recurring-Decimal/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-166/</loc>
     
     <lastmod>2016-10-15T02:15:13.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-151-Reverse-Words-in-a-String/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-151/</loc>
     
     <lastmod>2016-10-15T02:15:01.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-15-3Sum/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-15/</loc>
     
     <lastmod>2016-10-15T02:14:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-149-Max-Points-on-a-Line/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-149/</loc>
     
     <lastmod>2016-10-15T02:14:34.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-146-LRU-Cache/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-146/</loc>
     
     <lastmod>2016-10-15T02:14:19.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-140-Word-Break-II/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-140/</loc>
     
     <lastmod>2016-10-15T02:14:03.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-132-Palindrome-Partitioning-II/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-132/</loc>
     
     <lastmod>2016-10-15T02:13:29.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-130-Surrounded-Regions/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-130/</loc>
     
     <lastmod>2016-10-15T02:12:40.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhuixin8.com/2016/10/02/%E7%99%BD%E8%AF%9DLeetCode-10-Regular-Expression-Matching/</loc>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-10/</loc>
     
     <lastmod>2016-10-15T02:12:08.000Z</lastmod>
     
