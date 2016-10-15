@@ -1,0 +1,639 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>白话LeetCode | 174. Dungeon Game | 追薪吧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="追薪吧">
+    
+
+    
+    <meta name="description" content="骑士即将去拯救被恶魔抓走的公主，请帮助骑士计算他需要的最少血量。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白话LeetCode | 174. Dungeon Game">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/02/白话LeetCode-174-Dungeon-Game/index.html">
+<meta property="og:site_name" content="追薪吧">
+<meta property="og:description" content="骑士即将去拯救被恶魔抓走的公主，请帮助骑士计算他需要的最少血量。">
+<meta property="og:updated_time" content="2016-10-15T02:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="白话LeetCode | 174. Dungeon Game">
+<meta name="twitter:description" content="骑士即将去拯救被恶魔抓走的公主，请帮助骑士计算他需要的最少血量。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/zhuixinzu.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/zhuixinzu.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/zhuixinzu.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="追薪吧">追薪吧</a></h1>
+				<h2 class="blog-motto">最新校招信息 / 最牛前辈经验 / 最全试题剖析</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:zhuixin8.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/02/白话LeetCode-174-Dungeon-Game/" title="白话LeetCode | 174. Dungeon Game" itemprop="url">白话LeetCode | 174. Dungeon Game</a>
+  </h1>
+  <p class="article-author"> 作者
+       
+		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-01T16:02:54.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+  </p>
+  <p class="article-stat">
+		<span id="busuanzi_container_page_pv">
+			阅读次数 <span id="busuanzi_value_page_pv"></span>
+		</span>
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+		
+		</div>
+		
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/dungeon-game/" target="_blank" rel="external">LeetCode | 174. Dungeon Game</a>)</p>
+<p>公主(P)被恶魔抓走了！她被囚禁在了地牢的右下角。地牢由二维平面上的$M \times N$个房间组成。骑士(K)的起始位置在地图的左上角，他必须一路穿过地牢的房间去拯救位于右下角的公主。</p>
+<p>骑士起始的时候有一定数量的生命值。如果在任意时刻，骑士的血量低于或者等于零，他会立即死去。</p>
+<p>有一些房间是由恶魔把守的，骑士进入这些房间会损失掉一定数量的生命值(负整数)，其他房间可能是空的(零)也有可能有魔法药水来帮助他增加生命值(正整数)。</p>
+<p>为了尽可能快的营救公主，骑士决定每次移动只向右和向下两个方向走。</p>
+<p>请写一个函数来计算骑士营救公主所需要的最少血量。</p>
+<p>例如，给出地牢的地图如下所示，骑士初始情况下最少需要7滴血量才可营救公主，移动方向为<code>右-&gt;右-&gt;下-&gt;下</code>。</p>
+<table border="1" style="margin:auto"><tr><td>-2(K)</td><td>-3</td><td>3</td></tr><tr><td>-5</td><td>-10</td><td>1</td></tr><tr><td>10</td><td>30</td><td>-5(P)</td></tr></table>
+
+<p>注意：</p>
+<ul>
+<li>骑士的血量没有上限；</li>
+<li>任意的房间都有可能存在威胁或者补给，包括骑士初始位于的房间，以及公主所在的房间。</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>题目虽然看起来很长，答案并没有想象中的那么复杂。下面我们来一步步进行分析。</p>
+<p>假设骑士位于坐标为(i, j)的位置上，如果我们想要知道从这一点出发到达公主所在的房间所需要的最少血量(记为dp[i][j])的话，与哪些因素有关系呢？因为骑士只能向右或者向下走，因此该值取决于三个方面：</p>
+<ul>
+<li>骑士从坐标(i+1,j)出发到达公主所在的房间所需要的最少血量，dp[i+1][j]；</li>
+<li>骑士从坐标(i,j+1)出发到达公主所在的房间所需要的最少血量，dp[i][j+1]；</li>
+<li>坐标(i,j)所在的房间中包含的补给或威胁对应的数值，dungeon[i][j]。</li>
+</ul>
+<p>分析到这里，其实可以看出动态规划转移方程的雏形了，具体描述如下：</p>
+<p>$$dp[i][j] = max(1, min(dp[i+1][j],dp[i][j+1])-dungeon[i][j])$$</p>
+<p>其中，$min(dp[i+1][j],dp[i][j+1])$表示从向右或者向下的道路中选择所需血量较少的那一条路前进，因为房间中可能有怪物或者补给，所以得到的值需要减去这个房间中补给或怪物对应的数值dungeon[i][j]，又因为骑士的血量不能低于1，因此还需要执行max函数来保证dp[i][j]大于等于1。</p>
+<p>然后根据动态规划转移方程从右向左、从下到上依次计算，最后得到的dp[0][0]即为所求。</p>
+<p>相信你对这道题目动态规划解法的来龙去脉已经理清楚了。需要注意的是，在写代码的过程中一定要注意边界的检查，不要出现数组越界的情况。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculateMinimumHP</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; dungeon)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> dungeonRowSize = dungeon.size();</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == dungeonRowSize) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> dungeonColSize = dungeon[<span class="number">0</span>].size();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = dungeonRowSize - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = dungeonColSize - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</div><div class="line">                <span class="keyword">if</span> (i == dungeonRowSize - <span class="number">1</span> &amp;&amp; j == dungeonColSize - <span class="number">1</span>) &#123;</div><div class="line">                    dungeon[i][j] = max(<span class="number">1</span>, <span class="number">1</span> - dungeon[i][j]);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">int</span> r = j &lt; dungeonColSize - <span class="number">1</span> ? dungeon[i][j + <span class="number">1</span>] : INF;</div><div class="line">                    <span class="keyword">int</span> d = i &lt; dungeonRowSize - <span class="number">1</span> ? dungeon[i + <span class="number">1</span>][j] : INF;</div><div class="line">                    dungeon[i][j] = max(<span class="number">1</span>, min(r, d) - dungeon[i][j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dungeon[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+		<!--
+		<br>
+		<hr>
+		<p>
+			<a href="http://zhuixinzu.win/img/about/LOGO-%E5%85%AC%E4%BC%97%E5%8F%B7%E6%8E%A8%E5%B9%BF.png" title="" class="fancybox" rel="article0">
+				<img src="/img/about/LOGO-公众号推广.png" style="display:block;margin:auto">
+			</a>	
+		</p>
+		-->
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/白话LeetCode/">白话LeetCode</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-174-Dungeon-Game/" data-title="白话LeetCode | 174. Dungeon Game | 追薪吧" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/10/02/白话LeetCode-179-Largest-Number/" title="白话LeetCode | 179. Largest Number">
+  <strong>上一篇：</strong><br/>
+  <span>
+  白话LeetCode | 179. Largest Number</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/10/02/白话LeetCode-166-Fraction-to-Recurring-Decimal/"  title="白话LeetCode | 166. Fraction to Recurring Decimal">
+ <strong>下一篇：</strong><br/> 
+ <span>白话LeetCode | 166. Fraction to Recurring Decimal
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-174-Dungeon-Game/" data-title="白话LeetCode | 174. Dungeon Game" data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-174-Dungeon-Game/"></div>
+</section>
+
+
+</div>  
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="linkslist">
+  <p class="asidetitle">书籍</p>
+  <div style="text-align:center">
+	<div style="width:120px;height:170px;margin:auto;border-style:outset;">
+<iframe src="http://rcm-cn.amazon-adsystem.com/e/cm?lt1=_blank&bc1=FFFFFF&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=zhuixinzu-23&o=28&p=8&l=as1&m=amazon&f=ifr&ref=tf_til&asins=B00L5LKMVU" style="width:120px;height:170px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+	</div>
+  </div>
+</div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/白话LeetCode/" title="白话LeetCode">白话LeetCode<sup>31</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/String/" title="String">String<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HashTable/" title="HashTable">HashTable<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Design/" title="Design">Design<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Stack/" title="Stack">Stack<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Array/" title="Array">Array<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Two-Pointers/" title="Two Pointers">Two Pointers<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Heap/" title="Heap">Heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Inclusion-exclusion/" title="Inclusion-exclusion">Inclusion-exclusion<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Binary-Search/" title="Binary Search">Binary Search<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Divide-and-Conquer/" title="Divide and Conquer">Divide and Conquer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Tree/" title="Tree">Tree<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 追薪吧，帮你站在巨人的肩膀上！ <br/>
+			最新校招信息 / 最牛前辈经验 / 最全试题剖析</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/zhuixinzu" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zhuixinzu2016@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="追薪吧">追薪吧</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+<!-- 不蒜子 -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 百度站长 -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a151a57283311f5ba2acf75ff9d027ce";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zhuixin8"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a151a57283311f5ba2acf75ff9d027ce";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,646 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>白话LeetCode | 146. LRU Cache | 追薪吧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="追薪吧">
+    
+
+    
+    <meta name="description" content="问题描述(原题链接：LeetCode | 146. LRU Cache)
+请设计并实现最近最少使用(Least Recently Used, LRU)缓存替换算法所需要的数据结构，它需要支持以下两个操作：
+
+get(key) - 返回缓存中key对应的value，如果不存在key的话，返回-1；
+set(key, value) - 如果缓存中不存在该键值对的话，将其插入缓存中，如果缓存超过最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白话LeetCode | 146. LRU Cache">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/02/白话LeetCode-146-LRU-Cache/index.html">
+<meta property="og:site_name" content="追薪吧">
+<meta property="og:description" content="问题描述(原题链接：LeetCode | 146. LRU Cache)
+请设计并实现最近最少使用(Least Recently Used, LRU)缓存替换算法所需要的数据结构，它需要支持以下两个操作：
+
+get(key) - 返回缓存中key对应的value，如果不存在key的话，返回-1；
+set(key, value) - 如果缓存中不存在该键值对的话，将其插入缓存中，如果缓存超过最">
+<meta property="og:image" content="http://zhuixin8.com/img/白话LeetCode/146/data-structure.png">
+<meta property="og:updated_time" content="2016-10-15T02:14:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="白话LeetCode | 146. LRU Cache">
+<meta name="twitter:description" content="问题描述(原题链接：LeetCode | 146. LRU Cache)
+请设计并实现最近最少使用(Least Recently Used, LRU)缓存替换算法所需要的数据结构，它需要支持以下两个操作：
+
+get(key) - 返回缓存中key对应的value，如果不存在key的话，返回-1；
+set(key, value) - 如果缓存中不存在该键值对的话，将其插入缓存中，如果缓存超过最">
+<meta name="twitter:image" content="http://zhuixin8.com/img/白话LeetCode/146/data-structure.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/zhuixinzu.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/zhuixinzu.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/zhuixinzu.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="追薪吧">追薪吧</a></h1>
+				<h2 class="blog-motto">最新校招信息 / 最牛前辈经验 / 最全试题剖析</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">关于 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:zhuixin8.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/02/白话LeetCode-146-LRU-Cache/" title="白话LeetCode | 146. LRU Cache" itemprop="url">白话LeetCode | 146. LRU Cache</a>
+  </h1>
+  <p class="article-author"> 作者
+       
+		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-01T16:02:26.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+  </p>
+  <p class="article-stat">
+		<span id="busuanzi_container_page_pv">
+			阅读次数 <span id="busuanzi_value_page_pv"></span>
+		</span>
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+		
+		</div>
+		
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/lru-cache/" target="_blank" rel="external">LeetCode | 146. LRU Cache</a>)</p>
+<p>请设计并实现<code>最近最少使用(Least Recently Used, LRU)</code>缓存替换算法所需要的数据结构，它需要支持以下两个操作：</p>
+<ul>
+<li><code>get(key)</code> - 返回缓存中key对应的value，如果不存在key的话，返回-1；</li>
+<li><code>set(key, value)</code> - 如果缓存中不存在该键值对的话，将其插入缓存中，如果缓存超过最大容量，则将缓存中最近最久没有使用的键值对删除。</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这是一道很经典的设计题，下面我们来逐步分析该数据结构的设计。</p>
+<ol>
+<li>为了实现<code>get(key)</code>方法，所以必然要通过Map来建立从key到value的映射，这样查询的时间复杂度为<code>O(1)</code>；</li>
+<li>为了实现<code>set(key, value)</code>方法，我们需要知道内存中最近最久没有使用的键值对，该功能可以通过一个双端队列来实现，并按照使用的时间来排列双端队列中的元素，这样插入新元素及删除过期元素的时间复杂度为<code>O(1)</code>；</li>
+<li>综合第(1)点和第(2)点来看，我们可以将第(1)步中的Map由key到value的映射改为key到双端队列中节点的映射，这样无论是查询、插入还是删除的时间复杂度均为<code>O(1)</code>，该数据结构如下图所示。</li>
+</ol>
+<p><img src="/img/白话LeetCode/146/data-structure.png" style="display:block;margin:auto"></p>
+<p>在自己实现双端队列等链表类型的数据结构时，有一些小技巧可供借鉴：</p>
+<ul>
+<li>在链表开始和结束的地方，各自额外增加一个节点作为链表头和链表尾，这样做的好处是在处理第一个节点元素和最后一个节点元素时，不需要进行特判是否位于链表的边界，这样既可以增加程序的健壮性，又可以让代码变得简洁美观。</li>
+</ul>
+<p>除此之外，你需要注意为自己设计的类添加析构函数，释放构造函数中分配的内存。</p>
+<p>该题的难点在于如何综合已知的数据结构来构造一个可以满足新需求的数据结构，如果读者能够认真题目所需的功能并结合自己平时学到的数据结构的特点，相信一定可以给出正确的解决办法。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 双端队列数据结构</span></div><div class="line"><span class="keyword">struct</span> DequeNode &#123;</div><div class="line">    <span class="keyword">int</span> key, value;</div><div class="line">    DequeNode* prev;</div><div class="line">    DequeNode* next;</div><div class="line">    </div><div class="line">    DequeNode(): key(<span class="number">0</span>), value(<span class="number">0</span>), prev(<span class="literal">NULL</span>), next(<span class="literal">NULL</span>) &#123;&#125;</div><div class="line">    DequeNode(<span class="keyword">int</span> k, <span class="keyword">int</span> v, DequeNode* p, DequeNode* n): key(k), value(v), prev(p), next(n) &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">class</span> LRUCache&#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> capacity;</div><div class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, DequeNode *&gt; hash;</div><div class="line">    DequeNode* head;</div><div class="line">    DequeNode* tail;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    LRUCache(<span class="keyword">int</span> capacity) &#123;</div><div class="line">        <span class="keyword">this</span>-&gt;capacity = capacity;</div><div class="line">        <span class="keyword">this</span>-&gt;head = <span class="keyword">new</span> DequeNode();</div><div class="line">        <span class="keyword">this</span>-&gt;tail = <span class="keyword">new</span> DequeNode();</div><div class="line">        head-&gt;next = tail;</div><div class="line">        tail-&gt;prev = head;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    ~LRUCache() &#123;</div><div class="line">        <span class="keyword">delete</span> head;</div><div class="line">        <span class="keyword">delete</span> tail;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</div><div class="line">        <span class="comment">// 如果HashTable中不存在key，返回-1</span></div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == hash.count(key)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">        &#125; </div><div class="line">        <span class="comment">// 如果HashTable中存在key，则更新key为最近访问的元素</span></div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            update(hash[key]);</div><div class="line">            <span class="keyword">return</span> hash[key]-&gt;value;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">        <span class="comment">// 如果HashTable中存在key，则更新对应的value，并设置其为最近访问的元素</span></div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> != hash.count(key)) &#123;</div><div class="line">            hash[key]-&gt;value = value;</div><div class="line">            update(hash[key]);</div><div class="line">        &#125; </div><div class="line">        <span class="comment">// 如果HashTable中不存在key，将其插入缓存中</span></div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// 如果缓存超过最大容量，删除最近最久没有使用的元素</span></div><div class="line">            <span class="keyword">if</span> (capacity == hash.size()) &#123;</div><div class="line">                DequeNode* node = head-&gt;next;</div><div class="line">                hash.erase(node-&gt;key);</div><div class="line">                head-&gt;next = node-&gt;next;</div><div class="line">                head-&gt;next-&gt;prev = head;</div><div class="line">                <span class="keyword">delete</span> node;</div><div class="line">            &#125;</div><div class="line">            DequeNode* node = <span class="keyword">new</span> DequeNode(key, value, tail-&gt;prev, tail);</div><div class="line">            tail-&gt;prev-&gt;next = node;</div><div class="line">            tail-&gt;prev = node;</div><div class="line">            hash[key] = node;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 更新node为最近访问的元素，即将其插入队尾</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(DequeNode* node)</span> </span>&#123;</div><div class="line">        node-&gt;prev-&gt;next = node-&gt;next;</div><div class="line">        node-&gt;next-&gt;prev = node-&gt;prev;</div><div class="line">        tail-&gt;prev-&gt;next = node;</div><div class="line">        node-&gt;prev = tail-&gt;prev;</div><div class="line">        tail-&gt;prev = node;</div><div class="line">        node-&gt;next = tail;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+		<!--
+		<br>
+		<hr>
+		<p>
+			<a href="http://zhuixinzu.win/img/about/LOGO-%E5%85%AC%E4%BC%97%E5%8F%B7%E6%8E%A8%E5%B9%BF.png" title="" class="fancybox" rel="article0">
+				<img src="/img/about/LOGO-公众号推广.png" style="display:block;margin:auto">
+			</a>	
+		</p>
+		-->
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/白话LeetCode/">白话LeetCode</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/HashTable/">HashTable</a><a href="/tags/Design/">Design</a><a href="/tags/Deque/">Deque</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-146-LRU-Cache/" data-title="白话LeetCode | 146. LRU Cache | 追薪吧" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/10/02/白话LeetCode-149-Max-Points-on-a-Line/" title="白话LeetCode | 149. Max Points on a Line">
+  <strong>上一篇：</strong><br/>
+  <span>
+  白话LeetCode | 149. Max Points on a Line</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/10/02/白话LeetCode-140-Word-Break-II/"  title="白话LeetCode | 140. Word Break II">
+ <strong>下一篇：</strong><br/> 
+ <span>白话LeetCode | 140. Word Break II
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/02/白话LeetCode-146-LRU-Cache/" data-title="白话LeetCode | 146. LRU Cache" data-url="http://zhuixin8.com/2016/10/02/白话LeetCode-146-LRU-Cache/"></div>
+</section>
+
+
+</div>  
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="linkslist">
+  <p class="asidetitle">书籍</p>
+  <div style="text-align:center">
+	<div style="width:120px;height:170px;margin:auto;border-style:outset;">
+<iframe src="http://rcm-cn.amazon-adsystem.com/e/cm?lt1=_blank&bc1=FFFFFF&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=zhuixinzu-23&o=28&p=8&l=as1&m=amazon&f=ifr&ref=tf_til&asins=B00L5LKMVU" style="width:120px;height:170px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+	</div>
+  </div>
+</div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/白话LeetCode/" title="白话LeetCode">白话LeetCode<sup>31</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Dynamic-Programming/" title="Dynamic Programming">Dynamic Programming<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/String/" title="String">String<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HashTable/" title="HashTable">HashTable<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Design/" title="Design">Design<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Stack/" title="Stack">Stack<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Array/" title="Array">Array<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Two-Pointers/" title="Two Pointers">Two Pointers<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Heap/" title="Heap">Heap<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Deque/" title="Deque">Deque<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Inclusion-exclusion/" title="Inclusion-exclusion">Inclusion-exclusion<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Binary-Search/" title="Binary Search">Binary Search<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Divide-and-Conquer/" title="Divide and Conquer">Divide and Conquer<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Tree/" title="Tree">Tree<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 追薪吧，帮你站在巨人的肩膀上！ <br/>
+			最新校招信息 / 最牛前辈经验 / 最全试题剖析</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/zhuixinzu" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zhuixinzu2016@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="追薪吧">追薪吧</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+<!-- 不蒜子 -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 百度站长 -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a151a57283311f5ba2acf75ff9d027ce";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"zhuixin8"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a151a57283311f5ba2acf75ff9d027ce";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
