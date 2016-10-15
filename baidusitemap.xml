@@ -56,9 +56,9 @@
         
         <tag>HashTable</tag>
          
-        <tag>String</tag>
-         
         <tag>Two Pointers</tag>
+         
+        <tag>String</tag>
          
          
            
@@ -378,9 +378,9 @@
         <title>白话LeetCode | 211. Add and Search Word - Data structure design</title>
         <pubTime>2016-10-01T16:03:31.000Z</pubTime>
         
-        <tag>Backtracking</tag>
-         
         <tag>Design</tag>
+         
+        <tag>Backtracking</tag>
          
         <tag>Trie</tag>
          
