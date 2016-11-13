@@ -3,6 +3,28 @@
 
 
     
+  <url>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-152/</loc>
+    <lastmod>2016-11-13T08:03:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>白话LeetCode | 152. Maximum Product Subarray</title>
+        <pubTime>2016-10-01T16:02:32.000Z</pubTime>
+        
+        <tag>Dynamic Programming</tag>
+         
+        <tag>Array</tag>
+         
+         
+           
+             
+              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://zhuixin8.com/2016/10/02/leetcode-98/</loc>
@@ -378,9 +400,9 @@
         <title>白话LeetCode | 211. Add and Search Word - Data structure design</title>
         <pubTime>2016-10-01T16:03:31.000Z</pubTime>
         
-        <tag>Design</tag>
-         
         <tag>Backtracking</tag>
+         
+        <tag>Design</tag>
          
         <tag>Trie</tag>
          
@@ -568,9 +590,9 @@
         <title>白话LeetCode | 146. LRU Cache</title>
         <pubTime>2016-10-01T16:02:26.000Z</pubTime>
         
-        <tag>Design</tag>
-         
         <tag>HashTable</tag>
+         
+        <tag>Design</tag>
          
         <tag>Deque</tag>
          
