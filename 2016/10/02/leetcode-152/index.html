@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixin8.com/2016/10/02/leetcode-152/index.html">
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="在数组中寻找乘积最大的连续子串。">
-<meta property="og:updated_time" content="2016-11-13T08:10:26.000Z">
+<meta property="og:updated_time" content="2016-11-13T08:10:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 152. Maximum Product Subarray">
 <meta name="twitter:description" content="在数组中寻找乘积最大的连续子串。">
@@ -116,8 +116,8 @@
 </li>
 </ol>
 <p>这样，我们得到递推公式：</p>
-<p>$$max_local[i] = max(max(nums[i] <em> max_local[i-1], nums[i] </em> min_local[i-1]), nums[i])$$</p>
-<p>$$min_local[i] = min(min(nums[i] <em> max_local[i-1], nums[i] </em> min_local[i-1]), nums[i])$$</p>
+<p>$$max_local[i] = max(max(nums[i] * max_local[i-1], nums[i] * min_local[i-1]), nums[i])$$</p>
+<p>$$min_local[i] = min(min(nums[i] * max_local[i-1], nums[i] * min_local[i-1]), nums[i])$$</p>
 <p>说明一下，上述递推公式在计算max_local[i]时，考虑了max_local[i-1]中包含0元素的情况，否则连乘会一直为0，所以尝试将nums[i]单独作为连续子序列。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = nums.size();</div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == n) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">1</span> == n) &#123;</div><div class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> max_local = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span> min_local = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span> ans = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</div><div class="line">            <span class="keyword">int</span> max_local_copy = max_local;</div><div class="line">            <span class="keyword">int</span> min_local_copy = min_local;</div><div class="line">            max_local = max(max(nums[i] * max_local_copy, nums[i] * min_local_copy), nums[i]);</div><div class="line">            min_local = min(min(nums[i] * max_local_copy, nums[i] * min_local_copy), nums[i]);</div><div class="line">            ans = max(ans, max_local);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
@@ -244,11 +244,11 @@
 			
 		
 			
-				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
+				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Backtracking/" title="Backtracking">Backtracking<sup>4</sup></a></li>
+				<li><a href="/tags/Math/" title="Math">Math<sup>4</sup></a></li>
 			
 		
 			
@@ -268,15 +268,15 @@
 			
 		
 			
-				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Sort/" title="Sort">Sort<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Greedy/" title="Greedy">Greedy<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
 			
 		
 			
