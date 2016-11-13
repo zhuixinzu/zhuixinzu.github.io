@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 10. Regular Expression Matching | 追薪吧</title>
+    <title>白话LeetCode | 54. Spiral Matrix | 追薪吧</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪吧">
     
 
     
-    <meta name="description" content="实现正则匹配功能，要求支持&apos;.&apos;和&apos;*&apos;。">
+    <meta name="description" content="顺时针螺旋打印矩阵。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 10. Regular Expression Matching">
-<meta property="og:url" content="http://zhuixin8.com/2016/10/02/leetcode-10/index.html">
+<meta property="og:title" content="白话LeetCode | 54. Spiral Matrix">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/02/leetcode-54/index.html">
 <meta property="og:site_name" content="追薪吧">
-<meta property="og:description" content="实现正则匹配功能，要求支持&apos;.&apos;和&apos;*&apos;。">
-<meta property="og:updated_time" content="2016-10-15T02:12:08.000Z">
+<meta property="og:description" content="顺时针螺旋打印矩阵。">
+<meta property="og:updated_time" content="2016-11-13T08:59:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 10. Regular Expression Matching">
-<meta name="twitter:description" content="实现正则匹配功能，要求支持&apos;.&apos;和&apos;*&apos;。">
+<meta name="twitter:title" content="白话LeetCode | 54. Spiral Matrix">
+<meta name="twitter:description" content="顺时针螺旋打印矩阵。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
@@ -74,14 +74,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/leetcode-10/" title="白话LeetCode | 10. Regular Expression Matching" itemprop="url">白话LeetCode | 10. Regular Expression Matching</a>
+      <a href="/2016/10/02/leetcode-54/" title="白话LeetCode | 54. Spiral Matrix" itemprop="url">白话LeetCode | 54. Spiral Matrix</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-01T16:00:10.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-01T16:00:54.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -102,27 +102,12 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/regular-expression-matching/" target="_blank" rel="external">LeetCode | 10. Regular Expression Matching</a>)</p>
-<p>实现正则匹配功能，要求支持<code>&#39;.&#39;</code>和<code>&#39;*&#39;</code>：</p>
-<ul>
-<li><code>&#39;.&#39;</code>匹配单个任意字符；</li>
-<li><code>&#39;*&#39;</code>匹配零个或者任意多个上一字符。</li>
-</ul>
-<p>匹配要求能够覆盖整个输入字符串(不是部分)。函数原型为：bool isMatch(const char <em>s, const char </em>p)。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">isMatch(&quot;aa&quot;,&quot;a&quot;) → false</div><div class="line">isMatch(&quot;aa&quot;,&quot;aa&quot;) → true</div><div class="line">isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false</div><div class="line">isMatch(&quot;aa&quot;, &quot;a*&quot;) → true</div><div class="line">isMatch(&quot;aa&quot;, &quot;.*&quot;) → true</div><div class="line">isMatch(&quot;ab&quot;, &quot;.*&quot;) → true</div><div class="line">isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true</div></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>在面试中，正则匹配是一个经典的动态规划问题。对于目标串<code>s</code>和模式串<code>p</code>，我们使用dp[i][j]来表示目标串的子串s[0:i)与模式串的子串p[0:j)是否可以匹配成功，状态转移方程推导如下。</p>
-<p><strong>当$p[j-1]=’*‘$时，状态转移方程如下</strong>：</p>
-<p>$$dp[i][j] = dp[i][j-2]~or~(i&gt;0~and~dp[i-1][j]~and~(s[i-1] == p[j-2]~or~p[j-2] == ‘.’))$$</p>
-<p>对上式进行详细说明，当$p[j-1]=’*’$时，存在以下两种情况可以匹配成功：</p>
-<ol>
-<li>第一种情况<code>&#39;\*&#39;</code>没有发挥作用，如<code>s=&quot;a&quot;</code>，<code>p=&quot;ab*&quot;</code>，在计算dp[1][3]时，该值为<code>true</code>。原因是dp[1][1]为<code>true</code>(模式串中出现了’*’，所以上一字符’b’可以不出现)，匹配成功；</li>
-<li>第二种情况<code>&#39;\*&#39;</code>发挥了作用，如<code>s=&quot;aa&quot;</code>，<code>p=&quot;a*&quot;</code>，在计算dp[2][2]时，该值为<code>true</code>。原因是dp[1][2]为<code>true</code>(<code>&quot;a&quot;</code>和<code>&quot;a*&quot;</code>可以匹配成功)，同时s[1]与p[0]相等(均为’a’)，匹配成功。</li>
-</ol>
-<p><strong>当$p[j-1] \neq ‘*‘$时，状态转移方程如下</strong>：</p>
-<p>$$dp[i][j] = i &gt; 0~and~dp[i-1][j-1]~and~(s[i-1] == p[j-1]~or~p[j-1] == ‘.’)$$</p>
-<p>上式比较好理解，当$p[j-1] \neq ‘*’$时，只要比较s[i-1]和p[j-1]是否相等就可以了，或者观察p[j-1]是否为’.’(因为’.’可以匹配所有的字符)。</p>
-<p>综上所述，我们得到了全部状态转移方程，问题得解。时间复杂度为<code>O(m*n)</code>，其中m表示目标串的长度，n表示模式串的长度。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> m = s.length(), n = p.length();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; dp(m + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; (n + <span class="number">1</span>, <span class="literal">false</span>));</div><div class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; ++i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="string">'*'</span> == p[j - <span class="number">1</span>]) &#123;</div><div class="line">                    dp[i][j] = dp[i][j - <span class="number">2</span>] || (i &amp;&amp; dp[i - <span class="number">1</span>][j] &amp;&amp; (s[i - <span class="number">1</span>] == p[j - <span class="number">2</span>] || <span class="string">'.'</span> == p[j - <span class="number">2</span>]));</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    dp[i][j] = i &amp;&amp; dp[i - <span class="number">1</span>][j - <span class="number">1</span>] &amp;&amp; (s[i - <span class="number">1</span>] == p[j - <span class="number">1</span>] || <span class="string">'.'</span> == p[j - <span class="number">1</span>]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[m][n];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/spiral-matrix/" target="_blank" rel="external">LeetCode | 54. Spiral Matrix</a>)</p>
+<p>给定一个<em>m X n</em>大小的矩阵（m行，n列），请顺时针螺旋打印矩阵。例如，对于如下输入，你的输出为<code>[1,2,3,6,9,8,7,4,5]</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line"> [ 1, 2, 3 ],</div><div class="line"> [ 4, 5, 6 ],</div><div class="line"> [ 7, 8, 9 ]</div><div class="line">]</div></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>一眼看上去就知道这题并不需要任何的算法，暴力模拟这个过程就好了，时间复杂度为<code>O(m*n)</code>。</p>
+<p>模拟题是面试官的最爱之一，相较于各种算法，模拟题可以看出你思维逻辑是否条理清晰缜密，由于没有模板套路可言，因此最能看出你的编程功底是否扎实。对于模拟题，你需要做的就是用一种“优雅”的姿势模拟对应的过程。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; spiralOrder(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        </div><div class="line">        <span class="comment">// 注意输入为空的判断</span></div><div class="line">        <span class="keyword">if</span> (<span class="number">0</span> == matrix.size() || <span class="number">0</span> == matrix[<span class="number">0</span>].size()) &#123; </div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> row = matrix.size(), col = matrix[<span class="number">0</span>].size();</div><div class="line">        <span class="keyword">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (<span class="number">1</span> &lt;= row &amp;&amp; <span class="number">1</span> &lt;= col) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; col; ++i) &#123;</div><div class="line">                ans.push_back(matrix[x + <span class="number">0</span>][y + i]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (row &gt; <span class="number">1</span>) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; row - <span class="number">1</span>; ++i) &#123;</div><div class="line">                    ans.push_back(matrix[x + i][y + col - <span class="number">1</span>]);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = col - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</div><div class="line">                    ans.push_back(matrix[x + row - <span class="number">1</span>][y + i]);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (col &gt; <span class="number">1</span>) &#123; </div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = row - <span class="number">2</span>; i &gt;= <span class="number">1</span>; --i) &#123;</div><div class="line">                        ans.push_back(matrix[x + i][y]);</div><div class="line">                    &#125;    </div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        </div><div class="line">            ++x;</div><div class="line">            ++y;</div><div class="line">            row -= <span class="number">2</span>;</div><div class="line">            col -= <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -144,7 +129,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
+  <span></span> <a href="/tags/Array/">Array</a>
   </div>
 
 </div>
@@ -153,7 +138,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixin8.com/2016/10/02/leetcode-10/" data-title="白话LeetCode | 10. Regular Expression Matching | 追薪吧" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixin8.com/2016/10/02/leetcode-54/" data-title="白话LeetCode | 54. Spiral Matrix | 追薪吧" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -167,18 +152,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/10/02/leetcode-15/" title="白话LeetCode | 15. 3Sum">
+ <a href="/2016/10/02/leetcode-65/" title="白话LeetCode | 65. Valid Number">
   <strong>上一篇：</strong><br/>
   <span>
-  白话LeetCode | 15. 3Sum</span>
+  白话LeetCode | 65. Valid Number</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/10/02/leetcode-8/"  title="白话LeetCode | 8. String to Integer (atoi)">
+<a href="/2016/10/02/leetcode-44/"  title="白话LeetCode | 44. Wildcard Matching">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 8. String to Integer (atoi)
+ <span>白话LeetCode | 44. Wildcard Matching
 </span>
 </a>
 </div>
@@ -187,7 +172,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/leetcode-10/" data-title="白话LeetCode | 10. Regular Expression Matching" data-url="http://zhuixin8.com/2016/10/02/leetcode-10/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/02/leetcode-54/" data-title="白话LeetCode | 54. Spiral Matrix" data-url="http://zhuixin8.com/2016/10/02/leetcode-54/"></div>
 </section>
 
 
