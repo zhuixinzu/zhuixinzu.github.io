@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://zhuixin8.com/2016/10/02/leetcode-143/index.html">
 <meta property="og:site_name" content="追薪吧">
 <meta property="og:description" content="单链表交叉重排序。">
-<meta property="og:updated_time" content="2016-11-14T15:19:19.000Z">
+<meta property="og:updated_time" content="2016-11-14T15:24:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话LeetCode | 143. Reorder List">
 <meta name="twitter:description" content="单链表交叉重排序。">
@@ -103,10 +103,10 @@
 
 
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="external">LeetCode | 143. Reorder List</a>)</p>
-<p>给定一个单链表L：$L_0$-&gt;$L_1$-&gt;…-&gt;$L_{n-1}$-&gt;$L_n$，将其重排列为：$L_0$-&gt;$L_n$-&gt;$L_{1}$-&gt;$L_{n-1}$-&gt;…</p>
+<p>给定一个单链表L：$L_0$-&gt;$L_1$-&gt;…-&gt;$L_{n-1}$-&gt;$L_n$，将其重排列为：$L_0$-&gt;$L_n$-&gt;$L_{1}$-&gt;$L_{n-1}$-&gt;…。</p>
 <p>在重排列的过程中，不可以修改节点值，需要通过修改指针指向的方式实现重排列。</p>
-<p>例如，输入：<code>{1,2,3,5}</code>，重排列后为<code>{1,4,2,3}</code>。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>从题目中我们看出，需要在单链表头取一个元素，再从尾部取一个元素，再从头部取下一个元素，再从尾部取下一个元素，依次类推。也就是从前向后取前半部分的节点，从后向前取后半部分的节点。</p>
+<p>例如，输入：<code>{1,2,3,4}</code>，重排列后为<code>{1,4,2,3}</code>。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>从题目中我们看出，需要从单链表头取一个元素，再从尾部取一个元素，再从头部取下一个元素，再从尾部取下一个元素，依次类推。也就是从前向后取前半部分的节点，从后向前取后半部分的节点。</p>
 <p>但是，我们知道，<code>单链表的指向是单方向的</code>，所以无法从后向前依次获取节点。这就要求我们从单链表的中部开始，将后半部分的链表指针反向。这样就获取了两个子列表，再交叉合并即可。</p>
 <p>那么，新的问题来了，<code>如何找到链表的中点</code>呢？利用快慢指针：两个指针同时从链表头部出发，一个每次走两步，一个每次走一步，当快指针到达链表尾部时，慢指针刚好处于链表的中部。</p>
 <p>通过分析可以发现，这道题目实际上是由三个子问题组成的：</p>
@@ -265,11 +265,11 @@
 			
 		
 			
-				<li><a href="/tags/Sort/" title="Sort">Sort<sup>2</sup></a></li>
+				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Trie/" title="Trie">Trie<sup>2</sup></a></li>
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>2</sup></a></li>
 			
 		
 			
@@ -281,11 +281,11 @@
 			
 		
 			
-				<li><a href="/tags/Heap/" title="Heap">Heap<sup>1</sup></a></li>
+				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Binary-Search-Tree/" title="Binary Search Tree">Binary Search Tree<sup>1</sup></a></li>
+				<li><a href="/tags/Heap/" title="Heap">Heap<sup>1</sup></a></li>
 			
 		
 			
@@ -293,11 +293,11 @@
 			
 		
 			
-				<li><a href="/tags/Linked-List/" title="Linked List">Linked List<sup>1</sup></a></li>
+				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Breadth-first-Search/" title="Breadth-first Search">Breadth-first Search<sup>1</sup></a></li>
+				<li><a href="/tags/Linked-List/" title="Linked List">Linked List<sup>1</sup></a></li>
 			
 		
 			
