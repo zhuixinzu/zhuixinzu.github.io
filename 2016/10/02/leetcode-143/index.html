@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>白话LeetCode | 188. Best Time to Buy and Sell Stock IV | 追薪吧</title>
+    <title>白话LeetCode | 143. Reorder List | 追薪吧</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="追薪吧">
     
 
     
-    <meta name="description" content="买卖股票升级版：求解不超过k次买卖的最大收益。">
+    <meta name="description" content="单链表交叉重排序。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="白话LeetCode | 188. Best Time to Buy and Sell Stock IV">
-<meta property="og:url" content="http://zhuixin8.com/2016/10/02/leetcode-188/index.html">
+<meta property="og:title" content="白话LeetCode | 143. Reorder List">
+<meta property="og:url" content="http://zhuixin8.com/2016/10/02/leetcode-143/index.html">
 <meta property="og:site_name" content="追薪吧">
-<meta property="og:description" content="买卖股票升级版：求解不超过k次买卖的最大收益。">
-<meta property="og:updated_time" content="2016-10-15T02:15:58.000Z">
+<meta property="og:description" content="单链表交叉重排序。">
+<meta property="og:updated_time" content="2016-11-14T15:19:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白话LeetCode | 188. Best Time to Buy and Sell Stock IV">
-<meta name="twitter:description" content="买卖股票升级版：求解不超过k次买卖的最大收益。">
+<meta name="twitter:title" content="白话LeetCode | 143. Reorder List">
+<meta name="twitter:description" content="单链表交叉重排序。">
 
     
     <link rel="alternative" href="/atom.xml" title="追薪吧" type="application/atom+xml">
@@ -74,14 +74,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/02/leetcode-188/" title="白话LeetCode | 188. Best Time to Buy and Sell Stock IV" itemprop="url">白话LeetCode | 188. Best Time to Buy and Sell Stock IV</a>
+      <a href="/2016/10/02/leetcode-143/" title="白话LeetCode | 143. Reorder List" itemprop="url">白话LeetCode | 143. Reorder List</a>
   </h1>
   <p class="article-author"> 作者
        
 		<a href="/about" title="追薪吧" target="_blank" itemprop="author">追薪吧</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-01T16:03:08.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
+    <time datetime="2016-10-01T16:02:23.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
   </p>
   <p class="article-stat">
 		<span id="busuanzi_container_page_pv">
@@ -102,38 +102,21 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/" target="_blank" rel="external">LeetCode | 188. Best Time to Buy and Sell Stock IV</a>)</p>
-<p>给定一个数组，其中第$i^{th}$个元素表示第i天的股票价格。请设计一个算法来找到最大收益。你可以完成最多k次股票买卖。</p>
-<p>请注意：你不能同时参与多次交易(必须在买之前将股票卖出)。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><code>求最优解</code>通常是动态规划的一个明显特征。假设：</p>
-<ul>
-<li>local[i][j]表示最后一次买卖在第i天卖出，同时交易次数小于等于j次的最大收益；</li>
-<li>glocal[i][j]表示前i天完成小于等于j次交易的最大收益。</li>
-</ul>
-<p>下面，我们先来推导local[i][j]的状态转移方程。local[i][j]表示最后一次买卖在第i天卖出，同时交易次数小于等于j次的最大收益，那么最后一次买卖的买入时刻存在两种情况：最后一次买卖在第i-1天买入和最后一次买卖的第i-1天前买入。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>(原题链接：<a href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="external">LeetCode | 143. Reorder List</a>)</p>
+<p>给定一个单链表L：$L_0$-&gt;$L_1$-&gt;…-&gt;$L_{n-1}$-&gt;$L_n$，将其重排列为：$L_0$-&gt;$L_n$-&gt;$L_{1}$-&gt;$L_{n-1}$-&gt;…</p>
+<p>在重排列的过程中，不可以修改节点值，需要通过修改指针指向的方式实现重排列。</p>
+<p>例如，输入：<code>{1,2,3,5}</code>，重排列后为<code>{1,4,2,3}</code>。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>从题目中我们看出，需要在单链表头取一个元素，再从尾部取一个元素，再从头部取下一个元素，再从尾部取下一个元素，依次类推。也就是从前向后取前半部分的节点，从后向前取后半部分的节点。</p>
+<p>但是，我们知道，<code>单链表的指向是单方向的</code>，所以无法从后向前依次获取节点。这就要求我们从单链表的中部开始，将后半部分的链表指针反向。这样就获取了两个子列表，再交叉合并即可。</p>
+<p>那么，新的问题来了，<code>如何找到链表的中点</code>呢？利用快慢指针：两个指针同时从链表头部出发，一个每次走两步，一个每次走一步，当快指针到达链表尾部时，慢指针刚好处于链表的中部。</p>
+<p>通过分析可以发现，这道题目实际上是由三个子问题组成的：</p>
 <ol>
-<li>最后一次买卖在第i-1天买入：local[i][j]=global[i-1][j-1] + prices[i] - prices[i-1]。其中，prices[i] - prices[i-1]表示最后一次买卖股票的收入，global[i-1][j-1]表示之前i-1天完成小于等于j-1次交易的最大收益。</li>
-<li>最后一次买卖在第i-1天前买入：local[i][j]=local[i-1][j]+prices[i]-prices[i-1]。其中，prices[i] - prices[i-1]表示最后一次买卖股票的收入，local[i-1][j]表示完成小于等于j次交易且最后一次交易在第i-1天完成的最大收益。这里有的同学可能存在疑问，为什么可以这样推导。<code>原因是</code>，当你在第i-1天卖出完成第j次买卖时，如果你在这一天再次买入，并在下一天卖出，此时的交易等同于在第i-1天不卖出，等到第i天再卖出，因此交易次数依然为j次，不会增加交易次数！</li>
+<li>链表反转</li>
+<li>链表合并</li>
+<li>快慢指针找链表中点</li>
 </ol>
-<p>通过上面的两步分析，我们可以知道，local[i][j]是这两种情况中的最优解，我们得到状态转移方程如下：</p>
-<p>$$local[i][j] = max(global[i-1][j-1], local[i-1][j]) + (prices[i]-prices[i-1])$$</p>
-<p>接下来，我们分析上式中global[i][j]的状态转移方程。glocal[i][j]表示前i天完成小于等于j次交易的最大收益，它可能来自两种情况：</p>
-<ol>
-<li>在前i-1天完成小于等于j次交易的最大收益，即global[i-1][j]；</li>
-<li>在第i天完成小于等于j次交易的最大收益，即local[i][j]。</li>
-</ol>
-<p>因此，得到global[i][j]的状态转移方程如下：</p>
-<p>$$global[i][j] = max(global[i-1][j], local[i][j])$$</p>
-<p>到这里，这道题目已经得以解决，时间复杂度为<code>O(N*K)</code>。当K非常大时，时间成本会上升，这里可以进一步优化：如果$K \ge N/2$，那么等同于你可以进行无限次交易(K超过了可供交易的最大次数)，那么你只要贪心的进行买卖就可以了(如果股票下跌，就在下跌前买入，下跌后卖出)。此时，时间复杂度为<code>O(N)</code>。</p>
-<p>OK，到这里，完美解决。真的完美了吗？如果想进一步优化代码空间复杂度的同学可以接着往下看。</p>
-<p>在求解local[i][j]的过程中，你会发现，他依赖于global[i-1][j-1]和local[i-1][j]，我们并不真的需要第一个维度，可以把它简化如下：</p>
-<p>$$local[j] = max(global[j-1], local[j]) + (prices[i]-prices[i-1])$$</p>
-<p>是不是很神奇？因为local[i][j]只依赖于local[i-1][j]，而不依赖于local[i-2][j]，因此我们可以在求解local[i][j]的同时，覆盖之前的local[i-1][j]的值(它已经不需要了)。</p>
-<p>同理，global[i][j]的求解可以简化如下：</p>
-<p>$$global[j] = max(global[j], local[j])$$</p>
-<p>这里有一点需要注意，因为local[i][j]的求解依赖于global[i-1][j-1]，如果从左向右更新local和global的数组的话，global[j-1]此时已经被刷新为global[i][j-1]，而local[j]求解需要的是global[i-1][j-1]，global居然被提前更新了！因此，不能从左向右更新local和global数组，而是需要从右向左更新，这样可以保证每次计算local[j]时，使用的是global[i-1][j]，而不是global[i][j]！</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span> k, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;prices)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> max_profit = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span> (k &gt;= prices.size() / <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.size(); ++i) &#123;</div><div class="line">                <span class="keyword">if</span> (prices[i] - prices[i - <span class="number">1</span>] &gt; <span class="number">0</span>) &#123;</div><div class="line">                    max_profit += prices[i] - prices[i - <span class="number">1</span>];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; local(k+<span class="number">1</span>);</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; global(k+<span class="number">1</span>);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.size(); ++i) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = k; j &gt;= <span class="number">1</span>; --j) &#123;</div><div class="line">                    local[j] = max(global[j - <span class="number">1</span>], local[j]) + prices[i] - prices[i - <span class="number">1</span>];</div><div class="line">                    global[j] = max(global[j], local[j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            max_profit = global[k];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> max_profit;</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-  
+<p>所以面试者一定要学会分析和分解问题，将未知的问题转化为已知的问题来求解。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * struct ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode *next;</div><div class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode* head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="literal">NULL</span> == head || <span class="literal">NULL</span> == head-&gt;next) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 快慢指针找链表中点</span></div><div class="line">        ListNode* slow = head, *fast = head;</div><div class="line">        <span class="keyword">while</span>(fast-&gt;next) &#123;</div><div class="line">            fast = fast-&gt;next;</div><div class="line">            <span class="keyword">if</span> (fast-&gt;next) &#123;</div><div class="line">                fast = fast-&gt;next;</div><div class="line">                slow = slow-&gt;next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        fast = slow-&gt;next;</div><div class="line">        slow-&gt;next = <span class="literal">NULL</span>;</div><div class="line">        <span class="comment">// 链表反转</span></div><div class="line">        reverseList(fast);</div><div class="line">        <span class="comment">// 链表合并</span></div><div class="line">        slow = head;</div><div class="line">        <span class="keyword">while</span> (fast) &#123;</div><div class="line">            ListNode* t1 = slow;</div><div class="line">            ListNode* t2 = fast;</div><div class="line">            slow = slow-&gt;next;</div><div class="line">            fast = fast-&gt;next;</div><div class="line">            t1-&gt;next = t2;</div><div class="line">            t2-&gt;next = slow;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reverseList</span><span class="params">(ListNode*&amp; head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="literal">NULL</span> == head || <span class="literal">NULL</span> == head-&gt;next) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        ListNode*pre = <span class="literal">NULL</span>, *now = head;</div><div class="line">        <span class="keyword">while</span> (now) &#123;</div><div class="line">            ListNode* tmp = now-&gt;next;</div><div class="line">            now-&gt;next = pre;</div><div class="line">            pre = now;</div><div class="line">            now = tmp;</div><div class="line">        &#125;   </div><div class="line">        head = pre;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>  
 		<!--
 		<br>
 		<hr>
@@ -155,7 +138,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Dynamic-Programming/">Dynamic Programming</a>
+  <span></span> <a href="/tags/Linked-List/">Linked List</a>
   </div>
 
 </div>
@@ -164,7 +147,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://zhuixin8.com/2016/10/02/leetcode-188/" data-title="白话LeetCode | 188. Best Time to Buy and Sell Stock IV | 追薪吧" data-tsina="null" class="share clearfix">
+	  <div data-url="http://zhuixin8.com/2016/10/02/leetcode-143/" data-title="白话LeetCode | 143. Reorder List | 追薪吧" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -178,18 +161,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/10/02/leetcode-189/" title="白话LeetCode | 189. Rotate Array">
+ <a href="/2016/10/02/leetcode-146/" title="白话LeetCode | 146. LRU Cache">
   <strong>上一篇：</strong><br/>
   <span>
-  白话LeetCode | 189. Rotate Array</span>
+  白话LeetCode | 146. LRU Cache</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/10/02/leetcode-179/"  title="白话LeetCode | 179. Largest Number">
+<a href="/2016/10/02/leetcode-140/"  title="白话LeetCode | 140. Word Break II">
  <strong>下一篇：</strong><br/> 
- <span>白话LeetCode | 179. Largest Number
+ <span>白话LeetCode | 140. Word Break II
 </span>
 </a>
 </div>
@@ -198,7 +181,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/02/leetcode-188/" data-title="白话LeetCode | 188. Best Time to Buy and Sell Stock IV" data-url="http://zhuixin8.com/2016/10/02/leetcode-188/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/02/leetcode-143/" data-title="白话LeetCode | 143. Reorder List" data-url="http://zhuixin8.com/2016/10/02/leetcode-143/"></div>
 </section>
 
 

@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://zhuixin8.com/2016/10/02/leetcode-143/</loc>
+    <lastmod>2016-11-14T15:19:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>白话LeetCode | 143. Reorder List</title>
+        <pubTime>2016-10-01T16:02:23.000Z</pubTime>
+        
+        <tag>Linked List</tag>
+         
+         
+           
+             
+              <breadCrumb title="白话LeetCode" url="http://zhuixin8.com/categories/%E7%99%BD%E8%AF%9DLeetCode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://zhuixin8.com/2016/10/02/leetcode-54/</loc>
-    <lastmod>2016-11-13T08:59:11.000Z</lastmod>
+    <lastmod>2016-11-13T09:00:37.000Z</lastmod>
     <data>
         <display>
         <title>白话LeetCode | 54. Spiral Matrix</title>
@@ -610,9 +630,9 @@
         <title>白话LeetCode | 146. LRU Cache</title>
         <pubTime>2016-10-01T16:02:26.000Z</pubTime>
         
-        <tag>Design</tag>
-         
         <tag>HashTable</tag>
+         
+        <tag>Design</tag>
          
         <tag>Deque</tag>
          
